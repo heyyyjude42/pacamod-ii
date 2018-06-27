@@ -8,7 +8,30 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+   <Pivot>
+       <PivotItem Header="Home">
+            
+       </PivotItem>
+       <PivotItem Header="Tournament">
 
-    </Grid>
+       </PivotItem>
+       <PivotItem Header="Writing">
+
+       </PivotItem>
+       <PivotItem Header="Challenge">
+
+       </PivotItem>
+       <PivotItem Header="Debate">
+
+       </PivotItem>
+       <PivotItem Header="Bowl">
+
+       </PivotItem>
+       <PivotItem Header="Awards">
+
+       </PivotItem>
+       <PivotItem Header="Certificates">
+
+       </PivotItem>
+    </Pivot>
 </Page>
