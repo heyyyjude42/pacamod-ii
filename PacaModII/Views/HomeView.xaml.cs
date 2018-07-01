@@ -56,6 +56,8 @@ namespace PacaModII
             XNewOrLoadButtonPanel.Visibility = Visibility.Visible;
             XBigText.Text = "Now Scoring: " + XRoundTextBox.Text;
             XLoadedTournamentScreen.Visibility = Visibility.Visible;
+
+            MainPage.Instance.OnTournamentLoaded();
         }
 
         //TODO: do this! should be just copying the file somewhere else

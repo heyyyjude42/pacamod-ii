@@ -25,11 +25,25 @@ namespace PacaModII
     {
         // singleton
         public static MainPage Instance;
+        public event EventHandler TournamentLoaded;
+
+        // do we really need this?
+        public event EventHandler TournamentUnloaded;
 
         public MainPage()
         {
             this.InitializeComponent();
             Instance = this;
+        }
+
+        public void OnTournamentLoaded()
+        {
+            TournamentLoaded?.Invoke(this, EventArgs.Empty);
+        }
+
+        public void OnTournamentUnloaded()
+        {
+            TournamentUnloaded?.Invoke(this, EventArgs.Empty);
         }
     }
 }
