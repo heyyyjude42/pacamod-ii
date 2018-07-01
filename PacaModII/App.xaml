@@ -4,4 +4,51 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:PacaModII">
 
+    <Application.Resources>
+        
+        <!-- RESOURCE DICTIONARIES -->
+        <ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:maps="using:Windows.UI.Xaml.Controls.Maps" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+
+            <!-- COLORS -->
+            <Color x:Key="HighlightColor">#3d3938</Color>
+            <Color x:Key="HighlightColorLight">#565150</Color>
+            <Color x:Key="HighlightColorDark">#302c2b</Color>
+            <Color x:Key="ButtonTextColor">#ddd8d7</Color>
+
+            <SolidColorBrush x:Key="HighlightColorBrush" Color="{StaticResource HighlightColor}"/>
+            <SolidColorBrush x:Key="HighlightColorLightBrush" Color="{StaticResource HighlightColorLight}"/>
+            <SolidColorBrush x:Key="HighlightColorDarkBrush" Color="{StaticResource HighlightColorDark}"/>
+
+            <DataTemplate x:Key="PivotHeader">
+                <ContentPresenter>
+                    <TextBlock Text="{Binding}" FontSize="16"/>
+                </ContentPresenter>
+            </DataTemplate>
+
+            <Style TargetType="Button">
+                <Setter Property="Padding" Value="20, 10"/>
+            </Style>
+            
+
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Default">
+                    <SolidColorBrush x:Key="ButtonBackground" Color="{StaticResource HighlightColor}"/>
+                    <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="{StaticResource HighlightColorLight}"/>
+                    <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="{StaticResource HighlightColorDark}"/>
+                    <SolidColorBrush x:Key="ButtonForeground" Color="{StaticResource ButtonTextColor}"/>
+                    <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="{StaticResource ButtonTextColor}"/>
+                    <SolidColorBrush x:Key="ButtonForegroundPressed" Color="{StaticResource ButtonTextColor}"/>
+                    <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="Transparent"/>
+                    <SolidColorBrush x:Key="ButtonBorderBrushPressed" Color="Transparent"/>
+                    <SolidColorBrush x:Key="ButtonBorderBrushDisabled" Color="Transparent"/>
+                    <SolidColorBrush x:Key="ButtonBorderBrush" Color="Transparent"/>
+
+                    
+                    
+
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+
 </Application>
