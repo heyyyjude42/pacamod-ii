@@ -5,15 +5,16 @@
     xmlns:local="using:PacaModII"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:views="using:PacaModII.Views"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-   <Pivot HeaderTemplate="{StaticResource PivotHeader}">
+    <Pivot HeaderTemplate="{StaticResource PivotHeader}">
        <PivotItem Header="Home">
            <local:HomeView/>
        </PivotItem>
-       <PivotItem Header="Tournament">
-
+       <PivotItem Header="Roster" Margin="20, 30, 20, 0">
+           <views:RosterView/>
        </PivotItem>
        <PivotItem Header="Writing">
 

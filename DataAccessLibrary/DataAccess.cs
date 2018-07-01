@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using DataAccessLibrary.Models;
 using Microsoft.Data.Sqlite;
+using Util;
 
 namespace DataAccessLibrary
 {
@@ -9,7 +12,7 @@ namespace DataAccessLibrary
         private static string _currentDatabaseFileName;
         
         /// <summary>
-        /// Call this method to initialize a new database for the current tournament.
+        /// Call this method to initialize a new database for the current tournament. Only does Junior and Senior, not Skittles.
         /// </summary>
         /// <param name="fileName"></param>
         public static void InitializeDatabase(String fileName)
@@ -20,40 +23,50 @@ namespace DataAccessLibrary
                 new SqliteConnection(GetFileName()))
             {
                 db.Open();
-
-                // if we notice any performance issues, take out index/DOB/gender 
-                String rosterCommand = "CREATE TABLE IF NOT " +
-                                      "EXISTS Roster (ScupID INTEGER PRIMARY KEY, " +
-                                      "Index INTEGER, Country STRING, School STRING, TeamID INTEGER, Position INTEGER, " +
-                                      "FirstName STRING, LastName STRING, DD INTEGER, MM INTEGER, YY INTEGER, Sex STRING)";
-
-                String indScoresCommand = "CREATE TABLE IF NOT " +
-                                          "EXISTS IndividualScores (ScupID INTEGER PRIMARY KEY, " +
-                                          "C_Arts INTEGER DEFAULT 0, C_Hist INTEGER DEFAULT 0, C_Lit INTEGER DEFAULT 0, C_Sci INTEGER DEFAULT 0, C_SStud INTEGER DEFAULT 0, C_SpecA INTEGER DEFAULT 0, " +
-                                          "Challenge INTEGER DEFAULT 0, Writing INTEGER DEFAULT 0, Debate INTEGER DEFAULT 0, Overall INTEGER DEFAULT 0";
-
-                String teamScoresCommand = "CREATE TABLE IF NOT " +
-                                           "EXISTS TeamScores (Team INTEGER PRIMARY KEY, " +
-                                           "Challenge INTEGER DEFAULT 0, Writing INTEGER DEFAULT 0, Debate INTEGER DEFAULT 0, Bowl INTEGER DEFAULT 0, Overall INTEGER DEFAULT 0";
-                
-
-                // TODO: do we initialize detailed debate/bowl/etc tables here as well? Probably?
-
-                SqliteCommand createRoster = new SqliteCommand(rosterCommand, db);
-                SqliteCommand createInd = new SqliteCommand(indScoresCommand, db);
-                SqliteCommand createTeam = new SqliteCommand(teamScoresCommand, db);
-
-                createRoster.ExecuteReader();
-                createInd.ExecuteReader();
-                createTeam.ExecuteReader();
+                InitializeDivision(Division.Junior, db);
+                InitializeDivision(Division.Senior, db);
             }
+        }
+
+        /// <summary>
+        /// Helper method for initializing the databases for a whole division
+        /// </summary>
+        /// <param name="division"></param>
+        /// <param name="db"></param>
+        private static void InitializeDivision(Division division, SqliteConnection db)
+        {
+            String rosterCommand = "CREATE TABLE IF NOT " +
+                                     "EXISTS " + division + "Roster (ScupID INTEGER PRIMARY KEY, " +
+                                     "RegIndex INTEGER, Country TEXT, School TEXT, TeamID INTEGER, Position INTEGER, " +
+                                     "FirstName TEXT, LastName TEXT, DD INTEGER, MM INTEGER, YY INTEGER, Sex TEXT)";
+
+            String indScoresCommand = "CREATE TABLE IF NOT " +
+                                        "EXISTS " + division + "IndividualScores (ScupID INTEGER PRIMARY KEY, " +
+                                        "C_Arts INTEGER DEFAULT 0, C_Hist INTEGER DEFAULT 0, C_Lit INTEGER DEFAULT 0, C_Sci INTEGER DEFAULT 0, C_SStud INTEGER DEFAULT 0, C_SpecA INTEGER DEFAULT 0, " +
+                                        "Challenge INTEGER DEFAULT 0, Writing INTEGER DEFAULT 0, Debate INTEGER DEFAULT 0, Overall INTEGER DEFAULT 0)";
+
+            String teamScoresCommand = "CREATE TABLE IF NOT " +
+                                         "EXISTS " + division + "TeamScores (Team INTEGER PRIMARY KEY, " +
+                                         "Challenge INTEGER DEFAULT 0, Writing INTEGER DEFAULT 0, Debate INTEGER DEFAULT 0, Bowl INTEGER DEFAULT 0, Overall INTEGER DEFAULT 0)";
+
+
+            // TODO: do we initialize detailed debate/bowl/etc tables here as well? Probably?
+
+            SqliteCommand createRoster = new SqliteCommand(rosterCommand, db);
+            SqliteCommand createInd = new SqliteCommand(indScoresCommand, db);
+            SqliteCommand createTeam = new SqliteCommand(teamScoresCommand, db);
+
+            createRoster.ExecuteReader();
+            createInd.ExecuteReader();
+            createTeam.ExecuteReader();
         }
 
         /// <summary>
         /// Use this to add a scholar to the roster.
         /// </summary>
         /// <param name="scholar"></param>
-        public static void AddToRoster(ScholarModel scholar)
+        /// <param name="division"></param>
+        public static void AddToRoster(ScholarModel scholar, Division division)
         {
             using (SqliteConnection db = new SqliteConnection(GetFileName()))
             {

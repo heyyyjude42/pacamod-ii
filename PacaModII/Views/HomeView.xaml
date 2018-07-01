@@ -11,17 +11,17 @@
 
     <Grid Margin="0, 30, 0, 0">
         <StackPanel>
-            <StackPanel x:Name="XWelcomeScreen" HorizontalAlignment="Center">
+            <StackPanel HorizontalAlignment="Center">
                 <TextBlock x:Name="XBigText" FontSize="48" Margin="0, 0, 0, 20" TextAlignment="Center">Greetings, fellow alpaca!</TextBlock>
 
                 <!-- becomes uncollapsed after a tournament has been loaded -->
-                <StackPanel x:Name="XLoadedTournamentScreen" Visibility="Collapsed">
-                    <TextBlock>Start by importing the roster in the Tournaments tab.</TextBlock>
-                    <Button Tapped="ExportDatabase">Export Database</Button>
+                <StackPanel x:Name="XLoadedTournamentScreen" Visibility="Collapsed" HorizontalAlignment="Center" Margin="0, 0, 0, 40">
+                    <TextBlock TextAlignment="Center" HorizontalAlignment="Center" Margin="0, 0, 0, 10">Start by importing the roster in the Tournaments tab.</TextBlock>
+                    <Button Tapped="ExportDatabase" HorizontalAlignment="Center">Export Database</Button>
                 </StackPanel>
 
                 <StackPanel x:Name="XNewOrLoadButtonPanel" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button Tapped="ToggleTournamentInit" Margin="0, 0, 20, 0" HorizontalAlignment="Center" Padding="20, 10">New Tournament</Button>
+                    <Button Tapped="ToggleTournamentInit" Margin="0, 0, 20, 0" HorizontalAlignment="Center">New Tournament</Button>
                     <Button HorizontalAlignment="Center" Padding="20, 10">Load Tournament</Button>
                 </StackPanel>
 

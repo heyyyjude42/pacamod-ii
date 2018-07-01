@@ -341,13 +341,24 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
-          "Microsoft.Data.Sqlite.Core": "2.1.0"
+          "Microsoft.Data.Sqlite.Core": "2.1.0",
+          "Util": "1.0.0"
         },
         "compile": {
           "bin/placeholder/DataAccessLibrary.dll": {}
         },
         "runtime": {
           "bin/placeholder/DataAccessLibrary.dll": {}
+        }
+      },
+      "Util/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/Util.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Util.dll": {}
         }
       }
     },
@@ -866,13 +877,24 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
-          "Microsoft.Data.Sqlite.Core": "2.1.0"
+          "Microsoft.Data.Sqlite.Core": "2.1.0",
+          "Util": "1.0.0"
         },
         "compile": {
           "bin/placeholder/DataAccessLibrary.dll": {}
         },
         "runtime": {
           "bin/placeholder/DataAccessLibrary.dll": {}
+        }
+      },
+      "Util/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/Util.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Util.dll": {}
         }
       }
     },
@@ -1392,13 +1414,24 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
-          "Microsoft.Data.Sqlite.Core": "2.1.0"
+          "Microsoft.Data.Sqlite.Core": "2.1.0",
+          "Util": "1.0.0"
         },
         "compile": {
           "bin/placeholder/DataAccessLibrary.dll": {}
         },
         "runtime": {
           "bin/placeholder/DataAccessLibrary.dll": {}
+        }
+      },
+      "Util/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/Util.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Util.dll": {}
         }
       }
     },
@@ -1742,13 +1775,24 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
-          "Microsoft.Data.Sqlite.Core": "2.1.0"
+          "Microsoft.Data.Sqlite.Core": "2.1.0",
+          "Util": "1.0.0"
         },
         "compile": {
           "bin/placeholder/DataAccessLibrary.dll": {}
         },
         "runtime": {
           "bin/placeholder/DataAccessLibrary.dll": {}
+        }
+      },
+      "Util/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/Util.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Util.dll": {}
         }
       }
     },
@@ -2267,13 +2311,24 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
-          "Microsoft.Data.Sqlite.Core": "2.1.0"
+          "Microsoft.Data.Sqlite.Core": "2.1.0",
+          "Util": "1.0.0"
         },
         "compile": {
           "bin/placeholder/DataAccessLibrary.dll": {}
         },
         "runtime": {
           "bin/placeholder/DataAccessLibrary.dll": {}
+        }
+      },
+      "Util/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/Util.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Util.dll": {}
         }
       }
     },
@@ -2793,13 +2848,24 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
-          "Microsoft.Data.Sqlite.Core": "2.1.0"
+          "Microsoft.Data.Sqlite.Core": "2.1.0",
+          "Util": "1.0.0"
         },
         "compile": {
           "bin/placeholder/DataAccessLibrary.dll": {}
         },
         "runtime": {
           "bin/placeholder/DataAccessLibrary.dll": {}
+        }
+      },
+      "Util/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/Util.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Util.dll": {}
         }
       }
     },
@@ -3318,13 +3384,24 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
-          "Microsoft.Data.Sqlite.Core": "2.1.0"
+          "Microsoft.Data.Sqlite.Core": "2.1.0",
+          "Util": "1.0.0"
         },
         "compile": {
           "bin/placeholder/DataAccessLibrary.dll": {}
         },
         "runtime": {
           "bin/placeholder/DataAccessLibrary.dll": {}
+        }
+      },
+      "Util/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/Util.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Util.dll": {}
         }
       }
     },
@@ -3844,13 +3921,24 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
-          "Microsoft.Data.Sqlite.Core": "2.1.0"
+          "Microsoft.Data.Sqlite.Core": "2.1.0",
+          "Util": "1.0.0"
         },
         "compile": {
           "bin/placeholder/DataAccessLibrary.dll": {}
         },
         "runtime": {
           "bin/placeholder/DataAccessLibrary.dll": {}
+        }
+      },
+      "Util/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/Util.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Util.dll": {}
         }
       }
     }
@@ -7578,6 +7666,11 @@
       "type": "project",
       "path": "../DataAccessLibrary/DataAccessLibrary.csproj",
       "msbuildProject": "../DataAccessLibrary/DataAccessLibrary.csproj"
+    },
+    "Util/1.0.0": {
+      "type": "project",
+      "path": "../Util/Util.csproj",
+      "msbuildProject": "../Util/Util.csproj"
     }
   },
   "projectFileDependencyGroups": {
