@@ -1,5 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using Windows.Storage;
+using Syncfusion.XlsIO;
 
 namespace Util
 {
@@ -15,10 +20,20 @@ namespace Util
     /// </summary>
     public static class Roster
     {
-        public static void ImportRoster(StorageFile file)
+        public static async Task ImportRoster(StorageFile file)
         {
-            //TODO: WOOHOO time to do this
-            
+            ExcelEngine engine = new ExcelEngine();
+            IApplication application = engine.Excel;
+            IWorkbook workbook = await application.Workbooks.OpenAsync(file);
+            IWorksheet juniorSheet = workbook.Worksheets["Junior"];
+            IWorksheet seniorSheet = workbook.Worksheets["Senior"];
+
+            if (juniorSheet == null)
+                throw new Exception("No worksheet named \"Junior\" found. Try again, buddy.");
+            if (seniorSheet == null)
+                throw new Exception("No worksheet named \"Senior\" found. Try again, buddy.");
+
+            Debug.WriteLine(juniorSheet.UsedRange);
         }
     }
 }

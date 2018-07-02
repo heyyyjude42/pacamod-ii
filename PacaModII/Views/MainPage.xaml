@@ -14,7 +14,7 @@
            <local:HomeView/>
        </PivotItem>
        <PivotItem Header="Roster" Margin="20, 30, 20, 0">
-           <views:RosterView/>
+           <views:RosterView x:Name="XRosterView"/>
        </PivotItem>
        <PivotItem Header="Writing">
 

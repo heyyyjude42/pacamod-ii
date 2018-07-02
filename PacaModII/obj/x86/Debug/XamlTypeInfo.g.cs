@@ -117,6 +117,18 @@ namespace PacaModII.PacaModII_XamlTypeInfo
                 {
                     xamlType = CreateXamlType(typeIndex);
                 }
+                var userXamlType = xamlType as global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType;
+                if(xamlType == null || (userXamlType != null && userXamlType.IsReturnTypeStub && !userXamlType.IsLocalType))
+                {
+                    global::Windows.UI.Xaml.Markup.IXamlType libXamlType = CheckOtherMetadataProvidersForType(type);
+                    if (libXamlType != null)
+                    {
+                        if(libXamlType.IsConstructible || xamlType == null)
+                        {
+                            xamlType = libXamlType;
+                        }
+                    }
+                }
                 if (xamlType != null)
                 {
                     _xamlTypeCacheByName.Add(xamlType.FullName, xamlType);
@@ -143,6 +155,18 @@ namespace PacaModII.PacaModII_XamlTypeInfo
                 if(typeIndex != -1)
                 {
                     xamlType = CreateXamlType(typeIndex);
+                }
+                var userXamlType = xamlType as global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType;
+                if(xamlType == null || (userXamlType != null && userXamlType.IsReturnTypeStub && !userXamlType.IsLocalType))
+                {
+                    global::Windows.UI.Xaml.Markup.IXamlType libXamlType = CheckOtherMetadataProvidersForName(typeName);
+                    if (libXamlType != null)
+                    {
+                        if(libXamlType.IsConstructible || xamlType == null)
+                        {
+                            xamlType = libXamlType;
+                        }
+                    }
                 }
                 if (xamlType != null)
                 {
@@ -189,7 +213,7 @@ namespace PacaModII.PacaModII_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[9];
+            _typeNameTable = new string[139];
             _typeNameTable[0] = "Windows.UI.Color";
             _typeNameTable[1] = "System.ValueType";
             _typeNameTable[2] = "Object";
@@ -197,10 +221,140 @@ namespace PacaModII.PacaModII_XamlTypeInfo
             _typeNameTable[4] = "PacaModII.HomeView";
             _typeNameTable[5] = "Windows.UI.Xaml.Controls.UserControl";
             _typeNameTable[6] = "PacaModII.Views.RosterView";
-            _typeNameTable[7] = "PacaModII.MainPage";
-            _typeNameTable[8] = "Windows.UI.Xaml.Controls.Page";
+            _typeNameTable[7] = "PacaModII.ViewModels.RosterViewModel";
+            _typeNameTable[8] = "PacaModII.MainPage";
+            _typeNameTable[9] = "Windows.UI.Xaml.Controls.Page";
+            _typeNameTable[10] = "Syncfusion.UI.Xaml.Grid.SfDataGrid";
+            _typeNameTable[11] = "Syncfusion.UI.Xaml.Grid.SfGridBase";
+            _typeNameTable[12] = "Windows.UI.Xaml.Controls.Control";
+            _typeNameTable[13] = "Boolean";
+            _typeNameTable[14] = "Syncfusion.UI.Xaml.Grid.GridLengthUnitType";
+            _typeNameTable[15] = "System.Enum";
+            _typeNameTable[16] = "Syncfusion.UI.Xaml.Grid.Columns";
+            _typeNameTable[17] = "System.Collections.ObjectModel.ObservableCollection`1<Syncfusion.UI.Xaml.Grid.GridColumn>";
+            _typeNameTable[18] = "System.Collections.ObjectModel.Collection`1<Syncfusion.UI.Xaml.Grid.GridColumn>";
+            _typeNameTable[19] = "Syncfusion.UI.Xaml.Grid.GridColumn";
+            _typeNameTable[20] = "Syncfusion.UI.Xaml.Grid.GridColumnBase";
+            _typeNameTable[21] = "Syncfusion.UI.Xaml.Grid.SfGridColumnBase`1<Syncfusion.UI.Xaml.Grid.SfGridBase>";
+            _typeNameTable[22] = "Windows.UI.Xaml.DependencyObject";
+            _typeNameTable[23] = "System.Type";
+            _typeNameTable[24] = "System.Reflection.MemberInfo";
+            _typeNameTable[25] = "Windows.UI.Xaml.Style";
+            _typeNameTable[26] = "Windows.UI.Xaml.Visibility";
+            _typeNameTable[27] = "Syncfusion.UI.Xaml.Grid.FilterRowCondition";
+            _typeNameTable[28] = "Windows.UI.Xaml.DataTemplate";
+            _typeNameTable[29] = "Syncfusion.Data.DataReflectionMode";
+            _typeNameTable[30] = "String";
+            _typeNameTable[31] = "Syncfusion.UI.Xaml.Grid.FilteredFrom";
+            _typeNameTable[32] = "System.Collections.ObjectModel.ObservableCollection`1<Syncfusion.Data.FilterPredicate>";
+            _typeNameTable[33] = "System.Collections.ObjectModel.Collection`1<Syncfusion.Data.FilterPredicate>";
+            _typeNameTable[34] = "Syncfusion.Data.FilterPredicate";
+            _typeNameTable[35] = "Syncfusion.Data.FilterType";
+            _typeNameTable[36] = "Syncfusion.Data.PredicateType";
+            _typeNameTable[37] = "Syncfusion.Data.FilterBehavior";
+            _typeNameTable[38] = "Syncfusion.Data.ColumnFilter";
+            _typeNameTable[39] = "Double";
+            _typeNameTable[40] = "Syncfusion.UI.Xaml.Grid.GridValidationMode";
+            _typeNameTable[41] = "Windows.UI.Xaml.Data.UpdateSourceTrigger";
+            _typeNameTable[42] = "Windows.UI.Xaml.Thickness";
+            _typeNameTable[43] = "Windows.UI.Xaml.Controls.DataTemplateSelector";
+            _typeNameTable[44] = "Windows.UI.Xaml.Controls.StyleSelector";
+            _typeNameTable[45] = "Windows.UI.Xaml.VerticalAlignment";
+            _typeNameTable[46] = "Windows.UI.Xaml.TextAlignment";
+            _typeNameTable[47] = "Windows.UI.Xaml.HorizontalAlignment";
+            _typeNameTable[48] = "Windows.UI.Xaml.Data.BindingBase";
+            _typeNameTable[49] = "Syncfusion.UI.Xaml.Grid.RowGenerator";
+            _typeNameTable[50] = "Syncfusion.UI.Xaml.Grid.GridColumnResizingController";
+            _typeNameTable[51] = "Syncfusion.UI.Xaml.Grid.GridColumnSizer";
+            _typeNameTable[52] = "Syncfusion.UI.Xaml.Grid.ColumnSizerBase`1<Syncfusion.UI.Xaml.Grid.SfDataGrid>";
+            _typeNameTable[53] = "Syncfusion.Data.ICollectionViewAdv";
+            _typeNameTable[54] = "Syncfusion.UI.Xaml.Grid.GridColumnDragDropController";
+            _typeNameTable[55] = "Syncfusion.UI.Xaml.Grid.GridRowDragDropController";
+            _typeNameTable[56] = "Syncfusion.UI.Xaml.Grid.Cells.GridCellRendererCollection";
+            _typeNameTable[57] = "Syncfusion.UI.Xaml.Collections.ComponentModel.Disposable";
+            _typeNameTable[58] = "Syncfusion.UI.Xaml.Collections.ComponentModel.NonFinalizeDisposable";
+            _typeNameTable[59] = "Syncfusion.UI.Xaml.Grid.CoveredCellInfoCollection";
+            _typeNameTable[60] = "System.Collections.Generic.List`1<Syncfusion.UI.Xaml.Grid.CoveredCellInfo>";
+            _typeNameTable[61] = "Syncfusion.UI.Xaml.Grid.CoveredCellInfo";
+            _typeNameTable[62] = "Syncfusion.UI.Xaml.ScrollAxis.RowColumnIndex";
+            _typeNameTable[63] = "Int32";
+            _typeNameTable[64] = "Syncfusion.UI.Xaml.Grid.MergedCellManager";
+            _typeNameTable[65] = "Syncfusion.UI.Xaml.Grid.IGridSelectionController";
+            _typeNameTable[66] = "Syncfusion.Data.NotificationSubscriptionMode";
+            _typeNameTable[67] = "Syncfusion.UI.Xaml.Grid.SerializationController";
+            _typeNameTable[68] = "Syncfusion.UI.Xaml.Grid.AutoScroller";
+            _typeNameTable[69] = "Syncfusion.Data.SortComparers";
+            _typeNameTable[70] = "System.Collections.ObjectModel.ObservableCollection`1<Syncfusion.Data.SortComparer>";
+            _typeNameTable[71] = "System.Collections.ObjectModel.Collection`1<Syncfusion.Data.SortComparer>";
+            _typeNameTable[72] = "Syncfusion.Data.SortComparer";
+            _typeNameTable[73] = "System.Collections.Generic.IComparer`1<Object>";
+            _typeNameTable[74] = "Windows.UI.Xaml.Media.Brush";
+            _typeNameTable[75] = "Syncfusion.UI.Xaml.Grid.GroupColumnDescriptions";
+            _typeNameTable[76] = "System.Collections.ObjectModel.ObservableCollection`1<Syncfusion.UI.Xaml.Grid.GroupColumnDescription>";
+            _typeNameTable[77] = "System.Collections.ObjectModel.Collection`1<Syncfusion.UI.Xaml.Grid.GroupColumnDescription>";
+            _typeNameTable[78] = "Syncfusion.UI.Xaml.Grid.GroupColumnDescription";
+            _typeNameTable[79] = "Windows.UI.Xaml.Data.IValueConverter";
+            _typeNameTable[80] = "System.Collections.ObjectModel.ObservableCollection`1<Syncfusion.UI.Xaml.Grid.GridSummaryRow>";
+            _typeNameTable[81] = "System.Collections.ObjectModel.Collection`1<Syncfusion.UI.Xaml.Grid.GridSummaryRow>";
+            _typeNameTable[82] = "Syncfusion.UI.Xaml.Grid.GridSummaryRow";
+            _typeNameTable[83] = "System.Collections.ObjectModel.ObservableCollection`1<Syncfusion.Data.ISummaryColumn>";
+            _typeNameTable[84] = "System.Collections.ObjectModel.Collection`1<Syncfusion.Data.ISummaryColumn>";
+            _typeNameTable[85] = "Syncfusion.Data.ISummaryColumn";
+            _typeNameTable[86] = "Syncfusion.Data.ISummaryAggregate";
+            _typeNameTable[87] = "Syncfusion.Data.SummaryType";
+            _typeNameTable[88] = "Syncfusion.UI.Xaml.Grid.UnBoundRows";
+            _typeNameTable[89] = "System.Collections.ObjectModel.ObservableCollection`1<Syncfusion.UI.Xaml.Grid.GridUnBoundRow>";
+            _typeNameTable[90] = "System.Collections.ObjectModel.Collection`1<Syncfusion.UI.Xaml.Grid.GridUnBoundRow>";
+            _typeNameTable[91] = "Syncfusion.UI.Xaml.Grid.GridUnBoundRow";
+            _typeNameTable[92] = "Syncfusion.UI.Xaml.Grid.UnBoundRowsPosition";
+            _typeNameTable[93] = "System.Collections.Generic.IComparer`1<Syncfusion.Data.Group>";
+            _typeNameTable[94] = "Syncfusion.UI.Xaml.Grid.IGridCopyPaste";
+            _typeNameTable[95] = "Syncfusion.Data.NewItemPlaceholderPosition";
+            _typeNameTable[96] = "Syncfusion.Data.LiveDataUpdateMode";
+            _typeNameTable[97] = "Syncfusion.Data.CalculationMode";
+            _typeNameTable[98] = "Syncfusion.UI.Xaml.Grid.FilterRowPosition";
+            _typeNameTable[99] = "Syncfusion.UI.Xaml.Grid.DetailsViewDefinition";
+            _typeNameTable[100] = "System.Collections.ObjectModel.ObservableCollection`1<Syncfusion.UI.Xaml.Grid.ViewDefinition>";
+            _typeNameTable[101] = "System.Collections.ObjectModel.Collection`1<Syncfusion.UI.Xaml.Grid.ViewDefinition>";
+            _typeNameTable[102] = "Syncfusion.UI.Xaml.Grid.ViewDefinition";
+            _typeNameTable[103] = "Windows.UI.Xaml.Controls.MenuFlyout";
+            _typeNameTable[104] = "Syncfusion.UI.Xaml.Grid.AddNewRowPosition";
+            _typeNameTable[105] = "Syncfusion.UI.Xaml.Grid.PrintSettings";
+            _typeNameTable[106] = "Syncfusion.UI.Xaml.Grid.GridSelectionUnit";
+            _typeNameTable[107] = "Syncfusion.UI.Xaml.Grid.GridCellInfo";
+            _typeNameTable[108] = "Syncfusion.UI.Xaml.Grid.IDetailsViewNotifyListener";
+            _typeNameTable[109] = "Syncfusion.UI.Xaml.Grid.StackedHeaderRows";
+            _typeNameTable[110] = "System.Collections.ObjectModel.ObservableCollection`1<Syncfusion.UI.Xaml.Grid.StackedHeaderRow>";
+            _typeNameTable[111] = "System.Collections.ObjectModel.Collection`1<Syncfusion.UI.Xaml.Grid.StackedHeaderRow>";
+            _typeNameTable[112] = "Syncfusion.UI.Xaml.Grid.StackedHeaderRow";
+            _typeNameTable[113] = "Syncfusion.UI.Xaml.Grid.StackedColumns";
+            _typeNameTable[114] = "System.Collections.ObjectModel.ObservableCollection`1<Syncfusion.UI.Xaml.Grid.StackedColumn>";
+            _typeNameTable[115] = "System.Collections.ObjectModel.Collection`1<Syncfusion.UI.Xaml.Grid.StackedColumn>";
+            _typeNameTable[116] = "Syncfusion.UI.Xaml.Grid.StackedColumn";
+            _typeNameTable[117] = "Syncfusion.UI.Xaml.Grid.GridSelectionMode";
+            _typeNameTable[118] = "Syncfusion.UI.Xaml.Grid.NavigationMode";
+            _typeNameTable[119] = "Syncfusion.UI.Xaml.Grid.EditorSelectionBehavior";
+            _typeNameTable[120] = "Syncfusion.UI.Xaml.Grid.EditTrigger";
+            _typeNameTable[121] = "Syncfusion.UI.Xaml.Grid.AutoGenerateColumnsMode";
+            _typeNameTable[122] = "Syncfusion.UI.Xaml.Grid.SortClickAction";
+            _typeNameTable[123] = "System.Collections.ObjectModel.ObservableCollection`1<Object>";
+            _typeNameTable[124] = "System.Collections.ObjectModel.Collection`1<Object>";
+            _typeNameTable[125] = "Syncfusion.UI.Xaml.Grid.SortColumnDescriptions";
+            _typeNameTable[126] = "System.Collections.ObjectModel.ObservableCollection`1<Syncfusion.UI.Xaml.Grid.SortColumnDescription>";
+            _typeNameTable[127] = "System.Collections.ObjectModel.Collection`1<Syncfusion.UI.Xaml.Grid.SortColumnDescription>";
+            _typeNameTable[128] = "Syncfusion.UI.Xaml.Grid.SortColumnDescription";
+            _typeNameTable[129] = "Syncfusion.Data.ListSortDirection";
+            _typeNameTable[130] = "Syncfusion.UI.Xaml.Grid.GridPasteOption";
+            _typeNameTable[131] = "Syncfusion.UI.Xaml.Grid.GridCopyOption";
+            _typeNameTable[132] = "Syncfusion.UI.Xaml.Grid.GridTextColumn";
+            _typeNameTable[133] = "Syncfusion.UI.Xaml.Grid.GridTextColumnBase";
+            _typeNameTable[134] = "Windows.UI.Xaml.TextTrimming";
+            _typeNameTable[135] = "Windows.UI.Xaml.TextWrapping";
+            _typeNameTable[136] = "Syncfusion.UI.Xaml.Grid.GridNumericColumn";
+            _typeNameTable[137] = "Syncfusion.UI.Xaml.Controls.Input.Parsers";
+            _typeNameTable[138] = "Syncfusion.UI.Xaml.Controls.Input.PercentDisplayMode";
 
-            _typeTable = new global::System.Type[9];
+            _typeTable = new global::System.Type[139];
             _typeTable[0] = typeof(global::Windows.UI.Color);
             _typeTable[1] = typeof(global::System.ValueType);
             _typeTable[2] = typeof(global::System.Object);
@@ -208,8 +362,138 @@ namespace PacaModII.PacaModII_XamlTypeInfo
             _typeTable[4] = typeof(global::PacaModII.HomeView);
             _typeTable[5] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
             _typeTable[6] = typeof(global::PacaModII.Views.RosterView);
-            _typeTable[7] = typeof(global::PacaModII.MainPage);
-            _typeTable[8] = typeof(global::Windows.UI.Xaml.Controls.Page);
+            _typeTable[7] = typeof(global::PacaModII.ViewModels.RosterViewModel);
+            _typeTable[8] = typeof(global::PacaModII.MainPage);
+            _typeTable[9] = typeof(global::Windows.UI.Xaml.Controls.Page);
+            _typeTable[10] = typeof(global::Syncfusion.UI.Xaml.Grid.SfDataGrid);
+            _typeTable[11] = typeof(global::Syncfusion.UI.Xaml.Grid.SfGridBase);
+            _typeTable[12] = typeof(global::Windows.UI.Xaml.Controls.Control);
+            _typeTable[13] = typeof(global::System.Boolean);
+            _typeTable[14] = typeof(global::Syncfusion.UI.Xaml.Grid.GridLengthUnitType);
+            _typeTable[15] = typeof(global::System.Enum);
+            _typeTable[16] = typeof(global::Syncfusion.UI.Xaml.Grid.Columns);
+            _typeTable[17] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::Syncfusion.UI.Xaml.Grid.GridColumn>);
+            _typeTable[18] = typeof(global::System.Collections.ObjectModel.Collection<global::Syncfusion.UI.Xaml.Grid.GridColumn>);
+            _typeTable[19] = typeof(global::Syncfusion.UI.Xaml.Grid.GridColumn);
+            _typeTable[20] = typeof(global::Syncfusion.UI.Xaml.Grid.GridColumnBase);
+            _typeTable[21] = typeof(global::Syncfusion.UI.Xaml.Grid.SfGridColumnBase<global::Syncfusion.UI.Xaml.Grid.SfGridBase>);
+            _typeTable[22] = typeof(global::Windows.UI.Xaml.DependencyObject);
+            _typeTable[23] = typeof(global::System.Type);
+            _typeTable[24] = typeof(global::System.Reflection.MemberInfo);
+            _typeTable[25] = typeof(global::Windows.UI.Xaml.Style);
+            _typeTable[26] = typeof(global::Windows.UI.Xaml.Visibility);
+            _typeTable[27] = typeof(global::Syncfusion.UI.Xaml.Grid.FilterRowCondition);
+            _typeTable[28] = typeof(global::Windows.UI.Xaml.DataTemplate);
+            _typeTable[29] = typeof(global::Syncfusion.Data.DataReflectionMode);
+            _typeTable[30] = typeof(global::System.String);
+            _typeTable[31] = typeof(global::Syncfusion.UI.Xaml.Grid.FilteredFrom);
+            _typeTable[32] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::Syncfusion.Data.FilterPredicate>);
+            _typeTable[33] = typeof(global::System.Collections.ObjectModel.Collection<global::Syncfusion.Data.FilterPredicate>);
+            _typeTable[34] = typeof(global::Syncfusion.Data.FilterPredicate);
+            _typeTable[35] = typeof(global::Syncfusion.Data.FilterType);
+            _typeTable[36] = typeof(global::Syncfusion.Data.PredicateType);
+            _typeTable[37] = typeof(global::Syncfusion.Data.FilterBehavior);
+            _typeTable[38] = typeof(global::Syncfusion.Data.ColumnFilter);
+            _typeTable[39] = typeof(global::System.Double);
+            _typeTable[40] = typeof(global::Syncfusion.UI.Xaml.Grid.GridValidationMode);
+            _typeTable[41] = typeof(global::Windows.UI.Xaml.Data.UpdateSourceTrigger);
+            _typeTable[42] = typeof(global::Windows.UI.Xaml.Thickness);
+            _typeTable[43] = typeof(global::Windows.UI.Xaml.Controls.DataTemplateSelector);
+            _typeTable[44] = typeof(global::Windows.UI.Xaml.Controls.StyleSelector);
+            _typeTable[45] = typeof(global::Windows.UI.Xaml.VerticalAlignment);
+            _typeTable[46] = typeof(global::Windows.UI.Xaml.TextAlignment);
+            _typeTable[47] = typeof(global::Windows.UI.Xaml.HorizontalAlignment);
+            _typeTable[48] = typeof(global::Windows.UI.Xaml.Data.BindingBase);
+            _typeTable[49] = typeof(global::Syncfusion.UI.Xaml.Grid.RowGenerator);
+            _typeTable[50] = typeof(global::Syncfusion.UI.Xaml.Grid.GridColumnResizingController);
+            _typeTable[51] = typeof(global::Syncfusion.UI.Xaml.Grid.GridColumnSizer);
+            _typeTable[52] = typeof(global::Syncfusion.UI.Xaml.Grid.ColumnSizerBase<global::Syncfusion.UI.Xaml.Grid.SfDataGrid>);
+            _typeTable[53] = typeof(global::Syncfusion.Data.ICollectionViewAdv);
+            _typeTable[54] = typeof(global::Syncfusion.UI.Xaml.Grid.GridColumnDragDropController);
+            _typeTable[55] = typeof(global::Syncfusion.UI.Xaml.Grid.GridRowDragDropController);
+            _typeTable[56] = typeof(global::Syncfusion.UI.Xaml.Grid.Cells.GridCellRendererCollection);
+            _typeTable[57] = typeof(global::Syncfusion.UI.Xaml.Collections.ComponentModel.Disposable);
+            _typeTable[58] = typeof(global::Syncfusion.UI.Xaml.Collections.ComponentModel.NonFinalizeDisposable);
+            _typeTable[59] = typeof(global::Syncfusion.UI.Xaml.Grid.CoveredCellInfoCollection);
+            _typeTable[60] = typeof(global::System.Collections.Generic.List<global::Syncfusion.UI.Xaml.Grid.CoveredCellInfo>);
+            _typeTable[61] = typeof(global::Syncfusion.UI.Xaml.Grid.CoveredCellInfo);
+            _typeTable[62] = typeof(global::Syncfusion.UI.Xaml.ScrollAxis.RowColumnIndex);
+            _typeTable[63] = typeof(global::System.Int32);
+            _typeTable[64] = typeof(global::Syncfusion.UI.Xaml.Grid.MergedCellManager);
+            _typeTable[65] = typeof(global::Syncfusion.UI.Xaml.Grid.IGridSelectionController);
+            _typeTable[66] = typeof(global::Syncfusion.Data.NotificationSubscriptionMode);
+            _typeTable[67] = typeof(global::Syncfusion.UI.Xaml.Grid.SerializationController);
+            _typeTable[68] = typeof(global::Syncfusion.UI.Xaml.Grid.AutoScroller);
+            _typeTable[69] = typeof(global::Syncfusion.Data.SortComparers);
+            _typeTable[70] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::Syncfusion.Data.SortComparer>);
+            _typeTable[71] = typeof(global::System.Collections.ObjectModel.Collection<global::Syncfusion.Data.SortComparer>);
+            _typeTable[72] = typeof(global::Syncfusion.Data.SortComparer);
+            _typeTable[73] = typeof(global::System.Collections.Generic.IComparer<global::System.Object>);
+            _typeTable[74] = typeof(global::Windows.UI.Xaml.Media.Brush);
+            _typeTable[75] = typeof(global::Syncfusion.UI.Xaml.Grid.GroupColumnDescriptions);
+            _typeTable[76] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::Syncfusion.UI.Xaml.Grid.GroupColumnDescription>);
+            _typeTable[77] = typeof(global::System.Collections.ObjectModel.Collection<global::Syncfusion.UI.Xaml.Grid.GroupColumnDescription>);
+            _typeTable[78] = typeof(global::Syncfusion.UI.Xaml.Grid.GroupColumnDescription);
+            _typeTable[79] = typeof(global::Windows.UI.Xaml.Data.IValueConverter);
+            _typeTable[80] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::Syncfusion.UI.Xaml.Grid.GridSummaryRow>);
+            _typeTable[81] = typeof(global::System.Collections.ObjectModel.Collection<global::Syncfusion.UI.Xaml.Grid.GridSummaryRow>);
+            _typeTable[82] = typeof(global::Syncfusion.UI.Xaml.Grid.GridSummaryRow);
+            _typeTable[83] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::Syncfusion.Data.ISummaryColumn>);
+            _typeTable[84] = typeof(global::System.Collections.ObjectModel.Collection<global::Syncfusion.Data.ISummaryColumn>);
+            _typeTable[85] = typeof(global::Syncfusion.Data.ISummaryColumn);
+            _typeTable[86] = typeof(global::Syncfusion.Data.ISummaryAggregate);
+            _typeTable[87] = typeof(global::Syncfusion.Data.SummaryType);
+            _typeTable[88] = typeof(global::Syncfusion.UI.Xaml.Grid.UnBoundRows);
+            _typeTable[89] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::Syncfusion.UI.Xaml.Grid.GridUnBoundRow>);
+            _typeTable[90] = typeof(global::System.Collections.ObjectModel.Collection<global::Syncfusion.UI.Xaml.Grid.GridUnBoundRow>);
+            _typeTable[91] = typeof(global::Syncfusion.UI.Xaml.Grid.GridUnBoundRow);
+            _typeTable[92] = typeof(global::Syncfusion.UI.Xaml.Grid.UnBoundRowsPosition);
+            _typeTable[93] = typeof(global::System.Collections.Generic.IComparer<global::Syncfusion.Data.Group>);
+            _typeTable[94] = typeof(global::Syncfusion.UI.Xaml.Grid.IGridCopyPaste);
+            _typeTable[95] = typeof(global::Syncfusion.Data.NewItemPlaceholderPosition);
+            _typeTable[96] = typeof(global::Syncfusion.Data.LiveDataUpdateMode);
+            _typeTable[97] = typeof(global::Syncfusion.Data.CalculationMode);
+            _typeTable[98] = typeof(global::Syncfusion.UI.Xaml.Grid.FilterRowPosition);
+            _typeTable[99] = typeof(global::Syncfusion.UI.Xaml.Grid.DetailsViewDefinition);
+            _typeTable[100] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::Syncfusion.UI.Xaml.Grid.ViewDefinition>);
+            _typeTable[101] = typeof(global::System.Collections.ObjectModel.Collection<global::Syncfusion.UI.Xaml.Grid.ViewDefinition>);
+            _typeTable[102] = typeof(global::Syncfusion.UI.Xaml.Grid.ViewDefinition);
+            _typeTable[103] = typeof(global::Windows.UI.Xaml.Controls.MenuFlyout);
+            _typeTable[104] = typeof(global::Syncfusion.UI.Xaml.Grid.AddNewRowPosition);
+            _typeTable[105] = typeof(global::Syncfusion.UI.Xaml.Grid.PrintSettings);
+            _typeTable[106] = typeof(global::Syncfusion.UI.Xaml.Grid.GridSelectionUnit);
+            _typeTable[107] = typeof(global::Syncfusion.UI.Xaml.Grid.GridCellInfo);
+            _typeTable[108] = typeof(global::Syncfusion.UI.Xaml.Grid.IDetailsViewNotifyListener);
+            _typeTable[109] = typeof(global::Syncfusion.UI.Xaml.Grid.StackedHeaderRows);
+            _typeTable[110] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::Syncfusion.UI.Xaml.Grid.StackedHeaderRow>);
+            _typeTable[111] = typeof(global::System.Collections.ObjectModel.Collection<global::Syncfusion.UI.Xaml.Grid.StackedHeaderRow>);
+            _typeTable[112] = typeof(global::Syncfusion.UI.Xaml.Grid.StackedHeaderRow);
+            _typeTable[113] = typeof(global::Syncfusion.UI.Xaml.Grid.StackedColumns);
+            _typeTable[114] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::Syncfusion.UI.Xaml.Grid.StackedColumn>);
+            _typeTable[115] = typeof(global::System.Collections.ObjectModel.Collection<global::Syncfusion.UI.Xaml.Grid.StackedColumn>);
+            _typeTable[116] = typeof(global::Syncfusion.UI.Xaml.Grid.StackedColumn);
+            _typeTable[117] = typeof(global::Syncfusion.UI.Xaml.Grid.GridSelectionMode);
+            _typeTable[118] = typeof(global::Syncfusion.UI.Xaml.Grid.NavigationMode);
+            _typeTable[119] = typeof(global::Syncfusion.UI.Xaml.Grid.EditorSelectionBehavior);
+            _typeTable[120] = typeof(global::Syncfusion.UI.Xaml.Grid.EditTrigger);
+            _typeTable[121] = typeof(global::Syncfusion.UI.Xaml.Grid.AutoGenerateColumnsMode);
+            _typeTable[122] = typeof(global::Syncfusion.UI.Xaml.Grid.SortClickAction);
+            _typeTable[123] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::System.Object>);
+            _typeTable[124] = typeof(global::System.Collections.ObjectModel.Collection<global::System.Object>);
+            _typeTable[125] = typeof(global::Syncfusion.UI.Xaml.Grid.SortColumnDescriptions);
+            _typeTable[126] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::Syncfusion.UI.Xaml.Grid.SortColumnDescription>);
+            _typeTable[127] = typeof(global::System.Collections.ObjectModel.Collection<global::Syncfusion.UI.Xaml.Grid.SortColumnDescription>);
+            _typeTable[128] = typeof(global::Syncfusion.UI.Xaml.Grid.SortColumnDescription);
+            _typeTable[129] = typeof(global::Syncfusion.Data.ListSortDirection);
+            _typeTable[130] = typeof(global::Syncfusion.UI.Xaml.Grid.GridPasteOption);
+            _typeTable[131] = typeof(global::Syncfusion.UI.Xaml.Grid.GridCopyOption);
+            _typeTable[132] = typeof(global::Syncfusion.UI.Xaml.Grid.GridTextColumn);
+            _typeTable[133] = typeof(global::Syncfusion.UI.Xaml.Grid.GridTextColumnBase);
+            _typeTable[134] = typeof(global::Windows.UI.Xaml.TextTrimming);
+            _typeTable[135] = typeof(global::Windows.UI.Xaml.TextWrapping);
+            _typeTable[136] = typeof(global::Syncfusion.UI.Xaml.Grid.GridNumericColumn);
+            _typeTable[137] = typeof(global::Syncfusion.UI.Xaml.Controls.Input.Parsers);
+            _typeTable[138] = typeof(global::Syncfusion.UI.Xaml.Controls.Input.PercentDisplayMode);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -246,7 +530,272 @@ namespace PacaModII.PacaModII_XamlTypeInfo
 
         private object Activate_4_HomeView() { return new global::PacaModII.HomeView(); }
         private object Activate_6_RosterView() { return new global::PacaModII.Views.RosterView(); }
-        private object Activate_7_MainPage() { return new global::PacaModII.MainPage(); }
+        private object Activate_7_RosterViewModel() { return new global::PacaModII.ViewModels.RosterViewModel(); }
+        private object Activate_8_MainPage() { return new global::PacaModII.MainPage(); }
+        private object Activate_10_SfDataGrid() { return new global::Syncfusion.UI.Xaml.Grid.SfDataGrid(); }
+        private object Activate_11_SfGridBase() { return new global::Syncfusion.UI.Xaml.Grid.SfGridBase(); }
+        private object Activate_16_Columns() { return new global::Syncfusion.UI.Xaml.Grid.Columns(); }
+        private object Activate_17_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::Syncfusion.UI.Xaml.Grid.GridColumn>(); }
+        private object Activate_18_Collection() { return new global::System.Collections.ObjectModel.Collection<global::Syncfusion.UI.Xaml.Grid.GridColumn>(); }
+        private object Activate_21_SfGridColumnBase() { return new global::Syncfusion.UI.Xaml.Grid.SfGridColumnBase<global::Syncfusion.UI.Xaml.Grid.SfGridBase>(); }
+        private object Activate_32_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::Syncfusion.Data.FilterPredicate>(); }
+        private object Activate_33_Collection() { return new global::System.Collections.ObjectModel.Collection<global::Syncfusion.Data.FilterPredicate>(); }
+        private object Activate_34_FilterPredicate() { return new global::Syncfusion.Data.FilterPredicate(); }
+        private object Activate_50_GridColumnResizingController() { return new global::Syncfusion.UI.Xaml.Grid.GridColumnResizingController(); }
+        private object Activate_51_GridColumnSizer() { return new global::Syncfusion.UI.Xaml.Grid.GridColumnSizer(); }
+        private object Activate_52_ColumnSizerBase() { return new global::Syncfusion.UI.Xaml.Grid.ColumnSizerBase<global::Syncfusion.UI.Xaml.Grid.SfDataGrid>(); }
+        private object Activate_55_GridRowDragDropController() { return new global::Syncfusion.UI.Xaml.Grid.GridRowDragDropController(); }
+        private object Activate_57_Disposable() { return new global::Syncfusion.UI.Xaml.Collections.ComponentModel.Disposable(); }
+        private object Activate_58_NonFinalizeDisposable() { return new global::Syncfusion.UI.Xaml.Collections.ComponentModel.NonFinalizeDisposable(); }
+        private object Activate_60_List() { return new global::System.Collections.Generic.List<global::Syncfusion.UI.Xaml.Grid.CoveredCellInfo>(); }
+        private object Activate_68_AutoScroller() { return new global::Syncfusion.UI.Xaml.Grid.AutoScroller(); }
+        private object Activate_69_SortComparers() { return new global::Syncfusion.Data.SortComparers(); }
+        private object Activate_70_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::Syncfusion.Data.SortComparer>(); }
+        private object Activate_71_Collection() { return new global::System.Collections.ObjectModel.Collection<global::Syncfusion.Data.SortComparer>(); }
+        private object Activate_72_SortComparer() { return new global::Syncfusion.Data.SortComparer(); }
+        private object Activate_75_GroupColumnDescriptions() { return new global::Syncfusion.UI.Xaml.Grid.GroupColumnDescriptions(); }
+        private object Activate_76_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::Syncfusion.UI.Xaml.Grid.GroupColumnDescription>(); }
+        private object Activate_77_Collection() { return new global::System.Collections.ObjectModel.Collection<global::Syncfusion.UI.Xaml.Grid.GroupColumnDescription>(); }
+        private object Activate_78_GroupColumnDescription() { return new global::Syncfusion.UI.Xaml.Grid.GroupColumnDescription(); }
+        private object Activate_80_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::Syncfusion.UI.Xaml.Grid.GridSummaryRow>(); }
+        private object Activate_81_Collection() { return new global::System.Collections.ObjectModel.Collection<global::Syncfusion.UI.Xaml.Grid.GridSummaryRow>(); }
+        private object Activate_82_GridSummaryRow() { return new global::Syncfusion.UI.Xaml.Grid.GridSummaryRow(); }
+        private object Activate_83_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::Syncfusion.Data.ISummaryColumn>(); }
+        private object Activate_84_Collection() { return new global::System.Collections.ObjectModel.Collection<global::Syncfusion.Data.ISummaryColumn>(); }
+        private object Activate_88_UnBoundRows() { return new global::Syncfusion.UI.Xaml.Grid.UnBoundRows(); }
+        private object Activate_89_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::Syncfusion.UI.Xaml.Grid.GridUnBoundRow>(); }
+        private object Activate_90_Collection() { return new global::System.Collections.ObjectModel.Collection<global::Syncfusion.UI.Xaml.Grid.GridUnBoundRow>(); }
+        private object Activate_91_GridUnBoundRow() { return new global::Syncfusion.UI.Xaml.Grid.GridUnBoundRow(); }
+        private object Activate_99_DetailsViewDefinition() { return new global::Syncfusion.UI.Xaml.Grid.DetailsViewDefinition(); }
+        private object Activate_100_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::Syncfusion.UI.Xaml.Grid.ViewDefinition>(); }
+        private object Activate_101_Collection() { return new global::System.Collections.ObjectModel.Collection<global::Syncfusion.UI.Xaml.Grid.ViewDefinition>(); }
+        private object Activate_105_PrintSettings() { return new global::Syncfusion.UI.Xaml.Grid.PrintSettings(); }
+        private object Activate_109_StackedHeaderRows() { return new global::Syncfusion.UI.Xaml.Grid.StackedHeaderRows(); }
+        private object Activate_110_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::Syncfusion.UI.Xaml.Grid.StackedHeaderRow>(); }
+        private object Activate_111_Collection() { return new global::System.Collections.ObjectModel.Collection<global::Syncfusion.UI.Xaml.Grid.StackedHeaderRow>(); }
+        private object Activate_112_StackedHeaderRow() { return new global::Syncfusion.UI.Xaml.Grid.StackedHeaderRow(); }
+        private object Activate_113_StackedColumns() { return new global::Syncfusion.UI.Xaml.Grid.StackedColumns(); }
+        private object Activate_114_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::Syncfusion.UI.Xaml.Grid.StackedColumn>(); }
+        private object Activate_115_Collection() { return new global::System.Collections.ObjectModel.Collection<global::Syncfusion.UI.Xaml.Grid.StackedColumn>(); }
+        private object Activate_116_StackedColumn() { return new global::Syncfusion.UI.Xaml.Grid.StackedColumn(); }
+        private object Activate_123_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::System.Object>(); }
+        private object Activate_124_Collection() { return new global::System.Collections.ObjectModel.Collection<global::System.Object>(); }
+        private object Activate_125_SortColumnDescriptions() { return new global::Syncfusion.UI.Xaml.Grid.SortColumnDescriptions(); }
+        private object Activate_126_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::Syncfusion.UI.Xaml.Grid.SortColumnDescription>(); }
+        private object Activate_127_Collection() { return new global::System.Collections.ObjectModel.Collection<global::Syncfusion.UI.Xaml.Grid.SortColumnDescription>(); }
+        private object Activate_128_SortColumnDescription() { return new global::Syncfusion.UI.Xaml.Grid.SortColumnDescription(); }
+        private object Activate_132_GridTextColumn() { return new global::Syncfusion.UI.Xaml.Grid.GridTextColumn(); }
+        private object Activate_136_GridNumericColumn() { return new global::Syncfusion.UI.Xaml.Grid.GridNumericColumn(); }
+        private void VectorAdd_16_Columns(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::Syncfusion.UI.Xaml.Grid.GridColumn>)instance;
+            var newItem = (global::Syncfusion.UI.Xaml.Grid.GridColumn)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_17_ObservableCollection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::Syncfusion.UI.Xaml.Grid.GridColumn>)instance;
+            var newItem = (global::Syncfusion.UI.Xaml.Grid.GridColumn)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_18_Collection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::Syncfusion.UI.Xaml.Grid.GridColumn>)instance;
+            var newItem = (global::Syncfusion.UI.Xaml.Grid.GridColumn)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_32_ObservableCollection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::Syncfusion.Data.FilterPredicate>)instance;
+            var newItem = (global::Syncfusion.Data.FilterPredicate)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_33_Collection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::Syncfusion.Data.FilterPredicate>)instance;
+            var newItem = (global::Syncfusion.Data.FilterPredicate)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_53_ICollectionViewAdv(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::System.Object>)instance;
+            var newItem = (global::System.Object)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_59_CoveredCellInfoCollection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::Syncfusion.UI.Xaml.Grid.CoveredCellInfo>)instance;
+            var newItem = (global::Syncfusion.UI.Xaml.Grid.CoveredCellInfo)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_60_List(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::Syncfusion.UI.Xaml.Grid.CoveredCellInfo>)instance;
+            var newItem = (global::Syncfusion.UI.Xaml.Grid.CoveredCellInfo)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_69_SortComparers(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::Syncfusion.Data.SortComparer>)instance;
+            var newItem = (global::Syncfusion.Data.SortComparer)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_70_ObservableCollection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::Syncfusion.Data.SortComparer>)instance;
+            var newItem = (global::Syncfusion.Data.SortComparer)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_71_Collection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::Syncfusion.Data.SortComparer>)instance;
+            var newItem = (global::Syncfusion.Data.SortComparer)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_75_GroupColumnDescriptions(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::Syncfusion.UI.Xaml.Grid.GroupColumnDescription>)instance;
+            var newItem = (global::Syncfusion.UI.Xaml.Grid.GroupColumnDescription)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_76_ObservableCollection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::Syncfusion.UI.Xaml.Grid.GroupColumnDescription>)instance;
+            var newItem = (global::Syncfusion.UI.Xaml.Grid.GroupColumnDescription)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_77_Collection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::Syncfusion.UI.Xaml.Grid.GroupColumnDescription>)instance;
+            var newItem = (global::Syncfusion.UI.Xaml.Grid.GroupColumnDescription)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_80_ObservableCollection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::Syncfusion.UI.Xaml.Grid.GridSummaryRow>)instance;
+            var newItem = (global::Syncfusion.UI.Xaml.Grid.GridSummaryRow)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_81_Collection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::Syncfusion.UI.Xaml.Grid.GridSummaryRow>)instance;
+            var newItem = (global::Syncfusion.UI.Xaml.Grid.GridSummaryRow)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_83_ObservableCollection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::Syncfusion.Data.ISummaryColumn>)instance;
+            var newItem = (global::Syncfusion.Data.ISummaryColumn)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_84_Collection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::Syncfusion.Data.ISummaryColumn>)instance;
+            var newItem = (global::Syncfusion.Data.ISummaryColumn)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_88_UnBoundRows(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::Syncfusion.UI.Xaml.Grid.GridUnBoundRow>)instance;
+            var newItem = (global::Syncfusion.UI.Xaml.Grid.GridUnBoundRow)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_89_ObservableCollection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::Syncfusion.UI.Xaml.Grid.GridUnBoundRow>)instance;
+            var newItem = (global::Syncfusion.UI.Xaml.Grid.GridUnBoundRow)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_90_Collection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::Syncfusion.UI.Xaml.Grid.GridUnBoundRow>)instance;
+            var newItem = (global::Syncfusion.UI.Xaml.Grid.GridUnBoundRow)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_99_DetailsViewDefinition(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::Syncfusion.UI.Xaml.Grid.ViewDefinition>)instance;
+            var newItem = (global::Syncfusion.UI.Xaml.Grid.ViewDefinition)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_100_ObservableCollection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::Syncfusion.UI.Xaml.Grid.ViewDefinition>)instance;
+            var newItem = (global::Syncfusion.UI.Xaml.Grid.ViewDefinition)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_101_Collection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::Syncfusion.UI.Xaml.Grid.ViewDefinition>)instance;
+            var newItem = (global::Syncfusion.UI.Xaml.Grid.ViewDefinition)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_109_StackedHeaderRows(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::Syncfusion.UI.Xaml.Grid.StackedHeaderRow>)instance;
+            var newItem = (global::Syncfusion.UI.Xaml.Grid.StackedHeaderRow)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_110_ObservableCollection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::Syncfusion.UI.Xaml.Grid.StackedHeaderRow>)instance;
+            var newItem = (global::Syncfusion.UI.Xaml.Grid.StackedHeaderRow)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_111_Collection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::Syncfusion.UI.Xaml.Grid.StackedHeaderRow>)instance;
+            var newItem = (global::Syncfusion.UI.Xaml.Grid.StackedHeaderRow)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_113_StackedColumns(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::Syncfusion.UI.Xaml.Grid.StackedColumn>)instance;
+            var newItem = (global::Syncfusion.UI.Xaml.Grid.StackedColumn)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_114_ObservableCollection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::Syncfusion.UI.Xaml.Grid.StackedColumn>)instance;
+            var newItem = (global::Syncfusion.UI.Xaml.Grid.StackedColumn)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_115_Collection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::Syncfusion.UI.Xaml.Grid.StackedColumn>)instance;
+            var newItem = (global::Syncfusion.UI.Xaml.Grid.StackedColumn)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_123_ObservableCollection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::System.Object>)instance;
+            var newItem = (global::System.Object)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_124_Collection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::System.Object>)instance;
+            var newItem = (global::System.Object)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_125_SortColumnDescriptions(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::Syncfusion.UI.Xaml.Grid.SortColumnDescription>)instance;
+            var newItem = (global::Syncfusion.UI.Xaml.Grid.SortColumnDescription)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_126_ObservableCollection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::Syncfusion.UI.Xaml.Grid.SortColumnDescription>)instance;
+            var newItem = (global::Syncfusion.UI.Xaml.Grid.SortColumnDescription)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_127_Collection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::Syncfusion.UI.Xaml.Grid.SortColumnDescription>)instance;
+            var newItem = (global::Syncfusion.UI.Xaml.Grid.SortColumnDescription)item;
+            collection.Add(newItem);
+        }
 
         private global::Windows.UI.Xaml.Markup.IXamlType CreateXamlType(int typeIndex)
         {
@@ -296,24 +845,1188 @@ namespace PacaModII.PacaModII_XamlTypeInfo
             case 6:   //  PacaModII.Views.RosterView
                 userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.UserControl"));
                 userType.Activator = Activate_6_RosterView;
+                userType.AddMemberName("ViewModel");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 7:   //  PacaModII.MainPage
+            case 7:   //  PacaModII.ViewModels.RosterViewModel
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.SetIsReturnTypeStub();
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 8:   //  PacaModII.MainPage
                 userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_7_MainPage;
+                userType.Activator = Activate_8_MainPage;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 8:   //  Windows.UI.Xaml.Controls.Page
+            case 9:   //  Windows.UI.Xaml.Controls.Page
                 xamlType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 10:   //  Syncfusion.UI.Xaml.Grid.SfDataGrid
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfGridBase"));
+                userType.Activator = Activate_10_SfDataGrid;
+                userType.AddMemberName("ColumnSizer");
+                userType.AddMemberName("ItemsSource");
+                userType.AddMemberName("Columns");
+                userType.AddMemberName("RowGenerator");
+                userType.AddMemberName("ColumnResizingController");
+                userType.AddMemberName("GridColumnSizer");
+                userType.AddMemberName("BindableView");
+                userType.AddMemberName("View");
+                userType.AddMemberName("GridColumnDragDropController");
+                userType.AddMemberName("RowDragDropController");
+                userType.AddMemberName("ShowBusyIndicator");
+                userType.AddMemberName("CellRenderers");
+                userType.AddMemberName("UnBoundRowCellRenderers");
+                userType.AddMemberName("FilterRowCellRenderers");
+                userType.AddMemberName("CoveredCells");
+                userType.AddMemberName("MergedCellManager");
+                userType.AddMemberName("SelectionController");
+                userType.AddMemberName("NotificationSubscriptionMode");
+                userType.AddMemberName("SerializationController");
+                userType.AddMemberName("AutoScroller");
+                userType.AddMemberName("FooterRowsCount");
+                userType.AddMemberName("FrozenRowsCount");
+                userType.AddMemberName("SourceType");
+                userType.AddMemberName("UsePLINQ");
+                userType.AddMemberName("SortComparers");
+                userType.AddMemberName("RowSelectionBrush");
+                userType.AddMemberName("SelectionForegroundBrush");
+                userType.AddMemberName("GroupRowSelectionBrush");
+                userType.AddMemberName("RowStyle");
+                userType.AddMemberName("UnBoundRowStyle");
+                userType.AddMemberName("RowStyleSelector");
+                userType.AddMemberName("AlternationCount");
+                userType.AddMemberName("AlternatingRowStyle");
+                userType.AddMemberName("AlternatingRowStyleSelector");
+                userType.AddMemberName("CellStyle");
+                userType.AddMemberName("UnBoundRowCellStyle");
+                userType.AddMemberName("CellStyleSelector");
+                userType.AddMemberName("HeaderStyle");
+                userType.AddMemberName("HeaderTemplate");
+                userType.AddMemberName("GroupColumnDescriptions");
+                userType.AddMemberName("GroupSummaryRows");
+                userType.AddMemberName("CaptionSummaryRow");
+                userType.AddMemberName("TableSummaryRows");
+                userType.AddMemberName("UnBoundRows");
+                userType.AddMemberName("SummaryGroupComparer");
+                userType.AddMemberName("ShowColumnWhenGrouped");
+                userType.AddMemberName("AllowFrozenGroupHeaders");
+                userType.AddMemberName("CaptionSummaryRowStyle");
+                userType.AddMemberName("GroupSummaryRowStyle");
+                userType.AddMemberName("TableSummaryRowStyle");
+                userType.AddMemberName("CaptionSummaryRowStyleSelector");
+                userType.AddMemberName("GroupSummaryRowStyleSelector");
+                userType.AddMemberName("TableSummaryRowStyleSelector");
+                userType.AddMemberName("GroupSummaryCellStyleSelector");
+                userType.AddMemberName("CaptionSummaryCellStyleSelector");
+                userType.AddMemberName("TableSummaryCellStyleSelector");
+                userType.AddMemberName("IsDynamicItemsSource");
+                userType.AddMemberName("DataFetchSize");
+                userType.AddMemberName("GroupSummaryCellStyle");
+                userType.AddMemberName("CaptionSummaryCellStyle");
+                userType.AddMemberName("TableSummaryCellStyle");
+                userType.AddMemberName("ShowGroupDropArea");
+                userType.AddMemberName("GridCopyPaste");
+                userType.AddMemberName("GroupCaptionTextFormat");
+                userType.AddMemberName("IsGroupDropAreaExpanded");
+                userType.AddMemberName("AllowGrouping");
+                userType.AddMemberName("NewItemPlaceholderPosition");
+                userType.AddMemberName("NotifyEventsToParentDataGrid");
+                userType.AddMemberName("GroupDropAreaStyle");
+                userType.AddMemberName("GroupDropAreaText");
+                userType.AddMemberName("LiveDataUpdateMode");
+                userType.AddMemberName("SummaryCalculationMode");
+                userType.AddMemberName("AutoExpandGroups");
+                userType.AddMemberName("AllowDraggingRows");
+                userType.AddMemberName("AllowDeleting");
+                userType.AddMemberName("DetailsViewDataGridStyle");
+                userType.AddMemberName("AllowFiltering");
+                userType.AddMemberName("CanUseViewFilter");
+                userType.AddMemberName("CanListenPropertyNotification");
+                userType.AddMemberName("FilterPopupStyle");
+                userType.AddMemberName("FilterPopupTemplate");
+                userType.AddMemberName("FilterRowPosition");
+                userType.AddMemberName("DetailsViewDefinition");
+                userType.AddMemberName("ShowDetailsViewIndentCell");
+                userType.AddMemberName("ReuseRowsOnItemssourceChange");
+                userType.AddMemberName("CanMaintainScrollPosition");
+                userType.AddMemberName("GroupDropItemContextMenu");
+                userType.AddMemberName("GroupDropAreaContextMenu");
+                userType.AddMemberName("GroupSummaryContextMenu");
+                userType.AddMemberName("TableSummaryContextMenu");
+                userType.AddMemberName("GroupCaptionContextMenu");
+                userType.AddMemberName("RowHoverHighlightingBrush");
+                userType.AddMemberName("AllowRowHoverHighlighting");
+                userType.AddMemberName("AddNewRowPosition");
+                userType.AddMemberName("ExpanderColumnWidth");
+                userType.AddMemberName("IndentColumnWidth");
+                userType.AddMemberName("PrintSettings");
+                userType.AddMemberName("CurrentItem");
+                userType.AddMemberName("SelectionUnit");
+                userType.AddMemberName("CurrentCellInfo");
+                userType.AddMemberName("CurrentColumn");
+                userType.AddMemberName("EnableDataVirtualization");
+                userType.AddMemberName("AutoGenerateRelations");
+                userType.AddMemberName("SelectedDetailsViewGrid");
+                userType.AddMemberName("HideEmptyGridViewDefinition");
+                userType.AddMemberName("DetailsViewPadding");
+                userType.AddMemberName("NotifyListener");
+                userType.AddMemberName("IsListenerSuspended");
+                xamlType = userType;
+                break;
+
+            case 11:   //  Syncfusion.UI.Xaml.Grid.SfGridBase
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Control"));
+                userType.Activator = Activate_11_SfGridBase;
+                userType.AddMemberName("AutoGenerateColumns");
+                userType.AddMemberName("AllowResizingColumns");
+                userType.AddMemberName("StackedHeaderRows");
+                userType.AddMemberName("FooterColumnCount");
+                userType.AddMemberName("AllowEditing");
+                userType.AddMemberName("IsReadOnly");
+                userType.AddMemberName("AllowSorting");
+                userType.AddMemberName("AllowSelectionOnPointerPressed");
+                userType.AddMemberName("SelectionMode");
+                userType.AddMemberName("NavigationMode");
+                userType.AddMemberName("EditorSelectionBehavior");
+                userType.AddMemberName("EditTrigger");
+                userType.AddMemberName("CurrentCellBorderThickness");
+                userType.AddMemberName("CurrentCellBorderBrush");
+                userType.AddMemberName("FrozenColumnCount");
+                userType.AddMemberName("ShowRowHeader");
+                userType.AddMemberName("RowHeaderWidth");
+                userType.AddMemberName("HeaderRowHeight");
+                userType.AddMemberName("RowHeight");
+                userType.AddMemberName("AllowDraggingColumns");
+                userType.AddMemberName("AllowResizingHiddenColumns");
+                userType.AddMemberName("AutoGenerateColumnsForCustomType");
+                userType.AddMemberName("CellTemplateSelector");
+                userType.AddMemberName("AutoGenerateColumnsMode");
+                userType.AddMemberName("SortClickAction");
+                userType.AddMemberName("AllowTriStateSorting");
+                userType.AddMemberName("HeaderContextMenu");
+                userType.AddMemberName("RecordContextMenu");
+                userType.AddMemberName("ShowSortNumbers");
+                userType.AddMemberName("GridValidationMode");
+                userType.AddMemberName("SelectedIndex");
+                userType.AddMemberName("SelectedItem");
+                userType.AddMemberName("SelectedItems");
+                userType.AddMemberName("SortColumnDescriptions");
+                userType.AddMemberName("GridPasteOption");
+                userType.AddMemberName("GridCopyOption");
+                userType.AddMemberName("ShowToolTip");
+                xamlType = userType;
+                break;
+
+            case 12:   //  Windows.UI.Xaml.Controls.Control
+                xamlType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 13:   //  Boolean
+                xamlType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 14:   //  Syncfusion.UI.Xaml.Grid.GridLengthUnitType
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.AddEnumValue("None", global::Syncfusion.UI.Xaml.Grid.GridLengthUnitType.None);
+                userType.AddEnumValue("Auto", global::Syncfusion.UI.Xaml.Grid.GridLengthUnitType.Auto);
+                userType.AddEnumValue("AutoWithLastColumnFill", global::Syncfusion.UI.Xaml.Grid.GridLengthUnitType.AutoWithLastColumnFill);
+                userType.AddEnumValue("AutoLastColumnFill", global::Syncfusion.UI.Xaml.Grid.GridLengthUnitType.AutoLastColumnFill);
+                userType.AddEnumValue("SizeToCells", global::Syncfusion.UI.Xaml.Grid.GridLengthUnitType.SizeToCells);
+                userType.AddEnumValue("SizeToHeader", global::Syncfusion.UI.Xaml.Grid.GridLengthUnitType.SizeToHeader);
+                userType.AddEnumValue("Star", global::Syncfusion.UI.Xaml.Grid.GridLengthUnitType.Star);
+                xamlType = userType;
+                break;
+
+            case 15:   //  System.Enum
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
+                xamlType = userType;
+                break;
+
+            case 16:   //  Syncfusion.UI.Xaml.Grid.Columns
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.ObservableCollection`1<Syncfusion.UI.Xaml.Grid.GridColumn>"));
+                userType.CollectionAdd = VectorAdd_16_Columns;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 17:   //  System.Collections.ObjectModel.ObservableCollection`1<Syncfusion.UI.Xaml.Grid.GridColumn>
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.Collection`1<Syncfusion.UI.Xaml.Grid.GridColumn>"));
+                userType.Activator = Activate_17_ObservableCollection;
+                userType.CollectionAdd = VectorAdd_17_ObservableCollection;
+                xamlType = userType;
+                break;
+
+            case 18:   //  System.Collections.ObjectModel.Collection`1<Syncfusion.UI.Xaml.Grid.GridColumn>
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_18_Collection;
+                userType.CollectionAdd = VectorAdd_18_Collection;
+                xamlType = userType;
+                break;
+
+            case 19:   //  Syncfusion.UI.Xaml.Grid.GridColumn
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumnBase"));
+                userType.AddMemberName("ColumnMemberType");
+                userType.AddMemberName("FilterRowCellStyle");
+                userType.AddMemberName("UseBindingValue");
+                userType.AddMemberName("ColumnSizer");
+                userType.AddMemberName("AllowDragging");
+                userType.AddMemberName("AllowGrouping");
+                userType.AddMemberName("AllowResizing");
+                userType.AddMemberName("AllowFiltering");
+                userType.AddMemberName("ImmediateUpdateColumnFilter");
+                userType.AddMemberName("FilterRowOptionsVisibility");
+                userType.AddMemberName("FilterRowCondition");
+                userType.AddMemberName("FilterPopupStyle");
+                userType.AddMemberName("FilterPopupTemplate");
+                userType.AddMemberName("AllowBlankFilters");
+                userType.AddMemberName("FilterRowText");
+                userType.AddMemberName("IsCaseSensitiveFilterRow");
+                userType.AddMemberName("GroupMode");
+                userType.AddMemberName("CellType");
+                userType.AddMemberName("FilteredFrom");
+                userType.AddMemberName("FilterPredicates");
+                userType.AddMemberName("FilterBehavior");
+                userType.AddMemberName("ColumnFilter");
+                userType.AddMemberName("FilterRowEditorType");
+                xamlType = userType;
+                break;
+
+            case 20:   //  Syncfusion.UI.Xaml.Grid.GridColumnBase
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfGridColumnBase`1<Syncfusion.UI.Xaml.Grid.SfGridBase>"));
+                userType.AddMemberName("IsAutoGenerated");
+                userType.AddMemberName("ActualWidth");
+                userType.AddMemberName("MappingName");
+                userType.AddMemberName("HeaderText");
+                userType.AddMemberName("AllowEditing");
+                userType.AddMemberName("IsReadOnly");
+                userType.AddMemberName("GridValidationMode");
+                userType.AddMemberName("UpdateTrigger");
+                userType.AddMemberName("Padding");
+                userType.AddMemberName("AllowFocus");
+                userType.AddMemberName("HeaderTemplate");
+                userType.AddMemberName("CellTemplate");
+                userType.AddMemberName("SetCellBoundValue");
+                userType.AddMemberName("CellTemplateSelector");
+                userType.AddMemberName("CellStyle");
+                userType.AddMemberName("CellStyleSelector");
+                userType.AddMemberName("HeaderStyle");
+                userType.AddMemberName("AllowSorting");
+                userType.AddMemberName("VerticalAlignment");
+                userType.AddMemberName("TextAlignment");
+                userType.AddMemberName("HorizontalHeaderContentAlignment");
+                userType.AddMemberName("Width");
+                userType.AddMemberName("IsHidden");
+                userType.AddMemberName("MaximumWidth");
+                userType.AddMemberName("MinimumWidth");
+                userType.AddMemberName("ValueBinding");
+                userType.AddMemberName("DisplayBinding");
+                userType.AddMemberName("ShowHeaderToolTip");
+                userType.AddMemberName("ToolTipTemplate");
+                userType.AddMemberName("HeaderToolTipTemplate");
+                userType.AddMemberName("ToolTipTemplateSelector");
+                userType.AddMemberName("ShowToolTip");
+                userType.AddMemberName("SetCellBoundToolTip");
+                xamlType = userType;
+                break;
+
+            case 21:   //  Syncfusion.UI.Xaml.Grid.SfGridColumnBase`1<Syncfusion.UI.Xaml.Grid.SfGridBase>
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.DependencyObject"));
+                userType.Activator = Activate_21_SfGridColumnBase;
+                xamlType = userType;
+                break;
+
+            case 22:   //  Windows.UI.Xaml.DependencyObject
+                xamlType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 23:   //  System.Type
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Reflection.MemberInfo"));
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 24:   //  System.Reflection.MemberInfo
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                xamlType = userType;
+                break;
+
+            case 25:   //  Windows.UI.Xaml.Style
+                xamlType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 26:   //  Windows.UI.Xaml.Visibility
+                xamlType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 27:   //  Syncfusion.UI.Xaml.Grid.FilterRowCondition
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.AddEnumValue("LessThan", global::Syncfusion.UI.Xaml.Grid.FilterRowCondition.LessThan);
+                userType.AddEnumValue("LessThanOrEqual", global::Syncfusion.UI.Xaml.Grid.FilterRowCondition.LessThanOrEqual);
+                userType.AddEnumValue("GreaterThanOrEqual", global::Syncfusion.UI.Xaml.Grid.FilterRowCondition.GreaterThanOrEqual);
+                userType.AddEnumValue("GreaterThan", global::Syncfusion.UI.Xaml.Grid.FilterRowCondition.GreaterThan);
+                userType.AddEnumValue("Equals", global::Syncfusion.UI.Xaml.Grid.FilterRowCondition.Equals);
+                userType.AddEnumValue("NotEquals", global::Syncfusion.UI.Xaml.Grid.FilterRowCondition.NotEquals);
+                userType.AddEnumValue("BeginsWith", global::Syncfusion.UI.Xaml.Grid.FilterRowCondition.BeginsWith);
+                userType.AddEnumValue("EndsWith", global::Syncfusion.UI.Xaml.Grid.FilterRowCondition.EndsWith);
+                userType.AddEnumValue("Contains", global::Syncfusion.UI.Xaml.Grid.FilterRowCondition.Contains);
+                userType.AddEnumValue("Before", global::Syncfusion.UI.Xaml.Grid.FilterRowCondition.Before);
+                userType.AddEnumValue("BeforeOrEqual", global::Syncfusion.UI.Xaml.Grid.FilterRowCondition.BeforeOrEqual);
+                userType.AddEnumValue("After", global::Syncfusion.UI.Xaml.Grid.FilterRowCondition.After);
+                userType.AddEnumValue("AfterOrEqual", global::Syncfusion.UI.Xaml.Grid.FilterRowCondition.AfterOrEqual);
+                userType.AddEnumValue("Null", global::Syncfusion.UI.Xaml.Grid.FilterRowCondition.Null);
+                userType.AddEnumValue("NotNull", global::Syncfusion.UI.Xaml.Grid.FilterRowCondition.NotNull);
+                userType.AddEnumValue("Empty", global::Syncfusion.UI.Xaml.Grid.FilterRowCondition.Empty);
+                userType.AddEnumValue("NotEmpty", global::Syncfusion.UI.Xaml.Grid.FilterRowCondition.NotEmpty);
+                xamlType = userType;
+                break;
+
+            case 28:   //  Windows.UI.Xaml.DataTemplate
+                xamlType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 29:   //  Syncfusion.Data.DataReflectionMode
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.AddEnumValue("Default", global::Syncfusion.Data.DataReflectionMode.Default);
+                userType.AddEnumValue("Display", global::Syncfusion.Data.DataReflectionMode.Display);
+                userType.AddEnumValue("Value", global::Syncfusion.Data.DataReflectionMode.Value);
+                xamlType = userType;
+                break;
+
+            case 30:   //  String
+                xamlType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 31:   //  Syncfusion.UI.Xaml.Grid.FilteredFrom
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.AddEnumValue("CheckboxFilter", global::Syncfusion.UI.Xaml.Grid.FilteredFrom.CheckboxFilter);
+                userType.AddEnumValue("AdvancedFilter", global::Syncfusion.UI.Xaml.Grid.FilteredFrom.AdvancedFilter);
+                userType.AddEnumValue("FilterRow", global::Syncfusion.UI.Xaml.Grid.FilteredFrom.FilterRow);
+                userType.AddEnumValue("None", global::Syncfusion.UI.Xaml.Grid.FilteredFrom.None);
+                xamlType = userType;
+                break;
+
+            case 32:   //  System.Collections.ObjectModel.ObservableCollection`1<Syncfusion.Data.FilterPredicate>
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.Collection`1<Syncfusion.Data.FilterPredicate>"));
+                userType.CollectionAdd = VectorAdd_32_ObservableCollection;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 33:   //  System.Collections.ObjectModel.Collection`1<Syncfusion.Data.FilterPredicate>
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_33_Collection;
+                userType.CollectionAdd = VectorAdd_33_Collection;
+                xamlType = userType;
+                break;
+
+            case 34:   //  Syncfusion.Data.FilterPredicate
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_34_FilterPredicate;
+                userType.AddMemberName("FilterType");
+                userType.AddMemberName("FilterValue");
+                userType.AddMemberName("PredicateType");
+                userType.AddMemberName("FilterBehavior");
+                userType.AddMemberName("IsCaseSensitive");
+                userType.AddMemberName("FilterMode");
+                xamlType = userType;
+                break;
+
+            case 35:   //  Syncfusion.Data.FilterType
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.AddEnumValue("LessThan", global::Syncfusion.Data.FilterType.LessThan);
+                userType.AddEnumValue("LessThanOrEqual", global::Syncfusion.Data.FilterType.LessThanOrEqual);
+                userType.AddEnumValue("Equals", global::Syncfusion.Data.FilterType.Equals);
+                userType.AddEnumValue("NotEquals", global::Syncfusion.Data.FilterType.NotEquals);
+                userType.AddEnumValue("GreaterThanOrEqual", global::Syncfusion.Data.FilterType.GreaterThanOrEqual);
+                userType.AddEnumValue("GreaterThan", global::Syncfusion.Data.FilterType.GreaterThan);
+                userType.AddEnumValue("StartsWith", global::Syncfusion.Data.FilterType.StartsWith);
+                userType.AddEnumValue("EndsWith", global::Syncfusion.Data.FilterType.EndsWith);
+                userType.AddEnumValue("Contains", global::Syncfusion.Data.FilterType.Contains);
+                userType.AddEnumValue("Undefined", global::Syncfusion.Data.FilterType.Undefined);
+                userType.AddEnumValue("Between", global::Syncfusion.Data.FilterType.Between);
+                xamlType = userType;
+                break;
+
+            case 36:   //  Syncfusion.Data.PredicateType
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.AddEnumValue("And", global::Syncfusion.Data.PredicateType.And);
+                userType.AddEnumValue("Or", global::Syncfusion.Data.PredicateType.Or);
+                userType.AddEnumValue("AndAlso", global::Syncfusion.Data.PredicateType.AndAlso);
+                userType.AddEnumValue("OrElse", global::Syncfusion.Data.PredicateType.OrElse);
+                xamlType = userType;
+                break;
+
+            case 37:   //  Syncfusion.Data.FilterBehavior
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.AddEnumValue("StronglyTyped", global::Syncfusion.Data.FilterBehavior.StronglyTyped);
+                userType.AddEnumValue("StringTyped", global::Syncfusion.Data.FilterBehavior.StringTyped);
+                xamlType = userType;
+                break;
+
+            case 38:   //  Syncfusion.Data.ColumnFilter
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.AddEnumValue("Value", global::Syncfusion.Data.ColumnFilter.Value);
+                userType.AddEnumValue("DisplayText", global::Syncfusion.Data.ColumnFilter.DisplayText);
+                xamlType = userType;
+                break;
+
+            case 39:   //  Double
+                xamlType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 40:   //  Syncfusion.UI.Xaml.Grid.GridValidationMode
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.AddEnumValue("InView", global::Syncfusion.UI.Xaml.Grid.GridValidationMode.InView);
+                userType.AddEnumValue("None", global::Syncfusion.UI.Xaml.Grid.GridValidationMode.None);
+                xamlType = userType;
+                break;
+
+            case 41:   //  Windows.UI.Xaml.Data.UpdateSourceTrigger
+                xamlType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 42:   //  Windows.UI.Xaml.Thickness
+                xamlType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 43:   //  Windows.UI.Xaml.Controls.DataTemplateSelector
+                xamlType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 44:   //  Windows.UI.Xaml.Controls.StyleSelector
+                xamlType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 45:   //  Windows.UI.Xaml.VerticalAlignment
+                xamlType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 46:   //  Windows.UI.Xaml.TextAlignment
+                xamlType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 47:   //  Windows.UI.Xaml.HorizontalAlignment
+                xamlType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 48:   //  Windows.UI.Xaml.Data.BindingBase
+                xamlType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 49:   //  Syncfusion.UI.Xaml.Grid.RowGenerator
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 50:   //  Syncfusion.UI.Xaml.Grid.GridColumnResizingController
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 51:   //  Syncfusion.UI.Xaml.Grid.GridColumnSizer
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.ColumnSizerBase`1<Syncfusion.UI.Xaml.Grid.SfDataGrid>"));
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 52:   //  Syncfusion.UI.Xaml.Grid.ColumnSizerBase`1<Syncfusion.UI.Xaml.Grid.SfDataGrid>
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_52_ColumnSizerBase;
+                xamlType = userType;
+                break;
+
+            case 53:   //  Syncfusion.Data.ICollectionViewAdv
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, null);
+                userType.CollectionAdd = VectorAdd_53_ICollectionViewAdv;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 54:   //  Syncfusion.UI.Xaml.Grid.GridColumnDragDropController
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 55:   //  Syncfusion.UI.Xaml.Grid.GridRowDragDropController
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 56:   //  Syncfusion.UI.Xaml.Grid.Cells.GridCellRendererCollection
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Syncfusion.UI.Xaml.Collections.ComponentModel.Disposable"));
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 57:   //  Syncfusion.UI.Xaml.Collections.ComponentModel.Disposable
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Syncfusion.UI.Xaml.Collections.ComponentModel.NonFinalizeDisposable"));
+                userType.Activator = Activate_57_Disposable;
+                xamlType = userType;
+                break;
+
+            case 58:   //  Syncfusion.UI.Xaml.Collections.ComponentModel.NonFinalizeDisposable
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_58_NonFinalizeDisposable;
+                xamlType = userType;
+                break;
+
+            case 59:   //  Syncfusion.UI.Xaml.Grid.CoveredCellInfoCollection
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.Generic.List`1<Syncfusion.UI.Xaml.Grid.CoveredCellInfo>"));
+                userType.CollectionAdd = VectorAdd_59_CoveredCellInfoCollection;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 60:   //  System.Collections.Generic.List`1<Syncfusion.UI.Xaml.Grid.CoveredCellInfo>
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_60_List;
+                userType.CollectionAdd = VectorAdd_60_List;
+                xamlType = userType;
+                break;
+
+            case 61:   //  Syncfusion.UI.Xaml.Grid.CoveredCellInfo
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.AddMemberName("MappedRowColumnIndex");
+                userType.AddMemberName("Row");
+                userType.AddMemberName("Left");
+                userType.AddMemberName("Right");
+                userType.AddMemberName("Top");
+                userType.AddMemberName("Bottom");
+                userType.AddMemberName("Width");
+                userType.AddMemberName("Height");
+                userType.AddMemberName("Name");
+                userType.AddMemberName("RowSpan");
+                xamlType = userType;
+                break;
+
+            case 62:   //  Syncfusion.UI.Xaml.ScrollAxis.RowColumnIndex
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 63:   //  Int32
+                xamlType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 64:   //  Syncfusion.UI.Xaml.Grid.MergedCellManager
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 65:   //  Syncfusion.UI.Xaml.Grid.IGridSelectionController
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, null);
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 66:   //  Syncfusion.Data.NotificationSubscriptionMode
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.AddEnumValue("None", global::Syncfusion.Data.NotificationSubscriptionMode.None);
+                userType.AddEnumValue("CollectionChange", global::Syncfusion.Data.NotificationSubscriptionMode.CollectionChange);
+                userType.AddEnumValue("PropertyChange", global::Syncfusion.Data.NotificationSubscriptionMode.PropertyChange);
+                xamlType = userType;
+                break;
+
+            case 67:   //  Syncfusion.UI.Xaml.Grid.SerializationController
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 68:   //  Syncfusion.UI.Xaml.Grid.AutoScroller
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 69:   //  Syncfusion.Data.SortComparers
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.ObservableCollection`1<Syncfusion.Data.SortComparer>"));
+                userType.CollectionAdd = VectorAdd_69_SortComparers;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 70:   //  System.Collections.ObjectModel.ObservableCollection`1<Syncfusion.Data.SortComparer>
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.Collection`1<Syncfusion.Data.SortComparer>"));
+                userType.Activator = Activate_70_ObservableCollection;
+                userType.CollectionAdd = VectorAdd_70_ObservableCollection;
+                xamlType = userType;
+                break;
+
+            case 71:   //  System.Collections.ObjectModel.Collection`1<Syncfusion.Data.SortComparer>
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_71_Collection;
+                userType.CollectionAdd = VectorAdd_71_Collection;
+                xamlType = userType;
+                break;
+
+            case 72:   //  Syncfusion.Data.SortComparer
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_72_SortComparer;
+                userType.AddMemberName("PropertyName");
+                userType.AddMemberName("Comparer");
+                xamlType = userType;
+                break;
+
+            case 73:   //  System.Collections.Generic.IComparer`1<Object>
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, null);
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 74:   //  Windows.UI.Xaml.Media.Brush
+                xamlType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 75:   //  Syncfusion.UI.Xaml.Grid.GroupColumnDescriptions
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.ObservableCollection`1<Syncfusion.UI.Xaml.Grid.GroupColumnDescription>"));
+                userType.CollectionAdd = VectorAdd_75_GroupColumnDescriptions;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 76:   //  System.Collections.ObjectModel.ObservableCollection`1<Syncfusion.UI.Xaml.Grid.GroupColumnDescription>
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.Collection`1<Syncfusion.UI.Xaml.Grid.GroupColumnDescription>"));
+                userType.Activator = Activate_76_ObservableCollection;
+                userType.CollectionAdd = VectorAdd_76_ObservableCollection;
+                xamlType = userType;
+                break;
+
+            case 77:   //  System.Collections.ObjectModel.Collection`1<Syncfusion.UI.Xaml.Grid.GroupColumnDescription>
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_77_Collection;
+                userType.CollectionAdd = VectorAdd_77_Collection;
+                xamlType = userType;
+                break;
+
+            case 78:   //  Syncfusion.UI.Xaml.Grid.GroupColumnDescription
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.DependencyObject"));
+                userType.Activator = Activate_78_GroupColumnDescription;
+                userType.AddMemberName("ColumnName");
+                userType.AddMemberName("Converter");
+                userType.AddMemberName("Comparer");
+                userType.AddMemberName("SortGroupRecords");
+                xamlType = userType;
+                break;
+
+            case 79:   //  Windows.UI.Xaml.Data.IValueConverter
+                xamlType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 80:   //  System.Collections.ObjectModel.ObservableCollection`1<Syncfusion.UI.Xaml.Grid.GridSummaryRow>
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.Collection`1<Syncfusion.UI.Xaml.Grid.GridSummaryRow>"));
+                userType.CollectionAdd = VectorAdd_80_ObservableCollection;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 81:   //  System.Collections.ObjectModel.Collection`1<Syncfusion.UI.Xaml.Grid.GridSummaryRow>
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_81_Collection;
+                userType.CollectionAdd = VectorAdd_81_Collection;
+                xamlType = userType;
+                break;
+
+            case 82:   //  Syncfusion.UI.Xaml.Grid.GridSummaryRow
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.DependencyObject"));
+                userType.Activator = Activate_82_GridSummaryRow;
+                userType.AddMemberName("Name");
+                userType.AddMemberName("ShowSummaryInRow");
+                userType.AddMemberName("SummaryColumns");
+                userType.AddMemberName("Title");
+                xamlType = userType;
+                break;
+
+            case 83:   //  System.Collections.ObjectModel.ObservableCollection`1<Syncfusion.Data.ISummaryColumn>
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.Collection`1<Syncfusion.Data.ISummaryColumn>"));
+                userType.CollectionAdd = VectorAdd_83_ObservableCollection;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 84:   //  System.Collections.ObjectModel.Collection`1<Syncfusion.Data.ISummaryColumn>
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_84_Collection;
+                userType.CollectionAdd = VectorAdd_84_Collection;
+                xamlType = userType;
+                break;
+
+            case 85:   //  Syncfusion.Data.ISummaryColumn
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, null);
+                userType.AddMemberName("CustomAggregate");
+                userType.AddMemberName("Format");
+                userType.AddMemberName("MappingName");
+                userType.AddMemberName("Name");
+                userType.AddMemberName("SummaryType");
+                xamlType = userType;
+                break;
+
+            case 86:   //  Syncfusion.Data.ISummaryAggregate
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, null);
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 87:   //  Syncfusion.Data.SummaryType
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.AddEnumValue("CountAggregate", global::Syncfusion.Data.SummaryType.CountAggregate);
+                userType.AddEnumValue("DoubleAggregate", global::Syncfusion.Data.SummaryType.DoubleAggregate);
+                userType.AddEnumValue("Int32Aggregate", global::Syncfusion.Data.SummaryType.Int32Aggregate);
+                userType.AddEnumValue("Custom", global::Syncfusion.Data.SummaryType.Custom);
+                xamlType = userType;
+                break;
+
+            case 88:   //  Syncfusion.UI.Xaml.Grid.UnBoundRows
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.ObservableCollection`1<Syncfusion.UI.Xaml.Grid.GridUnBoundRow>"));
+                userType.CollectionAdd = VectorAdd_88_UnBoundRows;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 89:   //  System.Collections.ObjectModel.ObservableCollection`1<Syncfusion.UI.Xaml.Grid.GridUnBoundRow>
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.Collection`1<Syncfusion.UI.Xaml.Grid.GridUnBoundRow>"));
+                userType.Activator = Activate_89_ObservableCollection;
+                userType.CollectionAdd = VectorAdd_89_ObservableCollection;
+                xamlType = userType;
+                break;
+
+            case 90:   //  System.Collections.ObjectModel.Collection`1<Syncfusion.UI.Xaml.Grid.GridUnBoundRow>
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_90_Collection;
+                userType.CollectionAdd = VectorAdd_90_Collection;
+                xamlType = userType;
+                break;
+
+            case 91:   //  Syncfusion.UI.Xaml.Grid.GridUnBoundRow
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.DependencyObject"));
+                userType.Activator = Activate_91_GridUnBoundRow;
+                userType.AddMemberName("RowIndex");
+                userType.AddMemberName("UnBoundRowIndex");
+                userType.AddMemberName("ShowBelowSummary");
+                userType.AddMemberName("Position");
+                xamlType = userType;
+                break;
+
+            case 92:   //  Syncfusion.UI.Xaml.Grid.UnBoundRowsPosition
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.AddEnumValue("None", global::Syncfusion.UI.Xaml.Grid.UnBoundRowsPosition.None);
+                userType.AddEnumValue("Top", global::Syncfusion.UI.Xaml.Grid.UnBoundRowsPosition.Top);
+                userType.AddEnumValue("Bottom", global::Syncfusion.UI.Xaml.Grid.UnBoundRowsPosition.Bottom);
+                xamlType = userType;
+                break;
+
+            case 93:   //  System.Collections.Generic.IComparer`1<Syncfusion.Data.Group>
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, null);
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 94:   //  Syncfusion.UI.Xaml.Grid.IGridCopyPaste
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, null);
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 95:   //  Syncfusion.Data.NewItemPlaceholderPosition
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.AddEnumValue("None", global::Syncfusion.Data.NewItemPlaceholderPosition.None);
+                userType.AddEnumValue("AtBeginning", global::Syncfusion.Data.NewItemPlaceholderPosition.AtBeginning);
+                userType.AddEnumValue("AtEnd", global::Syncfusion.Data.NewItemPlaceholderPosition.AtEnd);
+                xamlType = userType;
+                break;
+
+            case 96:   //  Syncfusion.Data.LiveDataUpdateMode
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.AddEnumValue("Default", global::Syncfusion.Data.LiveDataUpdateMode.Default);
+                userType.AddEnumValue("AllowSummaryUpdate", global::Syncfusion.Data.LiveDataUpdateMode.AllowSummaryUpdate);
+                userType.AddEnumValue("AllowDataShaping", global::Syncfusion.Data.LiveDataUpdateMode.AllowDataShaping);
+                userType.AddEnumValue("AllowChildViewUpdate", global::Syncfusion.Data.LiveDataUpdateMode.AllowChildViewUpdate);
+                xamlType = userType;
+                break;
+
+            case 97:   //  Syncfusion.Data.CalculationMode
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.AddEnumValue("Default", global::Syncfusion.Data.CalculationMode.Default);
+                userType.AddEnumValue("OnDemandCaptionSummary", global::Syncfusion.Data.CalculationMode.OnDemandCaptionSummary);
+                userType.AddEnumValue("OnDemandGroupSummary", global::Syncfusion.Data.CalculationMode.OnDemandGroupSummary);
+                xamlType = userType;
+                break;
+
+            case 98:   //  Syncfusion.UI.Xaml.Grid.FilterRowPosition
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.AddEnumValue("None", global::Syncfusion.UI.Xaml.Grid.FilterRowPosition.None);
+                userType.AddEnumValue("Top", global::Syncfusion.UI.Xaml.Grid.FilterRowPosition.Top);
+                userType.AddEnumValue("FixedTop", global::Syncfusion.UI.Xaml.Grid.FilterRowPosition.FixedTop);
+                userType.AddEnumValue("Bottom", global::Syncfusion.UI.Xaml.Grid.FilterRowPosition.Bottom);
+                xamlType = userType;
+                break;
+
+            case 99:   //  Syncfusion.UI.Xaml.Grid.DetailsViewDefinition
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.ObservableCollection`1<Syncfusion.UI.Xaml.Grid.ViewDefinition>"));
+                userType.CollectionAdd = VectorAdd_99_DetailsViewDefinition;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 100:   //  System.Collections.ObjectModel.ObservableCollection`1<Syncfusion.UI.Xaml.Grid.ViewDefinition>
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.Collection`1<Syncfusion.UI.Xaml.Grid.ViewDefinition>"));
+                userType.Activator = Activate_100_ObservableCollection;
+                userType.CollectionAdd = VectorAdd_100_ObservableCollection;
+                xamlType = userType;
+                break;
+
+            case 101:   //  System.Collections.ObjectModel.Collection`1<Syncfusion.UI.Xaml.Grid.ViewDefinition>
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_101_Collection;
+                userType.CollectionAdd = VectorAdd_101_Collection;
+                xamlType = userType;
+                break;
+
+            case 102:   //  Syncfusion.UI.Xaml.Grid.ViewDefinition
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.DependencyObject"));
+                userType.AddMemberName("RelationalColumn");
+                xamlType = userType;
+                break;
+
+            case 103:   //  Windows.UI.Xaml.Controls.MenuFlyout
+                xamlType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 104:   //  Syncfusion.UI.Xaml.Grid.AddNewRowPosition
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.AddEnumValue("None", global::Syncfusion.UI.Xaml.Grid.AddNewRowPosition.None);
+                userType.AddEnumValue("Top", global::Syncfusion.UI.Xaml.Grid.AddNewRowPosition.Top);
+                userType.AddEnumValue("FixedTop", global::Syncfusion.UI.Xaml.Grid.AddNewRowPosition.FixedTop);
+                userType.AddEnumValue("Bottom", global::Syncfusion.UI.Xaml.Grid.AddNewRowPosition.Bottom);
+                xamlType = userType;
+                break;
+
+            case 105:   //  Syncfusion.UI.Xaml.Grid.PrintSettings
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 106:   //  Syncfusion.UI.Xaml.Grid.GridSelectionUnit
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.AddEnumValue("Row", global::Syncfusion.UI.Xaml.Grid.GridSelectionUnit.Row);
+                userType.AddEnumValue("Cell", global::Syncfusion.UI.Xaml.Grid.GridSelectionUnit.Cell);
+                userType.AddEnumValue("Any", global::Syncfusion.UI.Xaml.Grid.GridSelectionUnit.Any);
+                xamlType = userType;
+                break;
+
+            case 107:   //  Syncfusion.UI.Xaml.Grid.GridCellInfo
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 108:   //  Syncfusion.UI.Xaml.Grid.IDetailsViewNotifyListener
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, null);
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 109:   //  Syncfusion.UI.Xaml.Grid.StackedHeaderRows
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.ObservableCollection`1<Syncfusion.UI.Xaml.Grid.StackedHeaderRow>"));
+                userType.CollectionAdd = VectorAdd_109_StackedHeaderRows;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 110:   //  System.Collections.ObjectModel.ObservableCollection`1<Syncfusion.UI.Xaml.Grid.StackedHeaderRow>
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.Collection`1<Syncfusion.UI.Xaml.Grid.StackedHeaderRow>"));
+                userType.Activator = Activate_110_ObservableCollection;
+                userType.CollectionAdd = VectorAdd_110_ObservableCollection;
+                xamlType = userType;
+                break;
+
+            case 111:   //  System.Collections.ObjectModel.Collection`1<Syncfusion.UI.Xaml.Grid.StackedHeaderRow>
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_111_Collection;
+                userType.CollectionAdd = VectorAdd_111_Collection;
+                xamlType = userType;
+                break;
+
+            case 112:   //  Syncfusion.UI.Xaml.Grid.StackedHeaderRow
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.DependencyObject"));
+                userType.Activator = Activate_112_StackedHeaderRow;
+                userType.AddMemberName("Name");
+                userType.AddMemberName("StackedColumns");
+                xamlType = userType;
+                break;
+
+            case 113:   //  Syncfusion.UI.Xaml.Grid.StackedColumns
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.ObservableCollection`1<Syncfusion.UI.Xaml.Grid.StackedColumn>"));
+                userType.CollectionAdd = VectorAdd_113_StackedColumns;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 114:   //  System.Collections.ObjectModel.ObservableCollection`1<Syncfusion.UI.Xaml.Grid.StackedColumn>
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.Collection`1<Syncfusion.UI.Xaml.Grid.StackedColumn>"));
+                userType.Activator = Activate_114_ObservableCollection;
+                userType.CollectionAdd = VectorAdd_114_ObservableCollection;
+                xamlType = userType;
+                break;
+
+            case 115:   //  System.Collections.ObjectModel.Collection`1<Syncfusion.UI.Xaml.Grid.StackedColumn>
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_115_Collection;
+                userType.CollectionAdd = VectorAdd_115_Collection;
+                xamlType = userType;
+                break;
+
+            case 116:   //  Syncfusion.UI.Xaml.Grid.StackedColumn
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.DependencyObject"));
+                userType.Activator = Activate_116_StackedColumn;
+                userType.AddMemberName("ChildColumns");
+                userType.AddMemberName("HeaderText");
+                userType.AddMemberName("MappingName");
+                xamlType = userType;
+                break;
+
+            case 117:   //  Syncfusion.UI.Xaml.Grid.GridSelectionMode
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.AddEnumValue("None", global::Syncfusion.UI.Xaml.Grid.GridSelectionMode.None);
+                userType.AddEnumValue("Single", global::Syncfusion.UI.Xaml.Grid.GridSelectionMode.Single);
+                userType.AddEnumValue("Multiple", global::Syncfusion.UI.Xaml.Grid.GridSelectionMode.Multiple);
+                userType.AddEnumValue("Extended", global::Syncfusion.UI.Xaml.Grid.GridSelectionMode.Extended);
+                xamlType = userType;
+                break;
+
+            case 118:   //  Syncfusion.UI.Xaml.Grid.NavigationMode
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.AddEnumValue("Cell", global::Syncfusion.UI.Xaml.Grid.NavigationMode.Cell);
+                userType.AddEnumValue("Row", global::Syncfusion.UI.Xaml.Grid.NavigationMode.Row);
+                xamlType = userType;
+                break;
+
+            case 119:   //  Syncfusion.UI.Xaml.Grid.EditorSelectionBehavior
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.AddEnumValue("SelectAll", global::Syncfusion.UI.Xaml.Grid.EditorSelectionBehavior.SelectAll);
+                userType.AddEnumValue("MoveLast", global::Syncfusion.UI.Xaml.Grid.EditorSelectionBehavior.MoveLast);
+                xamlType = userType;
+                break;
+
+            case 120:   //  Syncfusion.UI.Xaml.Grid.EditTrigger
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.AddEnumValue("OnTap", global::Syncfusion.UI.Xaml.Grid.EditTrigger.OnTap);
+                userType.AddEnumValue("OnDoubleTap", global::Syncfusion.UI.Xaml.Grid.EditTrigger.OnDoubleTap);
+                xamlType = userType;
+                break;
+
+            case 121:   //  Syncfusion.UI.Xaml.Grid.AutoGenerateColumnsMode
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.AddEnumValue("Reset", global::Syncfusion.UI.Xaml.Grid.AutoGenerateColumnsMode.Reset);
+                userType.AddEnumValue("RetainOld", global::Syncfusion.UI.Xaml.Grid.AutoGenerateColumnsMode.RetainOld);
+                userType.AddEnumValue("ResetAll", global::Syncfusion.UI.Xaml.Grid.AutoGenerateColumnsMode.ResetAll);
+                userType.AddEnumValue("None", global::Syncfusion.UI.Xaml.Grid.AutoGenerateColumnsMode.None);
+                userType.AddEnumValue("SmartReset", global::Syncfusion.UI.Xaml.Grid.AutoGenerateColumnsMode.SmartReset);
+                xamlType = userType;
+                break;
+
+            case 122:   //  Syncfusion.UI.Xaml.Grid.SortClickAction
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.AddEnumValue("SingleClick", global::Syncfusion.UI.Xaml.Grid.SortClickAction.SingleClick);
+                userType.AddEnumValue("DoubleClick", global::Syncfusion.UI.Xaml.Grid.SortClickAction.DoubleClick);
+                xamlType = userType;
+                break;
+
+            case 123:   //  System.Collections.ObjectModel.ObservableCollection`1<Object>
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.Collection`1<Object>"));
+                userType.CollectionAdd = VectorAdd_123_ObservableCollection;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 124:   //  System.Collections.ObjectModel.Collection`1<Object>
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_124_Collection;
+                userType.CollectionAdd = VectorAdd_124_Collection;
+                xamlType = userType;
+                break;
+
+            case 125:   //  Syncfusion.UI.Xaml.Grid.SortColumnDescriptions
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.ObservableCollection`1<Syncfusion.UI.Xaml.Grid.SortColumnDescription>"));
+                userType.CollectionAdd = VectorAdd_125_SortColumnDescriptions;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 126:   //  System.Collections.ObjectModel.ObservableCollection`1<Syncfusion.UI.Xaml.Grid.SortColumnDescription>
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.Collection`1<Syncfusion.UI.Xaml.Grid.SortColumnDescription>"));
+                userType.Activator = Activate_126_ObservableCollection;
+                userType.CollectionAdd = VectorAdd_126_ObservableCollection;
+                xamlType = userType;
+                break;
+
+            case 127:   //  System.Collections.ObjectModel.Collection`1<Syncfusion.UI.Xaml.Grid.SortColumnDescription>
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_127_Collection;
+                userType.CollectionAdd = VectorAdd_127_Collection;
+                xamlType = userType;
+                break;
+
+            case 128:   //  Syncfusion.UI.Xaml.Grid.SortColumnDescription
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.DependencyObject"));
+                userType.Activator = Activate_128_SortColumnDescription;
+                userType.AddMemberName("ColumnName");
+                userType.AddMemberName("SortDirection");
+                xamlType = userType;
+                break;
+
+            case 129:   //  Syncfusion.Data.ListSortDirection
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.AddEnumValue("Ascending", global::Syncfusion.Data.ListSortDirection.Ascending);
+                userType.AddEnumValue("Descending", global::Syncfusion.Data.ListSortDirection.Descending);
+                xamlType = userType;
+                break;
+
+            case 130:   //  Syncfusion.UI.Xaml.Grid.GridPasteOption
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.AddEnumValue("None", global::Syncfusion.UI.Xaml.Grid.GridPasteOption.None);
+                userType.AddEnumValue("PasteData", global::Syncfusion.UI.Xaml.Grid.GridPasteOption.PasteData);
+                userType.AddEnumValue("ExcludeFirstLine", global::Syncfusion.UI.Xaml.Grid.GridPasteOption.ExcludeFirstLine);
+                userType.AddEnumValue("IncludeHiddenColumn", global::Syncfusion.UI.Xaml.Grid.GridPasteOption.IncludeHiddenColumn);
+                xamlType = userType;
+                break;
+
+            case 131:   //  Syncfusion.UI.Xaml.Grid.GridCopyOption
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.AddEnumValue("None", global::Syncfusion.UI.Xaml.Grid.GridCopyOption.None);
+                userType.AddEnumValue("CopyData", global::Syncfusion.UI.Xaml.Grid.GridCopyOption.CopyData);
+                userType.AddEnumValue("CutData", global::Syncfusion.UI.Xaml.Grid.GridCopyOption.CutData);
+                userType.AddEnumValue("IncludeFormat", global::Syncfusion.UI.Xaml.Grid.GridCopyOption.IncludeFormat);
+                userType.AddEnumValue("IncludeHeaders", global::Syncfusion.UI.Xaml.Grid.GridCopyOption.IncludeHeaders);
+                userType.AddEnumValue("IncludeHiddenColumn", global::Syncfusion.UI.Xaml.Grid.GridCopyOption.IncludeHiddenColumn);
+                xamlType = userType;
+                break;
+
+            case 132:   //  Syncfusion.UI.Xaml.Grid.GridTextColumn
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridTextColumnBase"));
+                userType.Activator = Activate_132_GridTextColumn;
+                userType.AddMemberName("IsSpellCheckEnabled");
+                xamlType = userType;
+                break;
+
+            case 133:   //  Syncfusion.UI.Xaml.Grid.GridTextColumnBase
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumn"));
+                userType.AddMemberName("TextTrimming");
+                userType.AddMemberName("TextWrapping");
+                xamlType = userType;
+                break;
+
+            case 134:   //  Windows.UI.Xaml.TextTrimming
+                xamlType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 135:   //  Windows.UI.Xaml.TextWrapping
+                xamlType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 136:   //  Syncfusion.UI.Xaml.Grid.GridNumericColumn
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridTextColumnBase"));
+                userType.Activator = Activate_136_GridNumericColumn;
+                userType.AddMemberName("BlockCharactersOnTextInput");
+                userType.AddMemberName("AllowNullInput");
+                userType.AddMemberName("FormatString");
+                userType.AddMemberName("ParsingMode");
+                userType.AddMemberName("WaterMark");
+                userType.AddMemberName("MaximumNumberDecimalDigits");
+                userType.AddMemberName("PercentDisplayMode");
+                xamlType = userType;
+                break;
+
+            case 137:   //  Syncfusion.UI.Xaml.Controls.Input.Parsers
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.AddEnumValue("Double", global::Syncfusion.UI.Xaml.Controls.Input.Parsers.Double);
+                userType.AddEnumValue("Decimal", global::Syncfusion.UI.Xaml.Controls.Input.Parsers.Decimal);
+                xamlType = userType;
+                break;
+
+            case 138:   //  Syncfusion.UI.Xaml.Controls.Input.PercentDisplayMode
+                userType = new global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.AddEnumValue("Value", global::Syncfusion.UI.Xaml.Controls.Input.PercentDisplayMode.Value);
+                userType.AddEnumValue("Compute", global::Syncfusion.UI.Xaml.Controls.Input.PercentDisplayMode.Compute);
+                xamlType = userType;
                 break;
             }
             return xamlType;
         }
 
+        private global::System.Collections.Generic.List<global::Windows.UI.Xaml.Markup.IXamlMetadataProvider> _otherProviders;
+        private global::System.Collections.Generic.List<global::Windows.UI.Xaml.Markup.IXamlMetadataProvider> OtherProviders
+        {
+            get
+            {
+                if(_otherProviders == null)
+                {
+                    var otherProviders = new global::System.Collections.Generic.List<global::Windows.UI.Xaml.Markup.IXamlMetadataProvider>();
+                    global::Windows.UI.Xaml.Markup.IXamlMetadataProvider provider;
+                    provider = new global::Syncfusion.UI.Xaml.Grid.Syncfusion_SfGrid_UWP_2015_XamlTypeInfo.XamlMetaDataProvider() as global::Windows.UI.Xaml.Markup.IXamlMetadataProvider;
+                    otherProviders.Add(provider); 
+                    provider = new global::Syncfusion.UI.Xaml.Controls.Input.Syncfusion_SfInput_UWP_2015_XamlTypeInfo.XamlMetaDataProvider() as global::Windows.UI.Xaml.Markup.IXamlMetadataProvider;
+                    otherProviders.Add(provider); 
+                    provider = new global::Syncfusion.UI.Xaml.Controls.Syncfusion_SfShared_UWP_2015_XamlTypeInfo.XamlMetaDataProvider() as global::Windows.UI.Xaml.Markup.IXamlMetadataProvider;
+                    otherProviders.Add(provider); 
+                    _otherProviders = otherProviders;
+                }
+                return _otherProviders;
+            }
+        }
+
+        private global::Windows.UI.Xaml.Markup.IXamlType CheckOtherMetadataProvidersForName(string typeName)
+        {
+            global::Windows.UI.Xaml.Markup.IXamlType xamlType = null;
+            global::Windows.UI.Xaml.Markup.IXamlType foundXamlType = null;
+            foreach(global::Windows.UI.Xaml.Markup.IXamlMetadataProvider xmp in OtherProviders)
+            {
+                xamlType = xmp.GetXamlType(typeName);
+                if(xamlType != null)
+                {
+                    if(xamlType.IsConstructible)    // not Constructible means it might be a Return Type Stub
+                    {
+                        return xamlType;
+                    }
+                    foundXamlType = xamlType;
+                }
+            }
+            return foundXamlType;
+        }
+
+        private global::Windows.UI.Xaml.Markup.IXamlType CheckOtherMetadataProvidersForType(global::System.Type type)
+        {
+            global::Windows.UI.Xaml.Markup.IXamlType xamlType = null;
+            global::Windows.UI.Xaml.Markup.IXamlType foundXamlType = null;
+            foreach(global::Windows.UI.Xaml.Markup.IXamlMetadataProvider xmp in OtherProviders)
+            {
+                xamlType = xmp.GetXamlType(type);
+                if(xamlType != null)
+                {
+                    if(xamlType.IsConstructible)    // not Constructible means it might be a Return Type Stub
+                    {
+                        return xamlType;
+                    }
+                    foundXamlType = xamlType;
+                }
+            }
+            return foundXamlType;
+        }
 
         private object get_0_Color_A(object instance)
         {
@@ -355,6 +2068,2433 @@ namespace PacaModII.PacaModII_XamlTypeInfo
             var that = (global::Windows.UI.Color)instance;
             that.R = (global::System.Byte)Value;
         }
+        private object get_4_RosterView_ViewModel(object instance)
+        {
+            var that = (global::PacaModII.Views.RosterView)instance;
+            return that.ViewModel;
+        }
+        private void set_4_RosterView_ViewModel(object instance, object Value)
+        {
+            var that = (global::PacaModII.Views.RosterView)instance;
+            that.ViewModel = (global::PacaModII.ViewModels.RosterViewModel)Value;
+        }
+        private object get_5_SfGridBase_AutoGenerateColumns(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            return that.AutoGenerateColumns;
+        }
+        private void set_5_SfGridBase_AutoGenerateColumns(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            that.AutoGenerateColumns = (global::System.Boolean)Value;
+        }
+        private object get_6_SfGridBase_AllowResizingColumns(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            return that.AllowResizingColumns;
+        }
+        private void set_6_SfGridBase_AllowResizingColumns(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            that.AllowResizingColumns = (global::System.Boolean)Value;
+        }
+        private object get_7_SfDataGrid_ColumnSizer(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.ColumnSizer;
+        }
+        private void set_7_SfDataGrid_ColumnSizer(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.ColumnSizer = (global::Syncfusion.UI.Xaml.Grid.GridLengthUnitType)Value;
+        }
+        private object get_8_SfDataGrid_ItemsSource(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.ItemsSource;
+        }
+        private void set_8_SfDataGrid_ItemsSource(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.ItemsSource = (global::System.Object)Value;
+        }
+        private object get_9_SfDataGrid_Columns(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.Columns;
+        }
+        private void set_9_SfDataGrid_Columns(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.Columns = (global::Syncfusion.UI.Xaml.Grid.Columns)Value;
+        }
+        private object get_10_GridColumn_ColumnMemberType(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            return that.ColumnMemberType;
+        }
+        private void set_10_GridColumn_ColumnMemberType(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            that.ColumnMemberType = (global::System.Type)Value;
+        }
+        private object get_11_GridColumn_FilterRowCellStyle(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            return that.FilterRowCellStyle;
+        }
+        private void set_11_GridColumn_FilterRowCellStyle(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            that.FilterRowCellStyle = (global::Windows.UI.Xaml.Style)Value;
+        }
+        private object get_12_GridColumn_UseBindingValue(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            return that.UseBindingValue;
+        }
+        private void set_12_GridColumn_UseBindingValue(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            that.UseBindingValue = (global::System.Boolean)Value;
+        }
+        private object get_13_GridColumn_ColumnSizer(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            return that.ColumnSizer;
+        }
+        private void set_13_GridColumn_ColumnSizer(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            that.ColumnSizer = (global::Syncfusion.UI.Xaml.Grid.GridLengthUnitType)Value;
+        }
+        private object get_14_GridColumn_AllowDragging(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            return that.AllowDragging;
+        }
+        private void set_14_GridColumn_AllowDragging(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            that.AllowDragging = (global::System.Boolean)Value;
+        }
+        private object get_15_GridColumn_AllowGrouping(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            return that.AllowGrouping;
+        }
+        private void set_15_GridColumn_AllowGrouping(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            that.AllowGrouping = (global::System.Boolean)Value;
+        }
+        private object get_16_GridColumn_AllowResizing(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            return that.AllowResizing;
+        }
+        private void set_16_GridColumn_AllowResizing(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            that.AllowResizing = (global::System.Boolean)Value;
+        }
+        private object get_17_GridColumn_AllowFiltering(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            return that.AllowFiltering;
+        }
+        private void set_17_GridColumn_AllowFiltering(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            that.AllowFiltering = (global::System.Boolean)Value;
+        }
+        private object get_18_GridColumn_ImmediateUpdateColumnFilter(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            return that.ImmediateUpdateColumnFilter;
+        }
+        private void set_18_GridColumn_ImmediateUpdateColumnFilter(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            that.ImmediateUpdateColumnFilter = (global::System.Boolean)Value;
+        }
+        private object get_19_GridColumn_FilterRowOptionsVisibility(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            return that.FilterRowOptionsVisibility;
+        }
+        private void set_19_GridColumn_FilterRowOptionsVisibility(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            that.FilterRowOptionsVisibility = (global::Windows.UI.Xaml.Visibility)Value;
+        }
+        private object get_20_GridColumn_FilterRowCondition(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            return that.FilterRowCondition;
+        }
+        private void set_20_GridColumn_FilterRowCondition(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            that.FilterRowCondition = (global::Syncfusion.UI.Xaml.Grid.FilterRowCondition)Value;
+        }
+        private object get_21_GridColumn_FilterPopupStyle(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            return that.FilterPopupStyle;
+        }
+        private void set_21_GridColumn_FilterPopupStyle(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            that.FilterPopupStyle = (global::Windows.UI.Xaml.Style)Value;
+        }
+        private object get_22_GridColumn_FilterPopupTemplate(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            return that.FilterPopupTemplate;
+        }
+        private void set_22_GridColumn_FilterPopupTemplate(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            that.FilterPopupTemplate = (global::Windows.UI.Xaml.DataTemplate)Value;
+        }
+        private object get_23_GridColumn_AllowBlankFilters(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            return that.AllowBlankFilters;
+        }
+        private void set_23_GridColumn_AllowBlankFilters(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            that.AllowBlankFilters = (global::System.Boolean)Value;
+        }
+        private object get_24_GridColumn_FilterRowText(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            return that.FilterRowText;
+        }
+        private object get_25_GridColumn_IsCaseSensitiveFilterRow(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            return that.IsCaseSensitiveFilterRow;
+        }
+        private void set_25_GridColumn_IsCaseSensitiveFilterRow(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            that.IsCaseSensitiveFilterRow = (global::System.Boolean)Value;
+        }
+        private object get_26_GridColumn_GroupMode(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            return that.GroupMode;
+        }
+        private void set_26_GridColumn_GroupMode(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            that.GroupMode = (global::Syncfusion.Data.DataReflectionMode)Value;
+        }
+        private object get_27_GridColumn_CellType(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            return that.CellType;
+        }
+        private object get_28_GridColumn_FilteredFrom(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            return that.FilteredFrom;
+        }
+        private void set_28_GridColumn_FilteredFrom(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            that.FilteredFrom = (global::Syncfusion.UI.Xaml.Grid.FilteredFrom)Value;
+        }
+        private object get_29_GridColumn_FilterPredicates(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            return that.FilterPredicates;
+        }
+        private object get_30_FilterPredicate_FilterType(object instance)
+        {
+            var that = (global::Syncfusion.Data.FilterPredicate)instance;
+            return that.FilterType;
+        }
+        private void set_30_FilterPredicate_FilterType(object instance, object Value)
+        {
+            var that = (global::Syncfusion.Data.FilterPredicate)instance;
+            that.FilterType = (global::Syncfusion.Data.FilterType)Value;
+        }
+        private object get_31_FilterPredicate_FilterValue(object instance)
+        {
+            var that = (global::Syncfusion.Data.FilterPredicate)instance;
+            return that.FilterValue;
+        }
+        private void set_31_FilterPredicate_FilterValue(object instance, object Value)
+        {
+            var that = (global::Syncfusion.Data.FilterPredicate)instance;
+            that.FilterValue = (global::System.Object)Value;
+        }
+        private object get_32_FilterPredicate_PredicateType(object instance)
+        {
+            var that = (global::Syncfusion.Data.FilterPredicate)instance;
+            return that.PredicateType;
+        }
+        private void set_32_FilterPredicate_PredicateType(object instance, object Value)
+        {
+            var that = (global::Syncfusion.Data.FilterPredicate)instance;
+            that.PredicateType = (global::Syncfusion.Data.PredicateType)Value;
+        }
+        private object get_33_FilterPredicate_FilterBehavior(object instance)
+        {
+            var that = (global::Syncfusion.Data.FilterPredicate)instance;
+            return that.FilterBehavior;
+        }
+        private void set_33_FilterPredicate_FilterBehavior(object instance, object Value)
+        {
+            var that = (global::Syncfusion.Data.FilterPredicate)instance;
+            that.FilterBehavior = (global::Syncfusion.Data.FilterBehavior)Value;
+        }
+        private object get_34_FilterPredicate_IsCaseSensitive(object instance)
+        {
+            var that = (global::Syncfusion.Data.FilterPredicate)instance;
+            return that.IsCaseSensitive;
+        }
+        private void set_34_FilterPredicate_IsCaseSensitive(object instance, object Value)
+        {
+            var that = (global::Syncfusion.Data.FilterPredicate)instance;
+            that.IsCaseSensitive = (global::System.Boolean)Value;
+        }
+        private object get_35_FilterPredicate_FilterMode(object instance)
+        {
+            var that = (global::Syncfusion.Data.FilterPredicate)instance;
+            return that.FilterMode;
+        }
+        private void set_35_FilterPredicate_FilterMode(object instance, object Value)
+        {
+            var that = (global::Syncfusion.Data.FilterPredicate)instance;
+            that.FilterMode = (global::Syncfusion.Data.ColumnFilter)Value;
+        }
+        private object get_36_GridColumn_FilterBehavior(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            return that.FilterBehavior;
+        }
+        private void set_36_GridColumn_FilterBehavior(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            that.FilterBehavior = (global::Syncfusion.Data.FilterBehavior)Value;
+        }
+        private object get_37_GridColumn_ColumnFilter(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            return that.ColumnFilter;
+        }
+        private void set_37_GridColumn_ColumnFilter(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            that.ColumnFilter = (global::Syncfusion.Data.ColumnFilter)Value;
+        }
+        private object get_38_GridColumn_FilterRowEditorType(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            return that.FilterRowEditorType;
+        }
+        private void set_38_GridColumn_FilterRowEditorType(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumn)instance;
+            that.FilterRowEditorType = (global::System.String)Value;
+        }
+        private object get_39_GridColumnBase_IsAutoGenerated(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            return that.IsAutoGenerated;
+        }
+        private object get_40_GridColumnBase_ActualWidth(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            return that.ActualWidth;
+        }
+        private object get_41_GridColumnBase_MappingName(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            return that.MappingName;
+        }
+        private void set_41_GridColumnBase_MappingName(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            that.MappingName = (global::System.String)Value;
+        }
+        private object get_42_GridColumnBase_HeaderText(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            return that.HeaderText;
+        }
+        private void set_42_GridColumnBase_HeaderText(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            that.HeaderText = (global::System.String)Value;
+        }
+        private object get_43_GridColumnBase_AllowEditing(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            return that.AllowEditing;
+        }
+        private void set_43_GridColumnBase_AllowEditing(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            that.AllowEditing = (global::System.Boolean)Value;
+        }
+        private object get_44_GridColumnBase_IsReadOnly(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            return that.IsReadOnly;
+        }
+        private void set_44_GridColumnBase_IsReadOnly(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            that.IsReadOnly = (global::System.Boolean)Value;
+        }
+        private object get_45_GridColumnBase_GridValidationMode(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            return that.GridValidationMode;
+        }
+        private void set_45_GridColumnBase_GridValidationMode(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            that.GridValidationMode = (global::Syncfusion.UI.Xaml.Grid.GridValidationMode)Value;
+        }
+        private object get_46_GridColumnBase_UpdateTrigger(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            return that.UpdateTrigger;
+        }
+        private void set_46_GridColumnBase_UpdateTrigger(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            that.UpdateTrigger = (global::Windows.UI.Xaml.Data.UpdateSourceTrigger)Value;
+        }
+        private object get_47_GridColumnBase_Padding(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            return that.Padding;
+        }
+        private void set_47_GridColumnBase_Padding(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            that.Padding = (global::Windows.UI.Xaml.Thickness)Value;
+        }
+        private object get_48_GridColumnBase_AllowFocus(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            return that.AllowFocus;
+        }
+        private void set_48_GridColumnBase_AllowFocus(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            that.AllowFocus = (global::System.Boolean)Value;
+        }
+        private object get_49_GridColumnBase_HeaderTemplate(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            return that.HeaderTemplate;
+        }
+        private void set_49_GridColumnBase_HeaderTemplate(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            that.HeaderTemplate = (global::Windows.UI.Xaml.DataTemplate)Value;
+        }
+        private object get_50_GridColumnBase_CellTemplate(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            return that.CellTemplate;
+        }
+        private void set_50_GridColumnBase_CellTemplate(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            that.CellTemplate = (global::Windows.UI.Xaml.DataTemplate)Value;
+        }
+        private object get_51_GridColumnBase_SetCellBoundValue(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            return that.SetCellBoundValue;
+        }
+        private void set_51_GridColumnBase_SetCellBoundValue(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            that.SetCellBoundValue = (global::System.Boolean)Value;
+        }
+        private object get_52_GridColumnBase_CellTemplateSelector(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            return that.CellTemplateSelector;
+        }
+        private void set_52_GridColumnBase_CellTemplateSelector(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            that.CellTemplateSelector = (global::Windows.UI.Xaml.Controls.DataTemplateSelector)Value;
+        }
+        private object get_53_GridColumnBase_CellStyle(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            return that.CellStyle;
+        }
+        private void set_53_GridColumnBase_CellStyle(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            that.CellStyle = (global::Windows.UI.Xaml.Style)Value;
+        }
+        private object get_54_GridColumnBase_CellStyleSelector(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            return that.CellStyleSelector;
+        }
+        private void set_54_GridColumnBase_CellStyleSelector(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            that.CellStyleSelector = (global::Windows.UI.Xaml.Controls.StyleSelector)Value;
+        }
+        private object get_55_GridColumnBase_HeaderStyle(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            return that.HeaderStyle;
+        }
+        private void set_55_GridColumnBase_HeaderStyle(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            that.HeaderStyle = (global::Windows.UI.Xaml.Style)Value;
+        }
+        private object get_56_GridColumnBase_AllowSorting(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            return that.AllowSorting;
+        }
+        private void set_56_GridColumnBase_AllowSorting(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            that.AllowSorting = (global::System.Boolean)Value;
+        }
+        private object get_57_GridColumnBase_VerticalAlignment(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            return that.VerticalAlignment;
+        }
+        private void set_57_GridColumnBase_VerticalAlignment(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            that.VerticalAlignment = (global::Windows.UI.Xaml.VerticalAlignment)Value;
+        }
+        private object get_58_GridColumnBase_TextAlignment(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            return that.TextAlignment;
+        }
+        private void set_58_GridColumnBase_TextAlignment(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            that.TextAlignment = (global::Windows.UI.Xaml.TextAlignment)Value;
+        }
+        private object get_59_GridColumnBase_HorizontalHeaderContentAlignment(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            return that.HorizontalHeaderContentAlignment;
+        }
+        private void set_59_GridColumnBase_HorizontalHeaderContentAlignment(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            that.HorizontalHeaderContentAlignment = (global::Windows.UI.Xaml.HorizontalAlignment)Value;
+        }
+        private object get_60_GridColumnBase_Width(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            return that.Width;
+        }
+        private void set_60_GridColumnBase_Width(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            that.Width = (global::System.Double)Value;
+        }
+        private object get_61_GridColumnBase_IsHidden(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            return that.IsHidden;
+        }
+        private void set_61_GridColumnBase_IsHidden(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            that.IsHidden = (global::System.Boolean)Value;
+        }
+        private object get_62_GridColumnBase_MaximumWidth(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            return that.MaximumWidth;
+        }
+        private void set_62_GridColumnBase_MaximumWidth(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            that.MaximumWidth = (global::System.Double)Value;
+        }
+        private object get_63_GridColumnBase_MinimumWidth(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            return that.MinimumWidth;
+        }
+        private void set_63_GridColumnBase_MinimumWidth(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            that.MinimumWidth = (global::System.Double)Value;
+        }
+        private object get_64_GridColumnBase_ValueBinding(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            return that.ValueBinding;
+        }
+        private void set_64_GridColumnBase_ValueBinding(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            that.ValueBinding = (global::Windows.UI.Xaml.Data.BindingBase)Value;
+        }
+        private object get_65_GridColumnBase_DisplayBinding(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            return that.DisplayBinding;
+        }
+        private void set_65_GridColumnBase_DisplayBinding(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            that.DisplayBinding = (global::Windows.UI.Xaml.Data.BindingBase)Value;
+        }
+        private object get_66_GridColumnBase_ShowHeaderToolTip(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            return that.ShowHeaderToolTip;
+        }
+        private void set_66_GridColumnBase_ShowHeaderToolTip(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            that.ShowHeaderToolTip = (global::System.Boolean)Value;
+        }
+        private object get_67_GridColumnBase_ToolTipTemplate(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            return that.ToolTipTemplate;
+        }
+        private void set_67_GridColumnBase_ToolTipTemplate(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            that.ToolTipTemplate = (global::Windows.UI.Xaml.DataTemplate)Value;
+        }
+        private object get_68_GridColumnBase_HeaderToolTipTemplate(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            return that.HeaderToolTipTemplate;
+        }
+        private void set_68_GridColumnBase_HeaderToolTipTemplate(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            that.HeaderToolTipTemplate = (global::Windows.UI.Xaml.DataTemplate)Value;
+        }
+        private object get_69_GridColumnBase_ToolTipTemplateSelector(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            return that.ToolTipTemplateSelector;
+        }
+        private void set_69_GridColumnBase_ToolTipTemplateSelector(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            that.ToolTipTemplateSelector = (global::Windows.UI.Xaml.Controls.DataTemplateSelector)Value;
+        }
+        private object get_70_GridColumnBase_ShowToolTip(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            return that.ShowToolTip;
+        }
+        private void set_70_GridColumnBase_ShowToolTip(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            that.ShowToolTip = (global::System.Boolean)Value;
+        }
+        private object get_71_GridColumnBase_SetCellBoundToolTip(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            return that.SetCellBoundToolTip;
+        }
+        private void set_71_GridColumnBase_SetCellBoundToolTip(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridColumnBase)instance;
+            that.SetCellBoundToolTip = (global::System.Boolean)Value;
+        }
+        private object get_72_SfDataGrid_RowGenerator(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.RowGenerator;
+        }
+        private void set_72_SfDataGrid_RowGenerator(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.RowGenerator = (global::Syncfusion.UI.Xaml.Grid.RowGenerator)Value;
+        }
+        private object get_73_SfDataGrid_ColumnResizingController(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.ColumnResizingController;
+        }
+        private void set_73_SfDataGrid_ColumnResizingController(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.ColumnResizingController = (global::Syncfusion.UI.Xaml.Grid.GridColumnResizingController)Value;
+        }
+        private object get_74_SfDataGrid_GridColumnSizer(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.GridColumnSizer;
+        }
+        private void set_74_SfDataGrid_GridColumnSizer(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.GridColumnSizer = (global::Syncfusion.UI.Xaml.Grid.GridColumnSizer)Value;
+        }
+        private object get_75_SfDataGrid_BindableView(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.BindableView;
+        }
+        private void set_75_SfDataGrid_BindableView(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.BindableView = (global::Syncfusion.Data.ICollectionViewAdv)Value;
+        }
+        private object get_76_SfDataGrid_View(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.View;
+        }
+        private object get_77_SfDataGrid_GridColumnDragDropController(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.GridColumnDragDropController;
+        }
+        private void set_77_SfDataGrid_GridColumnDragDropController(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.GridColumnDragDropController = (global::Syncfusion.UI.Xaml.Grid.GridColumnDragDropController)Value;
+        }
+        private object get_78_SfDataGrid_RowDragDropController(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.RowDragDropController;
+        }
+        private void set_78_SfDataGrid_RowDragDropController(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.RowDragDropController = (global::Syncfusion.UI.Xaml.Grid.GridRowDragDropController)Value;
+        }
+        private object get_79_SfDataGrid_ShowBusyIndicator(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.ShowBusyIndicator;
+        }
+        private void set_79_SfDataGrid_ShowBusyIndicator(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.ShowBusyIndicator = (global::System.Boolean)Value;
+        }
+        private object get_80_SfDataGrid_CellRenderers(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.CellRenderers;
+        }
+        private object get_81_SfDataGrid_UnBoundRowCellRenderers(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.UnBoundRowCellRenderers;
+        }
+        private object get_82_SfDataGrid_FilterRowCellRenderers(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.FilterRowCellRenderers;
+        }
+        private object get_83_SfDataGrid_CoveredCells(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.CoveredCells;
+        }
+        private object get_84_CoveredCellInfo_MappedRowColumnIndex(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.CoveredCellInfo)instance;
+            return that.MappedRowColumnIndex;
+        }
+        private void set_84_CoveredCellInfo_MappedRowColumnIndex(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.CoveredCellInfo)instance;
+            that.MappedRowColumnIndex = (global::Syncfusion.UI.Xaml.ScrollAxis.RowColumnIndex)Value;
+        }
+        private object get_85_CoveredCellInfo_Row(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.CoveredCellInfo)instance;
+            return that.Row;
+        }
+        private object get_86_CoveredCellInfo_Left(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.CoveredCellInfo)instance;
+            return that.Left;
+        }
+        private object get_87_CoveredCellInfo_Right(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.CoveredCellInfo)instance;
+            return that.Right;
+        }
+        private object get_88_CoveredCellInfo_Top(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.CoveredCellInfo)instance;
+            return that.Top;
+        }
+        private object get_89_CoveredCellInfo_Bottom(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.CoveredCellInfo)instance;
+            return that.Bottom;
+        }
+        private object get_90_CoveredCellInfo_Width(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.CoveredCellInfo)instance;
+            return that.Width;
+        }
+        private object get_91_CoveredCellInfo_Height(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.CoveredCellInfo)instance;
+            return that.Height;
+        }
+        private object get_92_CoveredCellInfo_Name(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.CoveredCellInfo)instance;
+            return that.Name;
+        }
+        private object get_93_CoveredCellInfo_RowSpan(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.CoveredCellInfo)instance;
+            return that.RowSpan;
+        }
+        private object get_94_SfDataGrid_MergedCellManager(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.MergedCellManager;
+        }
+        private void set_94_SfDataGrid_MergedCellManager(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.MergedCellManager = (global::Syncfusion.UI.Xaml.Grid.MergedCellManager)Value;
+        }
+        private object get_95_SfDataGrid_SelectionController(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.SelectionController;
+        }
+        private void set_95_SfDataGrid_SelectionController(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.SelectionController = (global::Syncfusion.UI.Xaml.Grid.IGridSelectionController)Value;
+        }
+        private object get_96_SfDataGrid_NotificationSubscriptionMode(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.NotificationSubscriptionMode;
+        }
+        private void set_96_SfDataGrid_NotificationSubscriptionMode(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.NotificationSubscriptionMode = (global::Syncfusion.Data.NotificationSubscriptionMode)Value;
+        }
+        private object get_97_SfDataGrid_SerializationController(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.SerializationController;
+        }
+        private void set_97_SfDataGrid_SerializationController(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.SerializationController = (global::Syncfusion.UI.Xaml.Grid.SerializationController)Value;
+        }
+        private object get_98_SfDataGrid_AutoScroller(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.AutoScroller;
+        }
+        private void set_98_SfDataGrid_AutoScroller(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.AutoScroller = (global::Syncfusion.UI.Xaml.Grid.AutoScroller)Value;
+        }
+        private object get_99_SfDataGrid_FooterRowsCount(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.FooterRowsCount;
+        }
+        private void set_99_SfDataGrid_FooterRowsCount(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.FooterRowsCount = (global::System.Int32)Value;
+        }
+        private object get_100_SfDataGrid_FrozenRowsCount(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.FrozenRowsCount;
+        }
+        private void set_100_SfDataGrid_FrozenRowsCount(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.FrozenRowsCount = (global::System.Int32)Value;
+        }
+        private object get_101_SfDataGrid_SourceType(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.SourceType;
+        }
+        private void set_101_SfDataGrid_SourceType(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.SourceType = (global::System.Type)Value;
+        }
+        private object get_102_SfDataGrid_UsePLINQ(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.UsePLINQ;
+        }
+        private void set_102_SfDataGrid_UsePLINQ(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.UsePLINQ = (global::System.Boolean)Value;
+        }
+        private object get_103_SfDataGrid_SortComparers(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.SortComparers;
+        }
+        private object get_104_SortComparer_PropertyName(object instance)
+        {
+            var that = (global::Syncfusion.Data.SortComparer)instance;
+            return that.PropertyName;
+        }
+        private void set_104_SortComparer_PropertyName(object instance, object Value)
+        {
+            var that = (global::Syncfusion.Data.SortComparer)instance;
+            that.PropertyName = (global::System.String)Value;
+        }
+        private object get_105_SortComparer_Comparer(object instance)
+        {
+            var that = (global::Syncfusion.Data.SortComparer)instance;
+            return that.Comparer;
+        }
+        private void set_105_SortComparer_Comparer(object instance, object Value)
+        {
+            var that = (global::Syncfusion.Data.SortComparer)instance;
+            that.Comparer = (global::System.Collections.Generic.IComparer<global::System.Object>)Value;
+        }
+        private object get_106_SfDataGrid_RowSelectionBrush(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.RowSelectionBrush;
+        }
+        private void set_106_SfDataGrid_RowSelectionBrush(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.RowSelectionBrush = (global::Windows.UI.Xaml.Media.Brush)Value;
+        }
+        private object get_107_SfDataGrid_SelectionForegroundBrush(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.SelectionForegroundBrush;
+        }
+        private void set_107_SfDataGrid_SelectionForegroundBrush(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.SelectionForegroundBrush = (global::Windows.UI.Xaml.Media.Brush)Value;
+        }
+        private object get_108_SfDataGrid_GroupRowSelectionBrush(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.GroupRowSelectionBrush;
+        }
+        private void set_108_SfDataGrid_GroupRowSelectionBrush(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.GroupRowSelectionBrush = (global::Windows.UI.Xaml.Media.Brush)Value;
+        }
+        private object get_109_SfDataGrid_RowStyle(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.RowStyle;
+        }
+        private void set_109_SfDataGrid_RowStyle(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.RowStyle = (global::Windows.UI.Xaml.Style)Value;
+        }
+        private object get_110_SfDataGrid_UnBoundRowStyle(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.UnBoundRowStyle;
+        }
+        private void set_110_SfDataGrid_UnBoundRowStyle(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.UnBoundRowStyle = (global::Windows.UI.Xaml.Style)Value;
+        }
+        private object get_111_SfDataGrid_RowStyleSelector(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.RowStyleSelector;
+        }
+        private void set_111_SfDataGrid_RowStyleSelector(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.RowStyleSelector = (global::Windows.UI.Xaml.Controls.StyleSelector)Value;
+        }
+        private object get_112_SfDataGrid_AlternationCount(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.AlternationCount;
+        }
+        private void set_112_SfDataGrid_AlternationCount(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.AlternationCount = (global::System.Int32)Value;
+        }
+        private object get_113_SfDataGrid_AlternatingRowStyle(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.AlternatingRowStyle;
+        }
+        private void set_113_SfDataGrid_AlternatingRowStyle(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.AlternatingRowStyle = (global::Windows.UI.Xaml.Style)Value;
+        }
+        private object get_114_SfDataGrid_AlternatingRowStyleSelector(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.AlternatingRowStyleSelector;
+        }
+        private void set_114_SfDataGrid_AlternatingRowStyleSelector(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.AlternatingRowStyleSelector = (global::Windows.UI.Xaml.Controls.StyleSelector)Value;
+        }
+        private object get_115_SfDataGrid_CellStyle(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.CellStyle;
+        }
+        private void set_115_SfDataGrid_CellStyle(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.CellStyle = (global::Windows.UI.Xaml.Style)Value;
+        }
+        private object get_116_SfDataGrid_UnBoundRowCellStyle(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.UnBoundRowCellStyle;
+        }
+        private void set_116_SfDataGrid_UnBoundRowCellStyle(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.UnBoundRowCellStyle = (global::Windows.UI.Xaml.Style)Value;
+        }
+        private object get_117_SfDataGrid_CellStyleSelector(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.CellStyleSelector;
+        }
+        private void set_117_SfDataGrid_CellStyleSelector(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.CellStyleSelector = (global::Windows.UI.Xaml.Controls.StyleSelector)Value;
+        }
+        private object get_118_SfDataGrid_HeaderStyle(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.HeaderStyle;
+        }
+        private void set_118_SfDataGrid_HeaderStyle(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.HeaderStyle = (global::Windows.UI.Xaml.Style)Value;
+        }
+        private object get_119_SfDataGrid_HeaderTemplate(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.HeaderTemplate;
+        }
+        private void set_119_SfDataGrid_HeaderTemplate(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.HeaderTemplate = (global::Windows.UI.Xaml.DataTemplate)Value;
+        }
+        private object get_120_SfDataGrid_GroupColumnDescriptions(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.GroupColumnDescriptions;
+        }
+        private void set_120_SfDataGrid_GroupColumnDescriptions(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.GroupColumnDescriptions = (global::Syncfusion.UI.Xaml.Grid.GroupColumnDescriptions)Value;
+        }
+        private object get_121_GroupColumnDescription_ColumnName(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GroupColumnDescription)instance;
+            return that.ColumnName;
+        }
+        private void set_121_GroupColumnDescription_ColumnName(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GroupColumnDescription)instance;
+            that.ColumnName = (global::System.String)Value;
+        }
+        private object get_122_GroupColumnDescription_Converter(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GroupColumnDescription)instance;
+            return that.Converter;
+        }
+        private void set_122_GroupColumnDescription_Converter(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GroupColumnDescription)instance;
+            that.Converter = (global::Windows.UI.Xaml.Data.IValueConverter)Value;
+        }
+        private object get_123_GroupColumnDescription_Comparer(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GroupColumnDescription)instance;
+            return that.Comparer;
+        }
+        private void set_123_GroupColumnDescription_Comparer(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GroupColumnDescription)instance;
+            that.Comparer = (global::System.Collections.Generic.IComparer<global::System.Object>)Value;
+        }
+        private object get_124_GroupColumnDescription_SortGroupRecords(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GroupColumnDescription)instance;
+            return that.SortGroupRecords;
+        }
+        private void set_124_GroupColumnDescription_SortGroupRecords(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GroupColumnDescription)instance;
+            that.SortGroupRecords = (global::System.Boolean)Value;
+        }
+        private object get_125_SfDataGrid_GroupSummaryRows(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.GroupSummaryRows;
+        }
+        private void set_125_SfDataGrid_GroupSummaryRows(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.GroupSummaryRows = (global::System.Collections.ObjectModel.ObservableCollection<global::Syncfusion.UI.Xaml.Grid.GridSummaryRow>)Value;
+        }
+        private object get_126_GridSummaryRow_Name(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridSummaryRow)instance;
+            return that.Name;
+        }
+        private void set_126_GridSummaryRow_Name(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridSummaryRow)instance;
+            that.Name = (global::System.String)Value;
+        }
+        private object get_127_GridSummaryRow_ShowSummaryInRow(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridSummaryRow)instance;
+            return that.ShowSummaryInRow;
+        }
+        private void set_127_GridSummaryRow_ShowSummaryInRow(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridSummaryRow)instance;
+            that.ShowSummaryInRow = (global::System.Boolean)Value;
+        }
+        private object get_128_GridSummaryRow_SummaryColumns(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridSummaryRow)instance;
+            return that.SummaryColumns;
+        }
+        private void set_128_GridSummaryRow_SummaryColumns(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridSummaryRow)instance;
+            that.SummaryColumns = (global::System.Collections.ObjectModel.ObservableCollection<global::Syncfusion.Data.ISummaryColumn>)Value;
+        }
+        private object get_129_ISummaryColumn_CustomAggregate(object instance)
+        {
+            var that = (global::Syncfusion.Data.ISummaryColumn)instance;
+            return that.CustomAggregate;
+        }
+        private void set_129_ISummaryColumn_CustomAggregate(object instance, object Value)
+        {
+            var that = (global::Syncfusion.Data.ISummaryColumn)instance;
+            that.CustomAggregate = (global::Syncfusion.Data.ISummaryAggregate)Value;
+        }
+        private object get_130_ISummaryColumn_Format(object instance)
+        {
+            var that = (global::Syncfusion.Data.ISummaryColumn)instance;
+            return that.Format;
+        }
+        private void set_130_ISummaryColumn_Format(object instance, object Value)
+        {
+            var that = (global::Syncfusion.Data.ISummaryColumn)instance;
+            that.Format = (global::System.String)Value;
+        }
+        private object get_131_ISummaryColumn_MappingName(object instance)
+        {
+            var that = (global::Syncfusion.Data.ISummaryColumn)instance;
+            return that.MappingName;
+        }
+        private void set_131_ISummaryColumn_MappingName(object instance, object Value)
+        {
+            var that = (global::Syncfusion.Data.ISummaryColumn)instance;
+            that.MappingName = (global::System.String)Value;
+        }
+        private object get_132_ISummaryColumn_Name(object instance)
+        {
+            var that = (global::Syncfusion.Data.ISummaryColumn)instance;
+            return that.Name;
+        }
+        private void set_132_ISummaryColumn_Name(object instance, object Value)
+        {
+            var that = (global::Syncfusion.Data.ISummaryColumn)instance;
+            that.Name = (global::System.String)Value;
+        }
+        private object get_133_ISummaryColumn_SummaryType(object instance)
+        {
+            var that = (global::Syncfusion.Data.ISummaryColumn)instance;
+            return that.SummaryType;
+        }
+        private void set_133_ISummaryColumn_SummaryType(object instance, object Value)
+        {
+            var that = (global::Syncfusion.Data.ISummaryColumn)instance;
+            that.SummaryType = (global::Syncfusion.Data.SummaryType)Value;
+        }
+        private object get_134_GridSummaryRow_Title(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridSummaryRow)instance;
+            return that.Title;
+        }
+        private void set_134_GridSummaryRow_Title(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridSummaryRow)instance;
+            that.Title = (global::System.String)Value;
+        }
+        private object get_135_SfDataGrid_CaptionSummaryRow(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.CaptionSummaryRow;
+        }
+        private void set_135_SfDataGrid_CaptionSummaryRow(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.CaptionSummaryRow = (global::Syncfusion.UI.Xaml.Grid.GridSummaryRow)Value;
+        }
+        private object get_136_SfDataGrid_TableSummaryRows(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.TableSummaryRows;
+        }
+        private void set_136_SfDataGrid_TableSummaryRows(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.TableSummaryRows = (global::System.Collections.ObjectModel.ObservableCollection<global::Syncfusion.UI.Xaml.Grid.GridSummaryRow>)Value;
+        }
+        private object get_137_SfDataGrid_UnBoundRows(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.UnBoundRows;
+        }
+        private void set_137_SfDataGrid_UnBoundRows(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.UnBoundRows = (global::Syncfusion.UI.Xaml.Grid.UnBoundRows)Value;
+        }
+        private object get_138_GridUnBoundRow_RowIndex(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridUnBoundRow)instance;
+            return that.RowIndex;
+        }
+        private object get_139_GridUnBoundRow_UnBoundRowIndex(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridUnBoundRow)instance;
+            return that.UnBoundRowIndex;
+        }
+        private object get_140_GridUnBoundRow_ShowBelowSummary(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridUnBoundRow)instance;
+            return that.ShowBelowSummary;
+        }
+        private void set_140_GridUnBoundRow_ShowBelowSummary(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridUnBoundRow)instance;
+            that.ShowBelowSummary = (global::System.Boolean)Value;
+        }
+        private object get_141_GridUnBoundRow_Position(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridUnBoundRow)instance;
+            return that.Position;
+        }
+        private void set_141_GridUnBoundRow_Position(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridUnBoundRow)instance;
+            that.Position = (global::Syncfusion.UI.Xaml.Grid.UnBoundRowsPosition)Value;
+        }
+        private object get_142_SfDataGrid_SummaryGroupComparer(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.SummaryGroupComparer;
+        }
+        private void set_142_SfDataGrid_SummaryGroupComparer(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.SummaryGroupComparer = (global::System.Collections.Generic.IComparer<global::Syncfusion.Data.Group>)Value;
+        }
+        private object get_143_SfDataGrid_ShowColumnWhenGrouped(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.ShowColumnWhenGrouped;
+        }
+        private void set_143_SfDataGrid_ShowColumnWhenGrouped(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.ShowColumnWhenGrouped = (global::System.Boolean)Value;
+        }
+        private object get_144_SfDataGrid_AllowFrozenGroupHeaders(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.AllowFrozenGroupHeaders;
+        }
+        private void set_144_SfDataGrid_AllowFrozenGroupHeaders(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.AllowFrozenGroupHeaders = (global::System.Boolean)Value;
+        }
+        private object get_145_SfDataGrid_CaptionSummaryRowStyle(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.CaptionSummaryRowStyle;
+        }
+        private void set_145_SfDataGrid_CaptionSummaryRowStyle(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.CaptionSummaryRowStyle = (global::Windows.UI.Xaml.Style)Value;
+        }
+        private object get_146_SfDataGrid_GroupSummaryRowStyle(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.GroupSummaryRowStyle;
+        }
+        private void set_146_SfDataGrid_GroupSummaryRowStyle(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.GroupSummaryRowStyle = (global::Windows.UI.Xaml.Style)Value;
+        }
+        private object get_147_SfDataGrid_TableSummaryRowStyle(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.TableSummaryRowStyle;
+        }
+        private void set_147_SfDataGrid_TableSummaryRowStyle(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.TableSummaryRowStyle = (global::Windows.UI.Xaml.Style)Value;
+        }
+        private object get_148_SfDataGrid_CaptionSummaryRowStyleSelector(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.CaptionSummaryRowStyleSelector;
+        }
+        private void set_148_SfDataGrid_CaptionSummaryRowStyleSelector(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.CaptionSummaryRowStyleSelector = (global::Windows.UI.Xaml.Controls.StyleSelector)Value;
+        }
+        private object get_149_SfDataGrid_GroupSummaryRowStyleSelector(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.GroupSummaryRowStyleSelector;
+        }
+        private void set_149_SfDataGrid_GroupSummaryRowStyleSelector(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.GroupSummaryRowStyleSelector = (global::Windows.UI.Xaml.Controls.StyleSelector)Value;
+        }
+        private object get_150_SfDataGrid_TableSummaryRowStyleSelector(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.TableSummaryRowStyleSelector;
+        }
+        private void set_150_SfDataGrid_TableSummaryRowStyleSelector(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.TableSummaryRowStyleSelector = (global::Windows.UI.Xaml.Controls.StyleSelector)Value;
+        }
+        private object get_151_SfDataGrid_GroupSummaryCellStyleSelector(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.GroupSummaryCellStyleSelector;
+        }
+        private void set_151_SfDataGrid_GroupSummaryCellStyleSelector(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.GroupSummaryCellStyleSelector = (global::Windows.UI.Xaml.Controls.StyleSelector)Value;
+        }
+        private object get_152_SfDataGrid_CaptionSummaryCellStyleSelector(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.CaptionSummaryCellStyleSelector;
+        }
+        private void set_152_SfDataGrid_CaptionSummaryCellStyleSelector(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.CaptionSummaryCellStyleSelector = (global::Windows.UI.Xaml.Controls.StyleSelector)Value;
+        }
+        private object get_153_SfDataGrid_TableSummaryCellStyleSelector(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.TableSummaryCellStyleSelector;
+        }
+        private void set_153_SfDataGrid_TableSummaryCellStyleSelector(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.TableSummaryCellStyleSelector = (global::Windows.UI.Xaml.Controls.StyleSelector)Value;
+        }
+        private object get_154_SfDataGrid_IsDynamicItemsSource(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.IsDynamicItemsSource;
+        }
+        private void set_154_SfDataGrid_IsDynamicItemsSource(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.IsDynamicItemsSource = (global::System.Boolean)Value;
+        }
+        private object get_155_SfDataGrid_DataFetchSize(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.DataFetchSize;
+        }
+        private void set_155_SfDataGrid_DataFetchSize(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.DataFetchSize = (global::System.Int32)Value;
+        }
+        private object get_156_SfDataGrid_GroupSummaryCellStyle(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.GroupSummaryCellStyle;
+        }
+        private void set_156_SfDataGrid_GroupSummaryCellStyle(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.GroupSummaryCellStyle = (global::Windows.UI.Xaml.Style)Value;
+        }
+        private object get_157_SfDataGrid_CaptionSummaryCellStyle(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.CaptionSummaryCellStyle;
+        }
+        private void set_157_SfDataGrid_CaptionSummaryCellStyle(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.CaptionSummaryCellStyle = (global::Windows.UI.Xaml.Style)Value;
+        }
+        private object get_158_SfDataGrid_TableSummaryCellStyle(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.TableSummaryCellStyle;
+        }
+        private void set_158_SfDataGrid_TableSummaryCellStyle(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.TableSummaryCellStyle = (global::Windows.UI.Xaml.Style)Value;
+        }
+        private object get_159_SfDataGrid_ShowGroupDropArea(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.ShowGroupDropArea;
+        }
+        private void set_159_SfDataGrid_ShowGroupDropArea(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.ShowGroupDropArea = (global::System.Boolean)Value;
+        }
+        private object get_160_SfDataGrid_GridCopyPaste(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.GridCopyPaste;
+        }
+        private void set_160_SfDataGrid_GridCopyPaste(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.GridCopyPaste = (global::Syncfusion.UI.Xaml.Grid.IGridCopyPaste)Value;
+        }
+        private object get_161_SfDataGrid_GroupCaptionTextFormat(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.GroupCaptionTextFormat;
+        }
+        private void set_161_SfDataGrid_GroupCaptionTextFormat(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.GroupCaptionTextFormat = (global::System.String)Value;
+        }
+        private object get_162_SfDataGrid_IsGroupDropAreaExpanded(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.IsGroupDropAreaExpanded;
+        }
+        private void set_162_SfDataGrid_IsGroupDropAreaExpanded(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.IsGroupDropAreaExpanded = (global::System.Boolean)Value;
+        }
+        private object get_163_SfDataGrid_AllowGrouping(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.AllowGrouping;
+        }
+        private void set_163_SfDataGrid_AllowGrouping(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.AllowGrouping = (global::System.Boolean)Value;
+        }
+        private object get_164_SfDataGrid_NewItemPlaceholderPosition(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.NewItemPlaceholderPosition;
+        }
+        private void set_164_SfDataGrid_NewItemPlaceholderPosition(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.NewItemPlaceholderPosition = (global::Syncfusion.Data.NewItemPlaceholderPosition)Value;
+        }
+        private object get_165_SfDataGrid_NotifyEventsToParentDataGrid(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.NotifyEventsToParentDataGrid;
+        }
+        private void set_165_SfDataGrid_NotifyEventsToParentDataGrid(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.NotifyEventsToParentDataGrid = (global::System.Boolean)Value;
+        }
+        private object get_166_SfDataGrid_GroupDropAreaStyle(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.GroupDropAreaStyle;
+        }
+        private void set_166_SfDataGrid_GroupDropAreaStyle(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.GroupDropAreaStyle = (global::Windows.UI.Xaml.Style)Value;
+        }
+        private object get_167_SfDataGrid_GroupDropAreaText(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.GroupDropAreaText;
+        }
+        private void set_167_SfDataGrid_GroupDropAreaText(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.GroupDropAreaText = (global::System.String)Value;
+        }
+        private object get_168_SfDataGrid_LiveDataUpdateMode(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.LiveDataUpdateMode;
+        }
+        private void set_168_SfDataGrid_LiveDataUpdateMode(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.LiveDataUpdateMode = (global::Syncfusion.Data.LiveDataUpdateMode)Value;
+        }
+        private object get_169_SfDataGrid_SummaryCalculationMode(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.SummaryCalculationMode;
+        }
+        private void set_169_SfDataGrid_SummaryCalculationMode(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.SummaryCalculationMode = (global::Syncfusion.Data.CalculationMode)Value;
+        }
+        private object get_170_SfDataGrid_AutoExpandGroups(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.AutoExpandGroups;
+        }
+        private void set_170_SfDataGrid_AutoExpandGroups(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.AutoExpandGroups = (global::System.Boolean)Value;
+        }
+        private object get_171_SfDataGrid_AllowDraggingRows(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.AllowDraggingRows;
+        }
+        private void set_171_SfDataGrid_AllowDraggingRows(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.AllowDraggingRows = (global::System.Boolean)Value;
+        }
+        private object get_172_SfDataGrid_AllowDeleting(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.AllowDeleting;
+        }
+        private void set_172_SfDataGrid_AllowDeleting(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.AllowDeleting = (global::System.Boolean)Value;
+        }
+        private object get_173_SfDataGrid_DetailsViewDataGridStyle(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.DetailsViewDataGridStyle;
+        }
+        private void set_173_SfDataGrid_DetailsViewDataGridStyle(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.DetailsViewDataGridStyle = (global::Windows.UI.Xaml.Style)Value;
+        }
+        private object get_174_SfDataGrid_AllowFiltering(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.AllowFiltering;
+        }
+        private void set_174_SfDataGrid_AllowFiltering(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.AllowFiltering = (global::System.Boolean)Value;
+        }
+        private object get_175_SfDataGrid_CanUseViewFilter(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.CanUseViewFilter;
+        }
+        private void set_175_SfDataGrid_CanUseViewFilter(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.CanUseViewFilter = (global::System.Boolean)Value;
+        }
+#pragma warning disable 0618  //   Warning on Deprecated usage
+        private object get_176_SfDataGrid_CanListenPropertyNotification(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.CanListenPropertyNotification;
+        }
+        private void set_176_SfDataGrid_CanListenPropertyNotification(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.CanListenPropertyNotification = (global::System.Boolean)Value;
+        }
+#pragma warning restore 0618
+        private object get_177_SfDataGrid_FilterPopupStyle(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.FilterPopupStyle;
+        }
+        private void set_177_SfDataGrid_FilterPopupStyle(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.FilterPopupStyle = (global::Windows.UI.Xaml.Style)Value;
+        }
+        private object get_178_SfDataGrid_FilterPopupTemplate(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.FilterPopupTemplate;
+        }
+        private void set_178_SfDataGrid_FilterPopupTemplate(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.FilterPopupTemplate = (global::Windows.UI.Xaml.DataTemplate)Value;
+        }
+        private object get_179_SfDataGrid_FilterRowPosition(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.FilterRowPosition;
+        }
+        private void set_179_SfDataGrid_FilterRowPosition(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.FilterRowPosition = (global::Syncfusion.UI.Xaml.Grid.FilterRowPosition)Value;
+        }
+        private object get_180_SfDataGrid_DetailsViewDefinition(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.DetailsViewDefinition;
+        }
+        private void set_180_SfDataGrid_DetailsViewDefinition(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.DetailsViewDefinition = (global::Syncfusion.UI.Xaml.Grid.DetailsViewDefinition)Value;
+        }
+        private object get_181_ViewDefinition_RelationalColumn(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.ViewDefinition)instance;
+            return that.RelationalColumn;
+        }
+        private void set_181_ViewDefinition_RelationalColumn(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.ViewDefinition)instance;
+            that.RelationalColumn = (global::System.String)Value;
+        }
+        private object get_182_SfDataGrid_ShowDetailsViewIndentCell(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.ShowDetailsViewIndentCell;
+        }
+        private void set_182_SfDataGrid_ShowDetailsViewIndentCell(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.ShowDetailsViewIndentCell = (global::System.Boolean)Value;
+        }
+        private object get_183_SfDataGrid_ReuseRowsOnItemssourceChange(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.ReuseRowsOnItemssourceChange;
+        }
+        private void set_183_SfDataGrid_ReuseRowsOnItemssourceChange(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.ReuseRowsOnItemssourceChange = (global::System.Boolean)Value;
+        }
+        private object get_184_SfDataGrid_CanMaintainScrollPosition(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.CanMaintainScrollPosition;
+        }
+        private void set_184_SfDataGrid_CanMaintainScrollPosition(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.CanMaintainScrollPosition = (global::System.Boolean)Value;
+        }
+        private object get_185_SfDataGrid_GroupDropItemContextMenu(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.GroupDropItemContextMenu;
+        }
+        private void set_185_SfDataGrid_GroupDropItemContextMenu(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.GroupDropItemContextMenu = (global::Windows.UI.Xaml.Controls.MenuFlyout)Value;
+        }
+        private object get_186_SfDataGrid_GroupDropAreaContextMenu(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.GroupDropAreaContextMenu;
+        }
+        private void set_186_SfDataGrid_GroupDropAreaContextMenu(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.GroupDropAreaContextMenu = (global::Windows.UI.Xaml.Controls.MenuFlyout)Value;
+        }
+        private object get_187_SfDataGrid_GroupSummaryContextMenu(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.GroupSummaryContextMenu;
+        }
+        private void set_187_SfDataGrid_GroupSummaryContextMenu(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.GroupSummaryContextMenu = (global::Windows.UI.Xaml.Controls.MenuFlyout)Value;
+        }
+        private object get_188_SfDataGrid_TableSummaryContextMenu(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.TableSummaryContextMenu;
+        }
+        private void set_188_SfDataGrid_TableSummaryContextMenu(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.TableSummaryContextMenu = (global::Windows.UI.Xaml.Controls.MenuFlyout)Value;
+        }
+        private object get_189_SfDataGrid_GroupCaptionContextMenu(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.GroupCaptionContextMenu;
+        }
+        private void set_189_SfDataGrid_GroupCaptionContextMenu(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.GroupCaptionContextMenu = (global::Windows.UI.Xaml.Controls.MenuFlyout)Value;
+        }
+        private object get_190_SfDataGrid_RowHoverHighlightingBrush(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.RowHoverHighlightingBrush;
+        }
+        private void set_190_SfDataGrid_RowHoverHighlightingBrush(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.RowHoverHighlightingBrush = (global::Windows.UI.Xaml.Media.Brush)Value;
+        }
+        private object get_191_SfDataGrid_AllowRowHoverHighlighting(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.AllowRowHoverHighlighting;
+        }
+        private void set_191_SfDataGrid_AllowRowHoverHighlighting(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.AllowRowHoverHighlighting = (global::System.Boolean)Value;
+        }
+        private object get_192_SfDataGrid_AddNewRowPosition(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.AddNewRowPosition;
+        }
+        private void set_192_SfDataGrid_AddNewRowPosition(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.AddNewRowPosition = (global::Syncfusion.UI.Xaml.Grid.AddNewRowPosition)Value;
+        }
+        private object get_193_SfDataGrid_ExpanderColumnWidth(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.ExpanderColumnWidth;
+        }
+        private void set_193_SfDataGrid_ExpanderColumnWidth(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.ExpanderColumnWidth = (global::System.Double)Value;
+        }
+        private object get_194_SfDataGrid_IndentColumnWidth(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.IndentColumnWidth;
+        }
+        private void set_194_SfDataGrid_IndentColumnWidth(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.IndentColumnWidth = (global::System.Double)Value;
+        }
+        private object get_195_SfDataGrid_PrintSettings(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.PrintSettings;
+        }
+        private void set_195_SfDataGrid_PrintSettings(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.PrintSettings = (global::Syncfusion.UI.Xaml.Grid.PrintSettings)Value;
+        }
+        private object get_196_SfDataGrid_CurrentItem(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.CurrentItem;
+        }
+        private void set_196_SfDataGrid_CurrentItem(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.CurrentItem = (global::System.Object)Value;
+        }
+        private object get_197_SfDataGrid_SelectionUnit(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.SelectionUnit;
+        }
+        private void set_197_SfDataGrid_SelectionUnit(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.SelectionUnit = (global::Syncfusion.UI.Xaml.Grid.GridSelectionUnit)Value;
+        }
+        private object get_198_SfDataGrid_CurrentCellInfo(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.CurrentCellInfo;
+        }
+        private void set_198_SfDataGrid_CurrentCellInfo(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.CurrentCellInfo = (global::Syncfusion.UI.Xaml.Grid.GridCellInfo)Value;
+        }
+        private object get_199_SfDataGrid_CurrentColumn(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.CurrentColumn;
+        }
+        private void set_199_SfDataGrid_CurrentColumn(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.CurrentColumn = (global::Syncfusion.UI.Xaml.Grid.GridColumn)Value;
+        }
+        private object get_200_SfDataGrid_EnableDataVirtualization(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.EnableDataVirtualization;
+        }
+        private void set_200_SfDataGrid_EnableDataVirtualization(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.EnableDataVirtualization = (global::System.Boolean)Value;
+        }
+        private object get_201_SfDataGrid_AutoGenerateRelations(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.AutoGenerateRelations;
+        }
+        private void set_201_SfDataGrid_AutoGenerateRelations(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.AutoGenerateRelations = (global::System.Boolean)Value;
+        }
+        private object get_202_SfDataGrid_SelectedDetailsViewGrid(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.SelectedDetailsViewGrid;
+        }
+        private void set_202_SfDataGrid_SelectedDetailsViewGrid(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.SelectedDetailsViewGrid = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)Value;
+        }
+        private object get_203_SfDataGrid_HideEmptyGridViewDefinition(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.HideEmptyGridViewDefinition;
+        }
+        private void set_203_SfDataGrid_HideEmptyGridViewDefinition(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.HideEmptyGridViewDefinition = (global::System.Boolean)Value;
+        }
+        private object get_204_SfDataGrid_DetailsViewPadding(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.DetailsViewPadding;
+        }
+        private void set_204_SfDataGrid_DetailsViewPadding(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            that.DetailsViewPadding = (global::Windows.UI.Xaml.Thickness)Value;
+        }
+        private object get_205_SfDataGrid_NotifyListener(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.NotifyListener;
+        }
+        private object get_206_SfDataGrid_IsListenerSuspended(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfDataGrid)instance;
+            return that.IsListenerSuspended;
+        }
+        private object get_207_SfGridBase_StackedHeaderRows(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            return that.StackedHeaderRows;
+        }
+        private void set_207_SfGridBase_StackedHeaderRows(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            that.StackedHeaderRows = (global::Syncfusion.UI.Xaml.Grid.StackedHeaderRows)Value;
+        }
+        private object get_208_StackedHeaderRow_Name(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.StackedHeaderRow)instance;
+            return that.Name;
+        }
+        private void set_208_StackedHeaderRow_Name(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.StackedHeaderRow)instance;
+            that.Name = (global::System.String)Value;
+        }
+        private object get_209_StackedHeaderRow_StackedColumns(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.StackedHeaderRow)instance;
+            return that.StackedColumns;
+        }
+        private object get_210_StackedColumn_ChildColumns(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.StackedColumn)instance;
+            return that.ChildColumns;
+        }
+        private void set_210_StackedColumn_ChildColumns(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.StackedColumn)instance;
+            that.ChildColumns = (global::System.String)Value;
+        }
+        private object get_211_StackedColumn_HeaderText(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.StackedColumn)instance;
+            return that.HeaderText;
+        }
+        private void set_211_StackedColumn_HeaderText(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.StackedColumn)instance;
+            that.HeaderText = (global::System.String)Value;
+        }
+        private object get_212_StackedColumn_MappingName(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.StackedColumn)instance;
+            return that.MappingName;
+        }
+        private void set_212_StackedColumn_MappingName(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.StackedColumn)instance;
+            that.MappingName = (global::System.String)Value;
+        }
+        private object get_213_SfGridBase_FooterColumnCount(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            return that.FooterColumnCount;
+        }
+        private void set_213_SfGridBase_FooterColumnCount(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            that.FooterColumnCount = (global::System.Int32)Value;
+        }
+        private object get_214_SfGridBase_AllowEditing(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            return that.AllowEditing;
+        }
+        private void set_214_SfGridBase_AllowEditing(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            that.AllowEditing = (global::System.Boolean)Value;
+        }
+        private object get_215_SfGridBase_IsReadOnly(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            return that.IsReadOnly;
+        }
+        private void set_215_SfGridBase_IsReadOnly(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            that.IsReadOnly = (global::System.Boolean)Value;
+        }
+        private object get_216_SfGridBase_AllowSorting(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            return that.AllowSorting;
+        }
+        private void set_216_SfGridBase_AllowSorting(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            that.AllowSorting = (global::System.Boolean)Value;
+        }
+        private object get_217_SfGridBase_AllowSelectionOnPointerPressed(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            return that.AllowSelectionOnPointerPressed;
+        }
+        private void set_217_SfGridBase_AllowSelectionOnPointerPressed(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            that.AllowSelectionOnPointerPressed = (global::System.Boolean)Value;
+        }
+        private object get_218_SfGridBase_SelectionMode(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            return that.SelectionMode;
+        }
+        private void set_218_SfGridBase_SelectionMode(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            that.SelectionMode = (global::Syncfusion.UI.Xaml.Grid.GridSelectionMode)Value;
+        }
+        private object get_219_SfGridBase_NavigationMode(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            return that.NavigationMode;
+        }
+        private void set_219_SfGridBase_NavigationMode(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            that.NavigationMode = (global::Syncfusion.UI.Xaml.Grid.NavigationMode)Value;
+        }
+        private object get_220_SfGridBase_EditorSelectionBehavior(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            return that.EditorSelectionBehavior;
+        }
+        private void set_220_SfGridBase_EditorSelectionBehavior(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            that.EditorSelectionBehavior = (global::Syncfusion.UI.Xaml.Grid.EditorSelectionBehavior)Value;
+        }
+        private object get_221_SfGridBase_EditTrigger(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            return that.EditTrigger;
+        }
+        private void set_221_SfGridBase_EditTrigger(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            that.EditTrigger = (global::Syncfusion.UI.Xaml.Grid.EditTrigger)Value;
+        }
+        private object get_222_SfGridBase_CurrentCellBorderThickness(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            return that.CurrentCellBorderThickness;
+        }
+        private void set_222_SfGridBase_CurrentCellBorderThickness(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            that.CurrentCellBorderThickness = (global::Windows.UI.Xaml.Thickness)Value;
+        }
+        private object get_223_SfGridBase_CurrentCellBorderBrush(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            return that.CurrentCellBorderBrush;
+        }
+        private void set_223_SfGridBase_CurrentCellBorderBrush(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            that.CurrentCellBorderBrush = (global::Windows.UI.Xaml.Media.Brush)Value;
+        }
+        private object get_224_SfGridBase_FrozenColumnCount(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            return that.FrozenColumnCount;
+        }
+        private void set_224_SfGridBase_FrozenColumnCount(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            that.FrozenColumnCount = (global::System.Int32)Value;
+        }
+        private object get_225_SfGridBase_ShowRowHeader(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            return that.ShowRowHeader;
+        }
+        private void set_225_SfGridBase_ShowRowHeader(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            that.ShowRowHeader = (global::System.Boolean)Value;
+        }
+        private object get_226_SfGridBase_RowHeaderWidth(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            return that.RowHeaderWidth;
+        }
+        private void set_226_SfGridBase_RowHeaderWidth(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            that.RowHeaderWidth = (global::System.Double)Value;
+        }
+        private object get_227_SfGridBase_HeaderRowHeight(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            return that.HeaderRowHeight;
+        }
+        private void set_227_SfGridBase_HeaderRowHeight(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            that.HeaderRowHeight = (global::System.Double)Value;
+        }
+        private object get_228_SfGridBase_RowHeight(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            return that.RowHeight;
+        }
+        private void set_228_SfGridBase_RowHeight(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            that.RowHeight = (global::System.Double)Value;
+        }
+        private object get_229_SfGridBase_AllowDraggingColumns(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            return that.AllowDraggingColumns;
+        }
+        private void set_229_SfGridBase_AllowDraggingColumns(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            that.AllowDraggingColumns = (global::System.Boolean)Value;
+        }
+        private object get_230_SfGridBase_AllowResizingHiddenColumns(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            return that.AllowResizingHiddenColumns;
+        }
+        private void set_230_SfGridBase_AllowResizingHiddenColumns(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            that.AllowResizingHiddenColumns = (global::System.Boolean)Value;
+        }
+        private object get_231_SfGridBase_AutoGenerateColumnsForCustomType(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            return that.AutoGenerateColumnsForCustomType;
+        }
+        private void set_231_SfGridBase_AutoGenerateColumnsForCustomType(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            that.AutoGenerateColumnsForCustomType = (global::System.Boolean)Value;
+        }
+        private object get_232_SfGridBase_CellTemplateSelector(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            return that.CellTemplateSelector;
+        }
+        private void set_232_SfGridBase_CellTemplateSelector(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            that.CellTemplateSelector = (global::Windows.UI.Xaml.Controls.DataTemplateSelector)Value;
+        }
+        private object get_233_SfGridBase_AutoGenerateColumnsMode(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            return that.AutoGenerateColumnsMode;
+        }
+        private void set_233_SfGridBase_AutoGenerateColumnsMode(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            that.AutoGenerateColumnsMode = (global::Syncfusion.UI.Xaml.Grid.AutoGenerateColumnsMode)Value;
+        }
+        private object get_234_SfGridBase_SortClickAction(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            return that.SortClickAction;
+        }
+        private void set_234_SfGridBase_SortClickAction(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            that.SortClickAction = (global::Syncfusion.UI.Xaml.Grid.SortClickAction)Value;
+        }
+        private object get_235_SfGridBase_AllowTriStateSorting(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            return that.AllowTriStateSorting;
+        }
+        private void set_235_SfGridBase_AllowTriStateSorting(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            that.AllowTriStateSorting = (global::System.Boolean)Value;
+        }
+        private object get_236_SfGridBase_HeaderContextMenu(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            return that.HeaderContextMenu;
+        }
+        private void set_236_SfGridBase_HeaderContextMenu(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            that.HeaderContextMenu = (global::Windows.UI.Xaml.Controls.MenuFlyout)Value;
+        }
+        private object get_237_SfGridBase_RecordContextMenu(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            return that.RecordContextMenu;
+        }
+        private void set_237_SfGridBase_RecordContextMenu(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            that.RecordContextMenu = (global::Windows.UI.Xaml.Controls.MenuFlyout)Value;
+        }
+        private object get_238_SfGridBase_ShowSortNumbers(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            return that.ShowSortNumbers;
+        }
+        private void set_238_SfGridBase_ShowSortNumbers(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            that.ShowSortNumbers = (global::System.Boolean)Value;
+        }
+        private object get_239_SfGridBase_GridValidationMode(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            return that.GridValidationMode;
+        }
+        private void set_239_SfGridBase_GridValidationMode(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            that.GridValidationMode = (global::Syncfusion.UI.Xaml.Grid.GridValidationMode)Value;
+        }
+        private object get_240_SfGridBase_SelectedIndex(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            return that.SelectedIndex;
+        }
+        private void set_240_SfGridBase_SelectedIndex(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            that.SelectedIndex = (global::System.Int32)Value;
+        }
+        private object get_241_SfGridBase_SelectedItem(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            return that.SelectedItem;
+        }
+        private void set_241_SfGridBase_SelectedItem(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            that.SelectedItem = (global::System.Object)Value;
+        }
+        private object get_242_SfGridBase_SelectedItems(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            return that.SelectedItems;
+        }
+        private void set_242_SfGridBase_SelectedItems(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            that.SelectedItems = (global::System.Collections.ObjectModel.ObservableCollection<global::System.Object>)Value;
+        }
+        private object get_243_SfGridBase_SortColumnDescriptions(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            return that.SortColumnDescriptions;
+        }
+        private void set_243_SfGridBase_SortColumnDescriptions(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            that.SortColumnDescriptions = (global::Syncfusion.UI.Xaml.Grid.SortColumnDescriptions)Value;
+        }
+        private object get_244_SortColumnDescription_ColumnName(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SortColumnDescription)instance;
+            return that.ColumnName;
+        }
+        private void set_244_SortColumnDescription_ColumnName(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SortColumnDescription)instance;
+            that.ColumnName = (global::System.String)Value;
+        }
+        private object get_245_SortColumnDescription_SortDirection(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SortColumnDescription)instance;
+            return that.SortDirection;
+        }
+        private void set_245_SortColumnDescription_SortDirection(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SortColumnDescription)instance;
+            that.SortDirection = (global::Syncfusion.Data.ListSortDirection)Value;
+        }
+        private object get_246_SfGridBase_GridPasteOption(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            return that.GridPasteOption;
+        }
+        private void set_246_SfGridBase_GridPasteOption(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            that.GridPasteOption = (global::Syncfusion.UI.Xaml.Grid.GridPasteOption)Value;
+        }
+        private object get_247_SfGridBase_GridCopyOption(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            return that.GridCopyOption;
+        }
+        private void set_247_SfGridBase_GridCopyOption(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            that.GridCopyOption = (global::Syncfusion.UI.Xaml.Grid.GridCopyOption)Value;
+        }
+        private object get_248_SfGridBase_ShowToolTip(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            return that.ShowToolTip;
+        }
+        private void set_248_SfGridBase_ShowToolTip(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.SfGridBase)instance;
+            that.ShowToolTip = (global::System.Boolean)Value;
+        }
+        private object get_249_GridTextColumn_IsSpellCheckEnabled(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridTextColumn)instance;
+            return that.IsSpellCheckEnabled;
+        }
+        private void set_249_GridTextColumn_IsSpellCheckEnabled(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridTextColumn)instance;
+            that.IsSpellCheckEnabled = (global::System.Boolean)Value;
+        }
+        private object get_250_GridTextColumnBase_TextTrimming(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridTextColumnBase)instance;
+            return that.TextTrimming;
+        }
+        private void set_250_GridTextColumnBase_TextTrimming(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridTextColumnBase)instance;
+            that.TextTrimming = (global::Windows.UI.Xaml.TextTrimming)Value;
+        }
+        private object get_251_GridTextColumnBase_TextWrapping(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridTextColumnBase)instance;
+            return that.TextWrapping;
+        }
+        private void set_251_GridTextColumnBase_TextWrapping(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridTextColumnBase)instance;
+            that.TextWrapping = (global::Windows.UI.Xaml.TextWrapping)Value;
+        }
+        private object get_252_GridNumericColumn_BlockCharactersOnTextInput(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridNumericColumn)instance;
+            return that.BlockCharactersOnTextInput;
+        }
+        private void set_252_GridNumericColumn_BlockCharactersOnTextInput(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridNumericColumn)instance;
+            that.BlockCharactersOnTextInput = (global::System.Boolean)Value;
+        }
+        private object get_253_GridNumericColumn_AllowNullInput(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridNumericColumn)instance;
+            return that.AllowNullInput;
+        }
+        private void set_253_GridNumericColumn_AllowNullInput(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridNumericColumn)instance;
+            that.AllowNullInput = (global::System.Boolean)Value;
+        }
+        private object get_254_GridNumericColumn_FormatString(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridNumericColumn)instance;
+            return that.FormatString;
+        }
+        private void set_254_GridNumericColumn_FormatString(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridNumericColumn)instance;
+            that.FormatString = (global::System.String)Value;
+        }
+        private object get_255_GridNumericColumn_ParsingMode(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridNumericColumn)instance;
+            return that.ParsingMode;
+        }
+        private void set_255_GridNumericColumn_ParsingMode(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridNumericColumn)instance;
+            that.ParsingMode = (global::Syncfusion.UI.Xaml.Controls.Input.Parsers)Value;
+        }
+        private object get_256_GridNumericColumn_WaterMark(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridNumericColumn)instance;
+            return that.WaterMark;
+        }
+        private void set_256_GridNumericColumn_WaterMark(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridNumericColumn)instance;
+            that.WaterMark = (global::System.Object)Value;
+        }
+        private object get_257_GridNumericColumn_MaximumNumberDecimalDigits(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridNumericColumn)instance;
+            return that.MaximumNumberDecimalDigits;
+        }
+        private void set_257_GridNumericColumn_MaximumNumberDecimalDigits(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridNumericColumn)instance;
+            that.MaximumNumberDecimalDigits = (global::System.Int32)Value;
+        }
+        private object get_258_GridNumericColumn_PercentDisplayMode(object instance)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridNumericColumn)instance;
+            return that.PercentDisplayMode;
+        }
+        private void set_258_GridNumericColumn_PercentDisplayMode(object instance, object Value)
+        {
+            var that = (global::Syncfusion.UI.Xaml.Grid.GridNumericColumn)instance;
+            that.PercentDisplayMode = (global::Syncfusion.UI.Xaml.Controls.Input.PercentDisplayMode)Value;
+        }
 
         private global::Windows.UI.Xaml.Markup.IXamlMember CreateXamlMember(string longMemberName)
         {
@@ -386,6 +4526,1737 @@ namespace PacaModII.PacaModII_XamlTypeInfo
                 xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "R", "Byte");
                 xamlMember.Getter = get_3_Color_R;
                 xamlMember.Setter = set_3_Color_R;
+                break;
+            case "PacaModII.Views.RosterView.ViewModel":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("PacaModII.Views.RosterView");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "ViewModel", "PacaModII.ViewModels.RosterViewModel");
+                xamlMember.Getter = get_4_RosterView_ViewModel;
+                xamlMember.Setter = set_4_RosterView_ViewModel;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfGridBase.AutoGenerateColumns":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfGridBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "AutoGenerateColumns", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_5_SfGridBase_AutoGenerateColumns;
+                xamlMember.Setter = set_5_SfGridBase_AutoGenerateColumns;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfGridBase.AllowResizingColumns":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfGridBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "AllowResizingColumns", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_6_SfGridBase_AllowResizingColumns;
+                xamlMember.Setter = set_6_SfGridBase_AllowResizingColumns;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.ColumnSizer":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "ColumnSizer", "Syncfusion.UI.Xaml.Grid.GridLengthUnitType");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_7_SfDataGrid_ColumnSizer;
+                xamlMember.Setter = set_7_SfDataGrid_ColumnSizer;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.ItemsSource":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "ItemsSource", "Object");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_8_SfDataGrid_ItemsSource;
+                xamlMember.Setter = set_8_SfDataGrid_ItemsSource;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.Columns":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "Columns", "Syncfusion.UI.Xaml.Grid.Columns");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_9_SfDataGrid_Columns;
+                xamlMember.Setter = set_9_SfDataGrid_Columns;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumn.ColumnMemberType":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumn");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "ColumnMemberType", "System.Type");
+                xamlMember.Getter = get_10_GridColumn_ColumnMemberType;
+                xamlMember.Setter = set_10_GridColumn_ColumnMemberType;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumn.FilterRowCellStyle":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumn");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "FilterRowCellStyle", "Windows.UI.Xaml.Style");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_11_GridColumn_FilterRowCellStyle;
+                xamlMember.Setter = set_11_GridColumn_FilterRowCellStyle;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumn.UseBindingValue":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumn");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "UseBindingValue", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_12_GridColumn_UseBindingValue;
+                xamlMember.Setter = set_12_GridColumn_UseBindingValue;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumn.ColumnSizer":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumn");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "ColumnSizer", "Syncfusion.UI.Xaml.Grid.GridLengthUnitType");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_13_GridColumn_ColumnSizer;
+                xamlMember.Setter = set_13_GridColumn_ColumnSizer;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumn.AllowDragging":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumn");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "AllowDragging", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_14_GridColumn_AllowDragging;
+                xamlMember.Setter = set_14_GridColumn_AllowDragging;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumn.AllowGrouping":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumn");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "AllowGrouping", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_15_GridColumn_AllowGrouping;
+                xamlMember.Setter = set_15_GridColumn_AllowGrouping;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumn.AllowResizing":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumn");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "AllowResizing", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_16_GridColumn_AllowResizing;
+                xamlMember.Setter = set_16_GridColumn_AllowResizing;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumn.AllowFiltering":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumn");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "AllowFiltering", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_17_GridColumn_AllowFiltering;
+                xamlMember.Setter = set_17_GridColumn_AllowFiltering;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumn.ImmediateUpdateColumnFilter":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumn");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "ImmediateUpdateColumnFilter", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_18_GridColumn_ImmediateUpdateColumnFilter;
+                xamlMember.Setter = set_18_GridColumn_ImmediateUpdateColumnFilter;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumn.FilterRowOptionsVisibility":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumn");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "FilterRowOptionsVisibility", "Windows.UI.Xaml.Visibility");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_19_GridColumn_FilterRowOptionsVisibility;
+                xamlMember.Setter = set_19_GridColumn_FilterRowOptionsVisibility;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumn.FilterRowCondition":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumn");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "FilterRowCondition", "Syncfusion.UI.Xaml.Grid.FilterRowCondition");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_20_GridColumn_FilterRowCondition;
+                xamlMember.Setter = set_20_GridColumn_FilterRowCondition;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumn.FilterPopupStyle":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumn");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "FilterPopupStyle", "Windows.UI.Xaml.Style");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_21_GridColumn_FilterPopupStyle;
+                xamlMember.Setter = set_21_GridColumn_FilterPopupStyle;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumn.FilterPopupTemplate":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumn");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "FilterPopupTemplate", "Windows.UI.Xaml.DataTemplate");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_22_GridColumn_FilterPopupTemplate;
+                xamlMember.Setter = set_22_GridColumn_FilterPopupTemplate;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumn.AllowBlankFilters":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumn");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "AllowBlankFilters", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_23_GridColumn_AllowBlankFilters;
+                xamlMember.Setter = set_23_GridColumn_AllowBlankFilters;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumn.FilterRowText":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumn");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "FilterRowText", "Object");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_24_GridColumn_FilterRowText;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumn.IsCaseSensitiveFilterRow":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumn");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "IsCaseSensitiveFilterRow", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_25_GridColumn_IsCaseSensitiveFilterRow;
+                xamlMember.Setter = set_25_GridColumn_IsCaseSensitiveFilterRow;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumn.GroupMode":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumn");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "GroupMode", "Syncfusion.Data.DataReflectionMode");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_26_GridColumn_GroupMode;
+                xamlMember.Setter = set_26_GridColumn_GroupMode;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumn.CellType":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumn");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "CellType", "String");
+                xamlMember.Getter = get_27_GridColumn_CellType;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumn.FilteredFrom":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumn");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "FilteredFrom", "Syncfusion.UI.Xaml.Grid.FilteredFrom");
+                xamlMember.Getter = get_28_GridColumn_FilteredFrom;
+                xamlMember.Setter = set_28_GridColumn_FilteredFrom;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumn.FilterPredicates":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumn");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "FilterPredicates", "System.Collections.ObjectModel.ObservableCollection`1<Syncfusion.Data.FilterPredicate>");
+                xamlMember.Getter = get_29_GridColumn_FilterPredicates;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Syncfusion.Data.FilterPredicate.FilterType":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.Data.FilterPredicate");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "FilterType", "Syncfusion.Data.FilterType");
+                xamlMember.Getter = get_30_FilterPredicate_FilterType;
+                xamlMember.Setter = set_30_FilterPredicate_FilterType;
+                break;
+            case "Syncfusion.Data.FilterPredicate.FilterValue":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.Data.FilterPredicate");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "FilterValue", "Object");
+                xamlMember.Getter = get_31_FilterPredicate_FilterValue;
+                xamlMember.Setter = set_31_FilterPredicate_FilterValue;
+                break;
+            case "Syncfusion.Data.FilterPredicate.PredicateType":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.Data.FilterPredicate");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "PredicateType", "Syncfusion.Data.PredicateType");
+                xamlMember.Getter = get_32_FilterPredicate_PredicateType;
+                xamlMember.Setter = set_32_FilterPredicate_PredicateType;
+                break;
+            case "Syncfusion.Data.FilterPredicate.FilterBehavior":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.Data.FilterPredicate");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "FilterBehavior", "Syncfusion.Data.FilterBehavior");
+                xamlMember.Getter = get_33_FilterPredicate_FilterBehavior;
+                xamlMember.Setter = set_33_FilterPredicate_FilterBehavior;
+                break;
+            case "Syncfusion.Data.FilterPredicate.IsCaseSensitive":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.Data.FilterPredicate");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "IsCaseSensitive", "Boolean");
+                xamlMember.Getter = get_34_FilterPredicate_IsCaseSensitive;
+                xamlMember.Setter = set_34_FilterPredicate_IsCaseSensitive;
+                break;
+            case "Syncfusion.Data.FilterPredicate.FilterMode":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.Data.FilterPredicate");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "FilterMode", "Syncfusion.Data.ColumnFilter");
+                xamlMember.Getter = get_35_FilterPredicate_FilterMode;
+                xamlMember.Setter = set_35_FilterPredicate_FilterMode;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumn.FilterBehavior":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumn");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "FilterBehavior", "Syncfusion.Data.FilterBehavior");
+                xamlMember.Getter = get_36_GridColumn_FilterBehavior;
+                xamlMember.Setter = set_36_GridColumn_FilterBehavior;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumn.ColumnFilter":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumn");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "ColumnFilter", "Syncfusion.Data.ColumnFilter");
+                xamlMember.Getter = get_37_GridColumn_ColumnFilter;
+                xamlMember.Setter = set_37_GridColumn_ColumnFilter;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumn.FilterRowEditorType":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumn");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "FilterRowEditorType", "String");
+                xamlMember.Getter = get_38_GridColumn_FilterRowEditorType;
+                xamlMember.Setter = set_38_GridColumn_FilterRowEditorType;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumnBase.IsAutoGenerated":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumnBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "IsAutoGenerated", "Boolean");
+                xamlMember.Getter = get_39_GridColumnBase_IsAutoGenerated;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumnBase.ActualWidth":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumnBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "ActualWidth", "Double");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_40_GridColumnBase_ActualWidth;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumnBase.MappingName":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumnBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "MappingName", "String");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_41_GridColumnBase_MappingName;
+                xamlMember.Setter = set_41_GridColumnBase_MappingName;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumnBase.HeaderText":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumnBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "HeaderText", "String");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_42_GridColumnBase_HeaderText;
+                xamlMember.Setter = set_42_GridColumnBase_HeaderText;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumnBase.AllowEditing":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumnBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "AllowEditing", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_43_GridColumnBase_AllowEditing;
+                xamlMember.Setter = set_43_GridColumnBase_AllowEditing;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumnBase.IsReadOnly":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumnBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "IsReadOnly", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_44_GridColumnBase_IsReadOnly;
+                xamlMember.Setter = set_44_GridColumnBase_IsReadOnly;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumnBase.GridValidationMode":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumnBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "GridValidationMode", "Syncfusion.UI.Xaml.Grid.GridValidationMode");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_45_GridColumnBase_GridValidationMode;
+                xamlMember.Setter = set_45_GridColumnBase_GridValidationMode;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumnBase.UpdateTrigger":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumnBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "UpdateTrigger", "Windows.UI.Xaml.Data.UpdateSourceTrigger");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_46_GridColumnBase_UpdateTrigger;
+                xamlMember.Setter = set_46_GridColumnBase_UpdateTrigger;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumnBase.Padding":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumnBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "Padding", "Windows.UI.Xaml.Thickness");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_47_GridColumnBase_Padding;
+                xamlMember.Setter = set_47_GridColumnBase_Padding;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumnBase.AllowFocus":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumnBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "AllowFocus", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_48_GridColumnBase_AllowFocus;
+                xamlMember.Setter = set_48_GridColumnBase_AllowFocus;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumnBase.HeaderTemplate":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumnBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "HeaderTemplate", "Windows.UI.Xaml.DataTemplate");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_49_GridColumnBase_HeaderTemplate;
+                xamlMember.Setter = set_49_GridColumnBase_HeaderTemplate;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumnBase.CellTemplate":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumnBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "CellTemplate", "Windows.UI.Xaml.DataTemplate");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_50_GridColumnBase_CellTemplate;
+                xamlMember.Setter = set_50_GridColumnBase_CellTemplate;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumnBase.SetCellBoundValue":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumnBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "SetCellBoundValue", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_51_GridColumnBase_SetCellBoundValue;
+                xamlMember.Setter = set_51_GridColumnBase_SetCellBoundValue;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumnBase.CellTemplateSelector":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumnBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "CellTemplateSelector", "Windows.UI.Xaml.Controls.DataTemplateSelector");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_52_GridColumnBase_CellTemplateSelector;
+                xamlMember.Setter = set_52_GridColumnBase_CellTemplateSelector;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumnBase.CellStyle":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumnBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "CellStyle", "Windows.UI.Xaml.Style");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_53_GridColumnBase_CellStyle;
+                xamlMember.Setter = set_53_GridColumnBase_CellStyle;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumnBase.CellStyleSelector":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumnBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "CellStyleSelector", "Windows.UI.Xaml.Controls.StyleSelector");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_54_GridColumnBase_CellStyleSelector;
+                xamlMember.Setter = set_54_GridColumnBase_CellStyleSelector;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumnBase.HeaderStyle":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumnBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "HeaderStyle", "Windows.UI.Xaml.Style");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_55_GridColumnBase_HeaderStyle;
+                xamlMember.Setter = set_55_GridColumnBase_HeaderStyle;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumnBase.AllowSorting":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumnBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "AllowSorting", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_56_GridColumnBase_AllowSorting;
+                xamlMember.Setter = set_56_GridColumnBase_AllowSorting;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumnBase.VerticalAlignment":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumnBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "VerticalAlignment", "Windows.UI.Xaml.VerticalAlignment");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_57_GridColumnBase_VerticalAlignment;
+                xamlMember.Setter = set_57_GridColumnBase_VerticalAlignment;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumnBase.TextAlignment":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumnBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "TextAlignment", "Windows.UI.Xaml.TextAlignment");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_58_GridColumnBase_TextAlignment;
+                xamlMember.Setter = set_58_GridColumnBase_TextAlignment;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumnBase.HorizontalHeaderContentAlignment":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumnBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "HorizontalHeaderContentAlignment", "Windows.UI.Xaml.HorizontalAlignment");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_59_GridColumnBase_HorizontalHeaderContentAlignment;
+                xamlMember.Setter = set_59_GridColumnBase_HorizontalHeaderContentAlignment;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumnBase.Width":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumnBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "Width", "Double");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_60_GridColumnBase_Width;
+                xamlMember.Setter = set_60_GridColumnBase_Width;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumnBase.IsHidden":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumnBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "IsHidden", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_61_GridColumnBase_IsHidden;
+                xamlMember.Setter = set_61_GridColumnBase_IsHidden;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumnBase.MaximumWidth":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumnBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "MaximumWidth", "Double");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_62_GridColumnBase_MaximumWidth;
+                xamlMember.Setter = set_62_GridColumnBase_MaximumWidth;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumnBase.MinimumWidth":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumnBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "MinimumWidth", "Double");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_63_GridColumnBase_MinimumWidth;
+                xamlMember.Setter = set_63_GridColumnBase_MinimumWidth;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumnBase.ValueBinding":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumnBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "ValueBinding", "Windows.UI.Xaml.Data.BindingBase");
+                xamlMember.Getter = get_64_GridColumnBase_ValueBinding;
+                xamlMember.Setter = set_64_GridColumnBase_ValueBinding;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumnBase.DisplayBinding":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumnBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "DisplayBinding", "Windows.UI.Xaml.Data.BindingBase");
+                xamlMember.Getter = get_65_GridColumnBase_DisplayBinding;
+                xamlMember.Setter = set_65_GridColumnBase_DisplayBinding;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumnBase.ShowHeaderToolTip":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumnBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "ShowHeaderToolTip", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_66_GridColumnBase_ShowHeaderToolTip;
+                xamlMember.Setter = set_66_GridColumnBase_ShowHeaderToolTip;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumnBase.ToolTipTemplate":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumnBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "ToolTipTemplate", "Windows.UI.Xaml.DataTemplate");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_67_GridColumnBase_ToolTipTemplate;
+                xamlMember.Setter = set_67_GridColumnBase_ToolTipTemplate;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumnBase.HeaderToolTipTemplate":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumnBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "HeaderToolTipTemplate", "Windows.UI.Xaml.DataTemplate");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_68_GridColumnBase_HeaderToolTipTemplate;
+                xamlMember.Setter = set_68_GridColumnBase_HeaderToolTipTemplate;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumnBase.ToolTipTemplateSelector":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumnBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "ToolTipTemplateSelector", "Windows.UI.Xaml.Controls.DataTemplateSelector");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_69_GridColumnBase_ToolTipTemplateSelector;
+                xamlMember.Setter = set_69_GridColumnBase_ToolTipTemplateSelector;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumnBase.ShowToolTip":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumnBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "ShowToolTip", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_70_GridColumnBase_ShowToolTip;
+                xamlMember.Setter = set_70_GridColumnBase_ShowToolTip;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridColumnBase.SetCellBoundToolTip":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridColumnBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "SetCellBoundToolTip", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_71_GridColumnBase_SetCellBoundToolTip;
+                xamlMember.Setter = set_71_GridColumnBase_SetCellBoundToolTip;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.RowGenerator":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "RowGenerator", "Syncfusion.UI.Xaml.Grid.RowGenerator");
+                xamlMember.Getter = get_72_SfDataGrid_RowGenerator;
+                xamlMember.Setter = set_72_SfDataGrid_RowGenerator;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.ColumnResizingController":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "ColumnResizingController", "Syncfusion.UI.Xaml.Grid.GridColumnResizingController");
+                xamlMember.Getter = get_73_SfDataGrid_ColumnResizingController;
+                xamlMember.Setter = set_73_SfDataGrid_ColumnResizingController;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.GridColumnSizer":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "GridColumnSizer", "Syncfusion.UI.Xaml.Grid.GridColumnSizer");
+                xamlMember.Getter = get_74_SfDataGrid_GridColumnSizer;
+                xamlMember.Setter = set_74_SfDataGrid_GridColumnSizer;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.BindableView":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "BindableView", "Syncfusion.Data.ICollectionViewAdv");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_75_SfDataGrid_BindableView;
+                xamlMember.Setter = set_75_SfDataGrid_BindableView;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.View":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "View", "Syncfusion.Data.ICollectionViewAdv");
+                xamlMember.Getter = get_76_SfDataGrid_View;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.GridColumnDragDropController":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "GridColumnDragDropController", "Syncfusion.UI.Xaml.Grid.GridColumnDragDropController");
+                xamlMember.Getter = get_77_SfDataGrid_GridColumnDragDropController;
+                xamlMember.Setter = set_77_SfDataGrid_GridColumnDragDropController;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.RowDragDropController":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "RowDragDropController", "Syncfusion.UI.Xaml.Grid.GridRowDragDropController");
+                xamlMember.Getter = get_78_SfDataGrid_RowDragDropController;
+                xamlMember.Setter = set_78_SfDataGrid_RowDragDropController;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.ShowBusyIndicator":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "ShowBusyIndicator", "Boolean");
+                xamlMember.Getter = get_79_SfDataGrid_ShowBusyIndicator;
+                xamlMember.Setter = set_79_SfDataGrid_ShowBusyIndicator;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.CellRenderers":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "CellRenderers", "Syncfusion.UI.Xaml.Grid.Cells.GridCellRendererCollection");
+                xamlMember.Getter = get_80_SfDataGrid_CellRenderers;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.UnBoundRowCellRenderers":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "UnBoundRowCellRenderers", "Syncfusion.UI.Xaml.Grid.Cells.GridCellRendererCollection");
+                xamlMember.Getter = get_81_SfDataGrid_UnBoundRowCellRenderers;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.FilterRowCellRenderers":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "FilterRowCellRenderers", "Syncfusion.UI.Xaml.Grid.Cells.GridCellRendererCollection");
+                xamlMember.Getter = get_82_SfDataGrid_FilterRowCellRenderers;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.CoveredCells":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "CoveredCells", "Syncfusion.UI.Xaml.Grid.CoveredCellInfoCollection");
+                xamlMember.Getter = get_83_SfDataGrid_CoveredCells;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Syncfusion.UI.Xaml.Grid.CoveredCellInfo.MappedRowColumnIndex":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.CoveredCellInfo");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "MappedRowColumnIndex", "Syncfusion.UI.Xaml.ScrollAxis.RowColumnIndex");
+                xamlMember.Getter = get_84_CoveredCellInfo_MappedRowColumnIndex;
+                xamlMember.Setter = set_84_CoveredCellInfo_MappedRowColumnIndex;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.CoveredCellInfo.Row":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.CoveredCellInfo");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "Row", "Int32");
+                xamlMember.Getter = get_85_CoveredCellInfo_Row;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Syncfusion.UI.Xaml.Grid.CoveredCellInfo.Left":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.CoveredCellInfo");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "Left", "Int32");
+                xamlMember.Getter = get_86_CoveredCellInfo_Left;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Syncfusion.UI.Xaml.Grid.CoveredCellInfo.Right":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.CoveredCellInfo");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "Right", "Int32");
+                xamlMember.Getter = get_87_CoveredCellInfo_Right;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Syncfusion.UI.Xaml.Grid.CoveredCellInfo.Top":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.CoveredCellInfo");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "Top", "Int32");
+                xamlMember.Getter = get_88_CoveredCellInfo_Top;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Syncfusion.UI.Xaml.Grid.CoveredCellInfo.Bottom":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.CoveredCellInfo");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "Bottom", "Int32");
+                xamlMember.Getter = get_89_CoveredCellInfo_Bottom;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Syncfusion.UI.Xaml.Grid.CoveredCellInfo.Width":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.CoveredCellInfo");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "Width", "Int32");
+                xamlMember.Getter = get_90_CoveredCellInfo_Width;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Syncfusion.UI.Xaml.Grid.CoveredCellInfo.Height":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.CoveredCellInfo");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "Height", "Int32");
+                xamlMember.Getter = get_91_CoveredCellInfo_Height;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Syncfusion.UI.Xaml.Grid.CoveredCellInfo.Name":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.CoveredCellInfo");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "Name", "String");
+                xamlMember.Getter = get_92_CoveredCellInfo_Name;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Syncfusion.UI.Xaml.Grid.CoveredCellInfo.RowSpan":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.CoveredCellInfo");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "RowSpan", "Int32");
+                xamlMember.Getter = get_93_CoveredCellInfo_RowSpan;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.MergedCellManager":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "MergedCellManager", "Syncfusion.UI.Xaml.Grid.MergedCellManager");
+                xamlMember.Getter = get_94_SfDataGrid_MergedCellManager;
+                xamlMember.Setter = set_94_SfDataGrid_MergedCellManager;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.SelectionController":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "SelectionController", "Syncfusion.UI.Xaml.Grid.IGridSelectionController");
+                xamlMember.Getter = get_95_SfDataGrid_SelectionController;
+                xamlMember.Setter = set_95_SfDataGrid_SelectionController;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.NotificationSubscriptionMode":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "NotificationSubscriptionMode", "Syncfusion.Data.NotificationSubscriptionMode");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_96_SfDataGrid_NotificationSubscriptionMode;
+                xamlMember.Setter = set_96_SfDataGrid_NotificationSubscriptionMode;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.SerializationController":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "SerializationController", "Syncfusion.UI.Xaml.Grid.SerializationController");
+                xamlMember.Getter = get_97_SfDataGrid_SerializationController;
+                xamlMember.Setter = set_97_SfDataGrid_SerializationController;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.AutoScroller":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "AutoScroller", "Syncfusion.UI.Xaml.Grid.AutoScroller");
+                xamlMember.Getter = get_98_SfDataGrid_AutoScroller;
+                xamlMember.Setter = set_98_SfDataGrid_AutoScroller;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.FooterRowsCount":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "FooterRowsCount", "Int32");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_99_SfDataGrid_FooterRowsCount;
+                xamlMember.Setter = set_99_SfDataGrid_FooterRowsCount;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.FrozenRowsCount":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "FrozenRowsCount", "Int32");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_100_SfDataGrid_FrozenRowsCount;
+                xamlMember.Setter = set_100_SfDataGrid_FrozenRowsCount;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.SourceType":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "SourceType", "System.Type");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_101_SfDataGrid_SourceType;
+                xamlMember.Setter = set_101_SfDataGrid_SourceType;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.UsePLINQ":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "UsePLINQ", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_102_SfDataGrid_UsePLINQ;
+                xamlMember.Setter = set_102_SfDataGrid_UsePLINQ;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.SortComparers":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "SortComparers", "Syncfusion.Data.SortComparers");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_103_SfDataGrid_SortComparers;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Syncfusion.Data.SortComparer.PropertyName":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.Data.SortComparer");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "PropertyName", "String");
+                xamlMember.Getter = get_104_SortComparer_PropertyName;
+                xamlMember.Setter = set_104_SortComparer_PropertyName;
+                break;
+            case "Syncfusion.Data.SortComparer.Comparer":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.Data.SortComparer");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "Comparer", "System.Collections.Generic.IComparer`1<Object>");
+                xamlMember.Getter = get_105_SortComparer_Comparer;
+                xamlMember.Setter = set_105_SortComparer_Comparer;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.RowSelectionBrush":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "RowSelectionBrush", "Windows.UI.Xaml.Media.Brush");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_106_SfDataGrid_RowSelectionBrush;
+                xamlMember.Setter = set_106_SfDataGrid_RowSelectionBrush;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.SelectionForegroundBrush":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "SelectionForegroundBrush", "Windows.UI.Xaml.Media.Brush");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_107_SfDataGrid_SelectionForegroundBrush;
+                xamlMember.Setter = set_107_SfDataGrid_SelectionForegroundBrush;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.GroupRowSelectionBrush":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "GroupRowSelectionBrush", "Windows.UI.Xaml.Media.Brush");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_108_SfDataGrid_GroupRowSelectionBrush;
+                xamlMember.Setter = set_108_SfDataGrid_GroupRowSelectionBrush;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.RowStyle":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "RowStyle", "Windows.UI.Xaml.Style");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_109_SfDataGrid_RowStyle;
+                xamlMember.Setter = set_109_SfDataGrid_RowStyle;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.UnBoundRowStyle":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "UnBoundRowStyle", "Windows.UI.Xaml.Style");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_110_SfDataGrid_UnBoundRowStyle;
+                xamlMember.Setter = set_110_SfDataGrid_UnBoundRowStyle;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.RowStyleSelector":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "RowStyleSelector", "Windows.UI.Xaml.Controls.StyleSelector");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_111_SfDataGrid_RowStyleSelector;
+                xamlMember.Setter = set_111_SfDataGrid_RowStyleSelector;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.AlternationCount":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "AlternationCount", "Int32");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_112_SfDataGrid_AlternationCount;
+                xamlMember.Setter = set_112_SfDataGrid_AlternationCount;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.AlternatingRowStyle":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "AlternatingRowStyle", "Windows.UI.Xaml.Style");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_113_SfDataGrid_AlternatingRowStyle;
+                xamlMember.Setter = set_113_SfDataGrid_AlternatingRowStyle;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.AlternatingRowStyleSelector":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "AlternatingRowStyleSelector", "Windows.UI.Xaml.Controls.StyleSelector");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_114_SfDataGrid_AlternatingRowStyleSelector;
+                xamlMember.Setter = set_114_SfDataGrid_AlternatingRowStyleSelector;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.CellStyle":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "CellStyle", "Windows.UI.Xaml.Style");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_115_SfDataGrid_CellStyle;
+                xamlMember.Setter = set_115_SfDataGrid_CellStyle;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.UnBoundRowCellStyle":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "UnBoundRowCellStyle", "Windows.UI.Xaml.Style");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_116_SfDataGrid_UnBoundRowCellStyle;
+                xamlMember.Setter = set_116_SfDataGrid_UnBoundRowCellStyle;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.CellStyleSelector":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "CellStyleSelector", "Windows.UI.Xaml.Controls.StyleSelector");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_117_SfDataGrid_CellStyleSelector;
+                xamlMember.Setter = set_117_SfDataGrid_CellStyleSelector;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.HeaderStyle":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "HeaderStyle", "Windows.UI.Xaml.Style");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_118_SfDataGrid_HeaderStyle;
+                xamlMember.Setter = set_118_SfDataGrid_HeaderStyle;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.HeaderTemplate":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "HeaderTemplate", "Windows.UI.Xaml.DataTemplate");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_119_SfDataGrid_HeaderTemplate;
+                xamlMember.Setter = set_119_SfDataGrid_HeaderTemplate;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.GroupColumnDescriptions":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "GroupColumnDescriptions", "Syncfusion.UI.Xaml.Grid.GroupColumnDescriptions");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_120_SfDataGrid_GroupColumnDescriptions;
+                xamlMember.Setter = set_120_SfDataGrid_GroupColumnDescriptions;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GroupColumnDescription.ColumnName":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GroupColumnDescription");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "ColumnName", "String");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_121_GroupColumnDescription_ColumnName;
+                xamlMember.Setter = set_121_GroupColumnDescription_ColumnName;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GroupColumnDescription.Converter":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GroupColumnDescription");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "Converter", "Windows.UI.Xaml.Data.IValueConverter");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_122_GroupColumnDescription_Converter;
+                xamlMember.Setter = set_122_GroupColumnDescription_Converter;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GroupColumnDescription.Comparer":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GroupColumnDescription");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "Comparer", "System.Collections.Generic.IComparer`1<Object>");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_123_GroupColumnDescription_Comparer;
+                xamlMember.Setter = set_123_GroupColumnDescription_Comparer;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GroupColumnDescription.SortGroupRecords":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GroupColumnDescription");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "SortGroupRecords", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_124_GroupColumnDescription_SortGroupRecords;
+                xamlMember.Setter = set_124_GroupColumnDescription_SortGroupRecords;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.GroupSummaryRows":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "GroupSummaryRows", "System.Collections.ObjectModel.ObservableCollection`1<Syncfusion.UI.Xaml.Grid.GridSummaryRow>");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_125_SfDataGrid_GroupSummaryRows;
+                xamlMember.Setter = set_125_SfDataGrid_GroupSummaryRows;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridSummaryRow.Name":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridSummaryRow");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "Name", "String");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_126_GridSummaryRow_Name;
+                xamlMember.Setter = set_126_GridSummaryRow_Name;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridSummaryRow.ShowSummaryInRow":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridSummaryRow");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "ShowSummaryInRow", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_127_GridSummaryRow_ShowSummaryInRow;
+                xamlMember.Setter = set_127_GridSummaryRow_ShowSummaryInRow;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridSummaryRow.SummaryColumns":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridSummaryRow");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "SummaryColumns", "System.Collections.ObjectModel.ObservableCollection`1<Syncfusion.Data.ISummaryColumn>");
+                xamlMember.Getter = get_128_GridSummaryRow_SummaryColumns;
+                xamlMember.Setter = set_128_GridSummaryRow_SummaryColumns;
+                break;
+            case "Syncfusion.Data.ISummaryColumn.CustomAggregate":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.Data.ISummaryColumn");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "CustomAggregate", "Syncfusion.Data.ISummaryAggregate");
+                xamlMember.Getter = get_129_ISummaryColumn_CustomAggregate;
+                xamlMember.Setter = set_129_ISummaryColumn_CustomAggregate;
+                break;
+            case "Syncfusion.Data.ISummaryColumn.Format":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.Data.ISummaryColumn");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "Format", "String");
+                xamlMember.Getter = get_130_ISummaryColumn_Format;
+                xamlMember.Setter = set_130_ISummaryColumn_Format;
+                break;
+            case "Syncfusion.Data.ISummaryColumn.MappingName":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.Data.ISummaryColumn");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "MappingName", "String");
+                xamlMember.Getter = get_131_ISummaryColumn_MappingName;
+                xamlMember.Setter = set_131_ISummaryColumn_MappingName;
+                break;
+            case "Syncfusion.Data.ISummaryColumn.Name":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.Data.ISummaryColumn");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "Name", "String");
+                xamlMember.Getter = get_132_ISummaryColumn_Name;
+                xamlMember.Setter = set_132_ISummaryColumn_Name;
+                break;
+            case "Syncfusion.Data.ISummaryColumn.SummaryType":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.Data.ISummaryColumn");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "SummaryType", "Syncfusion.Data.SummaryType");
+                xamlMember.Getter = get_133_ISummaryColumn_SummaryType;
+                xamlMember.Setter = set_133_ISummaryColumn_SummaryType;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridSummaryRow.Title":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridSummaryRow");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "Title", "String");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_134_GridSummaryRow_Title;
+                xamlMember.Setter = set_134_GridSummaryRow_Title;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.CaptionSummaryRow":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "CaptionSummaryRow", "Syncfusion.UI.Xaml.Grid.GridSummaryRow");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_135_SfDataGrid_CaptionSummaryRow;
+                xamlMember.Setter = set_135_SfDataGrid_CaptionSummaryRow;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.TableSummaryRows":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "TableSummaryRows", "System.Collections.ObjectModel.ObservableCollection`1<Syncfusion.UI.Xaml.Grid.GridSummaryRow>");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_136_SfDataGrid_TableSummaryRows;
+                xamlMember.Setter = set_136_SfDataGrid_TableSummaryRows;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.UnBoundRows":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "UnBoundRows", "Syncfusion.UI.Xaml.Grid.UnBoundRows");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_137_SfDataGrid_UnBoundRows;
+                xamlMember.Setter = set_137_SfDataGrid_UnBoundRows;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridUnBoundRow.RowIndex":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridUnBoundRow");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "RowIndex", "Int32");
+                xamlMember.Getter = get_138_GridUnBoundRow_RowIndex;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridUnBoundRow.UnBoundRowIndex":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridUnBoundRow");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "UnBoundRowIndex", "Int32");
+                xamlMember.Getter = get_139_GridUnBoundRow_UnBoundRowIndex;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridUnBoundRow.ShowBelowSummary":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridUnBoundRow");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "ShowBelowSummary", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_140_GridUnBoundRow_ShowBelowSummary;
+                xamlMember.Setter = set_140_GridUnBoundRow_ShowBelowSummary;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridUnBoundRow.Position":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridUnBoundRow");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "Position", "Syncfusion.UI.Xaml.Grid.UnBoundRowsPosition");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_141_GridUnBoundRow_Position;
+                xamlMember.Setter = set_141_GridUnBoundRow_Position;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.SummaryGroupComparer":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "SummaryGroupComparer", "System.Collections.Generic.IComparer`1<Syncfusion.Data.Group>");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_142_SfDataGrid_SummaryGroupComparer;
+                xamlMember.Setter = set_142_SfDataGrid_SummaryGroupComparer;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.ShowColumnWhenGrouped":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "ShowColumnWhenGrouped", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_143_SfDataGrid_ShowColumnWhenGrouped;
+                xamlMember.Setter = set_143_SfDataGrid_ShowColumnWhenGrouped;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.AllowFrozenGroupHeaders":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "AllowFrozenGroupHeaders", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_144_SfDataGrid_AllowFrozenGroupHeaders;
+                xamlMember.Setter = set_144_SfDataGrid_AllowFrozenGroupHeaders;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.CaptionSummaryRowStyle":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "CaptionSummaryRowStyle", "Windows.UI.Xaml.Style");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_145_SfDataGrid_CaptionSummaryRowStyle;
+                xamlMember.Setter = set_145_SfDataGrid_CaptionSummaryRowStyle;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.GroupSummaryRowStyle":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "GroupSummaryRowStyle", "Windows.UI.Xaml.Style");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_146_SfDataGrid_GroupSummaryRowStyle;
+                xamlMember.Setter = set_146_SfDataGrid_GroupSummaryRowStyle;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.TableSummaryRowStyle":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "TableSummaryRowStyle", "Windows.UI.Xaml.Style");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_147_SfDataGrid_TableSummaryRowStyle;
+                xamlMember.Setter = set_147_SfDataGrid_TableSummaryRowStyle;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.CaptionSummaryRowStyleSelector":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "CaptionSummaryRowStyleSelector", "Windows.UI.Xaml.Controls.StyleSelector");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_148_SfDataGrid_CaptionSummaryRowStyleSelector;
+                xamlMember.Setter = set_148_SfDataGrid_CaptionSummaryRowStyleSelector;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.GroupSummaryRowStyleSelector":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "GroupSummaryRowStyleSelector", "Windows.UI.Xaml.Controls.StyleSelector");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_149_SfDataGrid_GroupSummaryRowStyleSelector;
+                xamlMember.Setter = set_149_SfDataGrid_GroupSummaryRowStyleSelector;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.TableSummaryRowStyleSelector":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "TableSummaryRowStyleSelector", "Windows.UI.Xaml.Controls.StyleSelector");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_150_SfDataGrid_TableSummaryRowStyleSelector;
+                xamlMember.Setter = set_150_SfDataGrid_TableSummaryRowStyleSelector;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.GroupSummaryCellStyleSelector":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "GroupSummaryCellStyleSelector", "Windows.UI.Xaml.Controls.StyleSelector");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_151_SfDataGrid_GroupSummaryCellStyleSelector;
+                xamlMember.Setter = set_151_SfDataGrid_GroupSummaryCellStyleSelector;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.CaptionSummaryCellStyleSelector":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "CaptionSummaryCellStyleSelector", "Windows.UI.Xaml.Controls.StyleSelector");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_152_SfDataGrid_CaptionSummaryCellStyleSelector;
+                xamlMember.Setter = set_152_SfDataGrid_CaptionSummaryCellStyleSelector;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.TableSummaryCellStyleSelector":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "TableSummaryCellStyleSelector", "Windows.UI.Xaml.Controls.StyleSelector");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_153_SfDataGrid_TableSummaryCellStyleSelector;
+                xamlMember.Setter = set_153_SfDataGrid_TableSummaryCellStyleSelector;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.IsDynamicItemsSource":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "IsDynamicItemsSource", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_154_SfDataGrid_IsDynamicItemsSource;
+                xamlMember.Setter = set_154_SfDataGrid_IsDynamicItemsSource;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.DataFetchSize":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "DataFetchSize", "Int32");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_155_SfDataGrid_DataFetchSize;
+                xamlMember.Setter = set_155_SfDataGrid_DataFetchSize;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.GroupSummaryCellStyle":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "GroupSummaryCellStyle", "Windows.UI.Xaml.Style");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_156_SfDataGrid_GroupSummaryCellStyle;
+                xamlMember.Setter = set_156_SfDataGrid_GroupSummaryCellStyle;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.CaptionSummaryCellStyle":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "CaptionSummaryCellStyle", "Windows.UI.Xaml.Style");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_157_SfDataGrid_CaptionSummaryCellStyle;
+                xamlMember.Setter = set_157_SfDataGrid_CaptionSummaryCellStyle;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.TableSummaryCellStyle":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "TableSummaryCellStyle", "Windows.UI.Xaml.Style");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_158_SfDataGrid_TableSummaryCellStyle;
+                xamlMember.Setter = set_158_SfDataGrid_TableSummaryCellStyle;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.ShowGroupDropArea":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "ShowGroupDropArea", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_159_SfDataGrid_ShowGroupDropArea;
+                xamlMember.Setter = set_159_SfDataGrid_ShowGroupDropArea;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.GridCopyPaste":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "GridCopyPaste", "Syncfusion.UI.Xaml.Grid.IGridCopyPaste");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_160_SfDataGrid_GridCopyPaste;
+                xamlMember.Setter = set_160_SfDataGrid_GridCopyPaste;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.GroupCaptionTextFormat":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "GroupCaptionTextFormat", "String");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_161_SfDataGrid_GroupCaptionTextFormat;
+                xamlMember.Setter = set_161_SfDataGrid_GroupCaptionTextFormat;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.IsGroupDropAreaExpanded":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "IsGroupDropAreaExpanded", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_162_SfDataGrid_IsGroupDropAreaExpanded;
+                xamlMember.Setter = set_162_SfDataGrid_IsGroupDropAreaExpanded;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.AllowGrouping":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "AllowGrouping", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_163_SfDataGrid_AllowGrouping;
+                xamlMember.Setter = set_163_SfDataGrid_AllowGrouping;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.NewItemPlaceholderPosition":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "NewItemPlaceholderPosition", "Syncfusion.Data.NewItemPlaceholderPosition");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_164_SfDataGrid_NewItemPlaceholderPosition;
+                xamlMember.Setter = set_164_SfDataGrid_NewItemPlaceholderPosition;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.NotifyEventsToParentDataGrid":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "NotifyEventsToParentDataGrid", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_165_SfDataGrid_NotifyEventsToParentDataGrid;
+                xamlMember.Setter = set_165_SfDataGrid_NotifyEventsToParentDataGrid;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.GroupDropAreaStyle":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "GroupDropAreaStyle", "Windows.UI.Xaml.Style");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_166_SfDataGrid_GroupDropAreaStyle;
+                xamlMember.Setter = set_166_SfDataGrid_GroupDropAreaStyle;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.GroupDropAreaText":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "GroupDropAreaText", "String");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_167_SfDataGrid_GroupDropAreaText;
+                xamlMember.Setter = set_167_SfDataGrid_GroupDropAreaText;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.LiveDataUpdateMode":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "LiveDataUpdateMode", "Syncfusion.Data.LiveDataUpdateMode");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_168_SfDataGrid_LiveDataUpdateMode;
+                xamlMember.Setter = set_168_SfDataGrid_LiveDataUpdateMode;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.SummaryCalculationMode":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "SummaryCalculationMode", "Syncfusion.Data.CalculationMode");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_169_SfDataGrid_SummaryCalculationMode;
+                xamlMember.Setter = set_169_SfDataGrid_SummaryCalculationMode;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.AutoExpandGroups":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "AutoExpandGroups", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_170_SfDataGrid_AutoExpandGroups;
+                xamlMember.Setter = set_170_SfDataGrid_AutoExpandGroups;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.AllowDraggingRows":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "AllowDraggingRows", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_171_SfDataGrid_AllowDraggingRows;
+                xamlMember.Setter = set_171_SfDataGrid_AllowDraggingRows;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.AllowDeleting":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "AllowDeleting", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_172_SfDataGrid_AllowDeleting;
+                xamlMember.Setter = set_172_SfDataGrid_AllowDeleting;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.DetailsViewDataGridStyle":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "DetailsViewDataGridStyle", "Windows.UI.Xaml.Style");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_173_SfDataGrid_DetailsViewDataGridStyle;
+                xamlMember.Setter = set_173_SfDataGrid_DetailsViewDataGridStyle;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.AllowFiltering":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "AllowFiltering", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_174_SfDataGrid_AllowFiltering;
+                xamlMember.Setter = set_174_SfDataGrid_AllowFiltering;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.CanUseViewFilter":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "CanUseViewFilter", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_175_SfDataGrid_CanUseViewFilter;
+                xamlMember.Setter = set_175_SfDataGrid_CanUseViewFilter;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.CanListenPropertyNotification":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "CanListenPropertyNotification", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_176_SfDataGrid_CanListenPropertyNotification;
+                xamlMember.Setter = set_176_SfDataGrid_CanListenPropertyNotification;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.FilterPopupStyle":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "FilterPopupStyle", "Windows.UI.Xaml.Style");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_177_SfDataGrid_FilterPopupStyle;
+                xamlMember.Setter = set_177_SfDataGrid_FilterPopupStyle;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.FilterPopupTemplate":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "FilterPopupTemplate", "Windows.UI.Xaml.DataTemplate");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_178_SfDataGrid_FilterPopupTemplate;
+                xamlMember.Setter = set_178_SfDataGrid_FilterPopupTemplate;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.FilterRowPosition":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "FilterRowPosition", "Syncfusion.UI.Xaml.Grid.FilterRowPosition");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_179_SfDataGrid_FilterRowPosition;
+                xamlMember.Setter = set_179_SfDataGrid_FilterRowPosition;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.DetailsViewDefinition":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "DetailsViewDefinition", "Syncfusion.UI.Xaml.Grid.DetailsViewDefinition");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_180_SfDataGrid_DetailsViewDefinition;
+                xamlMember.Setter = set_180_SfDataGrid_DetailsViewDefinition;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.ViewDefinition.RelationalColumn":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.ViewDefinition");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "RelationalColumn", "String");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_181_ViewDefinition_RelationalColumn;
+                xamlMember.Setter = set_181_ViewDefinition_RelationalColumn;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.ShowDetailsViewIndentCell":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "ShowDetailsViewIndentCell", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_182_SfDataGrid_ShowDetailsViewIndentCell;
+                xamlMember.Setter = set_182_SfDataGrid_ShowDetailsViewIndentCell;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.ReuseRowsOnItemssourceChange":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "ReuseRowsOnItemssourceChange", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_183_SfDataGrid_ReuseRowsOnItemssourceChange;
+                xamlMember.Setter = set_183_SfDataGrid_ReuseRowsOnItemssourceChange;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.CanMaintainScrollPosition":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "CanMaintainScrollPosition", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_184_SfDataGrid_CanMaintainScrollPosition;
+                xamlMember.Setter = set_184_SfDataGrid_CanMaintainScrollPosition;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.GroupDropItemContextMenu":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "GroupDropItemContextMenu", "Windows.UI.Xaml.Controls.MenuFlyout");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_185_SfDataGrid_GroupDropItemContextMenu;
+                xamlMember.Setter = set_185_SfDataGrid_GroupDropItemContextMenu;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.GroupDropAreaContextMenu":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "GroupDropAreaContextMenu", "Windows.UI.Xaml.Controls.MenuFlyout");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_186_SfDataGrid_GroupDropAreaContextMenu;
+                xamlMember.Setter = set_186_SfDataGrid_GroupDropAreaContextMenu;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.GroupSummaryContextMenu":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "GroupSummaryContextMenu", "Windows.UI.Xaml.Controls.MenuFlyout");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_187_SfDataGrid_GroupSummaryContextMenu;
+                xamlMember.Setter = set_187_SfDataGrid_GroupSummaryContextMenu;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.TableSummaryContextMenu":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "TableSummaryContextMenu", "Windows.UI.Xaml.Controls.MenuFlyout");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_188_SfDataGrid_TableSummaryContextMenu;
+                xamlMember.Setter = set_188_SfDataGrid_TableSummaryContextMenu;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.GroupCaptionContextMenu":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "GroupCaptionContextMenu", "Windows.UI.Xaml.Controls.MenuFlyout");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_189_SfDataGrid_GroupCaptionContextMenu;
+                xamlMember.Setter = set_189_SfDataGrid_GroupCaptionContextMenu;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.RowHoverHighlightingBrush":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "RowHoverHighlightingBrush", "Windows.UI.Xaml.Media.Brush");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_190_SfDataGrid_RowHoverHighlightingBrush;
+                xamlMember.Setter = set_190_SfDataGrid_RowHoverHighlightingBrush;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.AllowRowHoverHighlighting":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "AllowRowHoverHighlighting", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_191_SfDataGrid_AllowRowHoverHighlighting;
+                xamlMember.Setter = set_191_SfDataGrid_AllowRowHoverHighlighting;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.AddNewRowPosition":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "AddNewRowPosition", "Syncfusion.UI.Xaml.Grid.AddNewRowPosition");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_192_SfDataGrid_AddNewRowPosition;
+                xamlMember.Setter = set_192_SfDataGrid_AddNewRowPosition;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.ExpanderColumnWidth":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "ExpanderColumnWidth", "Double");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_193_SfDataGrid_ExpanderColumnWidth;
+                xamlMember.Setter = set_193_SfDataGrid_ExpanderColumnWidth;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.IndentColumnWidth":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "IndentColumnWidth", "Double");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_194_SfDataGrid_IndentColumnWidth;
+                xamlMember.Setter = set_194_SfDataGrid_IndentColumnWidth;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.PrintSettings":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "PrintSettings", "Syncfusion.UI.Xaml.Grid.PrintSettings");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_195_SfDataGrid_PrintSettings;
+                xamlMember.Setter = set_195_SfDataGrid_PrintSettings;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.CurrentItem":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "CurrentItem", "Object");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_196_SfDataGrid_CurrentItem;
+                xamlMember.Setter = set_196_SfDataGrid_CurrentItem;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.SelectionUnit":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "SelectionUnit", "Syncfusion.UI.Xaml.Grid.GridSelectionUnit");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_197_SfDataGrid_SelectionUnit;
+                xamlMember.Setter = set_197_SfDataGrid_SelectionUnit;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.CurrentCellInfo":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "CurrentCellInfo", "Syncfusion.UI.Xaml.Grid.GridCellInfo");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_198_SfDataGrid_CurrentCellInfo;
+                xamlMember.Setter = set_198_SfDataGrid_CurrentCellInfo;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.CurrentColumn":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "CurrentColumn", "Syncfusion.UI.Xaml.Grid.GridColumn");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_199_SfDataGrid_CurrentColumn;
+                xamlMember.Setter = set_199_SfDataGrid_CurrentColumn;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.EnableDataVirtualization":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "EnableDataVirtualization", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_200_SfDataGrid_EnableDataVirtualization;
+                xamlMember.Setter = set_200_SfDataGrid_EnableDataVirtualization;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.AutoGenerateRelations":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "AutoGenerateRelations", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_201_SfDataGrid_AutoGenerateRelations;
+                xamlMember.Setter = set_201_SfDataGrid_AutoGenerateRelations;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.SelectedDetailsViewGrid":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "SelectedDetailsViewGrid", "Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_202_SfDataGrid_SelectedDetailsViewGrid;
+                xamlMember.Setter = set_202_SfDataGrid_SelectedDetailsViewGrid;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.HideEmptyGridViewDefinition":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "HideEmptyGridViewDefinition", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_203_SfDataGrid_HideEmptyGridViewDefinition;
+                xamlMember.Setter = set_203_SfDataGrid_HideEmptyGridViewDefinition;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.DetailsViewPadding":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "DetailsViewPadding", "Windows.UI.Xaml.Thickness");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_204_SfDataGrid_DetailsViewPadding;
+                xamlMember.Setter = set_204_SfDataGrid_DetailsViewPadding;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.NotifyListener":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "NotifyListener", "Syncfusion.UI.Xaml.Grid.IDetailsViewNotifyListener");
+                xamlMember.Getter = get_205_SfDataGrid_NotifyListener;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfDataGrid.IsListenerSuspended":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfDataGrid");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "IsListenerSuspended", "Boolean");
+                xamlMember.Getter = get_206_SfDataGrid_IsListenerSuspended;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfGridBase.StackedHeaderRows":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfGridBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "StackedHeaderRows", "Syncfusion.UI.Xaml.Grid.StackedHeaderRows");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_207_SfGridBase_StackedHeaderRows;
+                xamlMember.Setter = set_207_SfGridBase_StackedHeaderRows;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.StackedHeaderRow.Name":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.StackedHeaderRow");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "Name", "String");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_208_StackedHeaderRow_Name;
+                xamlMember.Setter = set_208_StackedHeaderRow_Name;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.StackedHeaderRow.StackedColumns":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.StackedHeaderRow");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "StackedColumns", "Syncfusion.UI.Xaml.Grid.StackedColumns");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_209_StackedHeaderRow_StackedColumns;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Syncfusion.UI.Xaml.Grid.StackedColumn.ChildColumns":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.StackedColumn");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "ChildColumns", "String");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_210_StackedColumn_ChildColumns;
+                xamlMember.Setter = set_210_StackedColumn_ChildColumns;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.StackedColumn.HeaderText":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.StackedColumn");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "HeaderText", "String");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_211_StackedColumn_HeaderText;
+                xamlMember.Setter = set_211_StackedColumn_HeaderText;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.StackedColumn.MappingName":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.StackedColumn");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "MappingName", "String");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_212_StackedColumn_MappingName;
+                xamlMember.Setter = set_212_StackedColumn_MappingName;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfGridBase.FooterColumnCount":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfGridBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "FooterColumnCount", "Int32");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_213_SfGridBase_FooterColumnCount;
+                xamlMember.Setter = set_213_SfGridBase_FooterColumnCount;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfGridBase.AllowEditing":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfGridBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "AllowEditing", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_214_SfGridBase_AllowEditing;
+                xamlMember.Setter = set_214_SfGridBase_AllowEditing;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfGridBase.IsReadOnly":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfGridBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "IsReadOnly", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_215_SfGridBase_IsReadOnly;
+                xamlMember.Setter = set_215_SfGridBase_IsReadOnly;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfGridBase.AllowSorting":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfGridBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "AllowSorting", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_216_SfGridBase_AllowSorting;
+                xamlMember.Setter = set_216_SfGridBase_AllowSorting;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfGridBase.AllowSelectionOnPointerPressed":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfGridBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "AllowSelectionOnPointerPressed", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_217_SfGridBase_AllowSelectionOnPointerPressed;
+                xamlMember.Setter = set_217_SfGridBase_AllowSelectionOnPointerPressed;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfGridBase.SelectionMode":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfGridBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "SelectionMode", "Syncfusion.UI.Xaml.Grid.GridSelectionMode");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_218_SfGridBase_SelectionMode;
+                xamlMember.Setter = set_218_SfGridBase_SelectionMode;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfGridBase.NavigationMode":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfGridBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "NavigationMode", "Syncfusion.UI.Xaml.Grid.NavigationMode");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_219_SfGridBase_NavigationMode;
+                xamlMember.Setter = set_219_SfGridBase_NavigationMode;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfGridBase.EditorSelectionBehavior":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfGridBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "EditorSelectionBehavior", "Syncfusion.UI.Xaml.Grid.EditorSelectionBehavior");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_220_SfGridBase_EditorSelectionBehavior;
+                xamlMember.Setter = set_220_SfGridBase_EditorSelectionBehavior;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfGridBase.EditTrigger":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfGridBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "EditTrigger", "Syncfusion.UI.Xaml.Grid.EditTrigger");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_221_SfGridBase_EditTrigger;
+                xamlMember.Setter = set_221_SfGridBase_EditTrigger;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfGridBase.CurrentCellBorderThickness":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfGridBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "CurrentCellBorderThickness", "Windows.UI.Xaml.Thickness");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_222_SfGridBase_CurrentCellBorderThickness;
+                xamlMember.Setter = set_222_SfGridBase_CurrentCellBorderThickness;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfGridBase.CurrentCellBorderBrush":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfGridBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "CurrentCellBorderBrush", "Windows.UI.Xaml.Media.Brush");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_223_SfGridBase_CurrentCellBorderBrush;
+                xamlMember.Setter = set_223_SfGridBase_CurrentCellBorderBrush;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfGridBase.FrozenColumnCount":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfGridBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "FrozenColumnCount", "Int32");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_224_SfGridBase_FrozenColumnCount;
+                xamlMember.Setter = set_224_SfGridBase_FrozenColumnCount;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfGridBase.ShowRowHeader":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfGridBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "ShowRowHeader", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_225_SfGridBase_ShowRowHeader;
+                xamlMember.Setter = set_225_SfGridBase_ShowRowHeader;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfGridBase.RowHeaderWidth":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfGridBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "RowHeaderWidth", "Double");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_226_SfGridBase_RowHeaderWidth;
+                xamlMember.Setter = set_226_SfGridBase_RowHeaderWidth;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfGridBase.HeaderRowHeight":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfGridBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "HeaderRowHeight", "Double");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_227_SfGridBase_HeaderRowHeight;
+                xamlMember.Setter = set_227_SfGridBase_HeaderRowHeight;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfGridBase.RowHeight":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfGridBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "RowHeight", "Double");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_228_SfGridBase_RowHeight;
+                xamlMember.Setter = set_228_SfGridBase_RowHeight;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfGridBase.AllowDraggingColumns":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfGridBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "AllowDraggingColumns", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_229_SfGridBase_AllowDraggingColumns;
+                xamlMember.Setter = set_229_SfGridBase_AllowDraggingColumns;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfGridBase.AllowResizingHiddenColumns":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfGridBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "AllowResizingHiddenColumns", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_230_SfGridBase_AllowResizingHiddenColumns;
+                xamlMember.Setter = set_230_SfGridBase_AllowResizingHiddenColumns;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfGridBase.AutoGenerateColumnsForCustomType":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfGridBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "AutoGenerateColumnsForCustomType", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_231_SfGridBase_AutoGenerateColumnsForCustomType;
+                xamlMember.Setter = set_231_SfGridBase_AutoGenerateColumnsForCustomType;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfGridBase.CellTemplateSelector":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfGridBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "CellTemplateSelector", "Windows.UI.Xaml.Controls.DataTemplateSelector");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_232_SfGridBase_CellTemplateSelector;
+                xamlMember.Setter = set_232_SfGridBase_CellTemplateSelector;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfGridBase.AutoGenerateColumnsMode":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfGridBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "AutoGenerateColumnsMode", "Syncfusion.UI.Xaml.Grid.AutoGenerateColumnsMode");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_233_SfGridBase_AutoGenerateColumnsMode;
+                xamlMember.Setter = set_233_SfGridBase_AutoGenerateColumnsMode;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfGridBase.SortClickAction":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfGridBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "SortClickAction", "Syncfusion.UI.Xaml.Grid.SortClickAction");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_234_SfGridBase_SortClickAction;
+                xamlMember.Setter = set_234_SfGridBase_SortClickAction;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfGridBase.AllowTriStateSorting":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfGridBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "AllowTriStateSorting", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_235_SfGridBase_AllowTriStateSorting;
+                xamlMember.Setter = set_235_SfGridBase_AllowTriStateSorting;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfGridBase.HeaderContextMenu":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfGridBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "HeaderContextMenu", "Windows.UI.Xaml.Controls.MenuFlyout");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_236_SfGridBase_HeaderContextMenu;
+                xamlMember.Setter = set_236_SfGridBase_HeaderContextMenu;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfGridBase.RecordContextMenu":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfGridBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "RecordContextMenu", "Windows.UI.Xaml.Controls.MenuFlyout");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_237_SfGridBase_RecordContextMenu;
+                xamlMember.Setter = set_237_SfGridBase_RecordContextMenu;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfGridBase.ShowSortNumbers":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfGridBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "ShowSortNumbers", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_238_SfGridBase_ShowSortNumbers;
+                xamlMember.Setter = set_238_SfGridBase_ShowSortNumbers;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfGridBase.GridValidationMode":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfGridBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "GridValidationMode", "Syncfusion.UI.Xaml.Grid.GridValidationMode");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_239_SfGridBase_GridValidationMode;
+                xamlMember.Setter = set_239_SfGridBase_GridValidationMode;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfGridBase.SelectedIndex":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfGridBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "SelectedIndex", "Int32");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_240_SfGridBase_SelectedIndex;
+                xamlMember.Setter = set_240_SfGridBase_SelectedIndex;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfGridBase.SelectedItem":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfGridBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "SelectedItem", "Object");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_241_SfGridBase_SelectedItem;
+                xamlMember.Setter = set_241_SfGridBase_SelectedItem;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfGridBase.SelectedItems":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfGridBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "SelectedItems", "System.Collections.ObjectModel.ObservableCollection`1<Object>");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_242_SfGridBase_SelectedItems;
+                xamlMember.Setter = set_242_SfGridBase_SelectedItems;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfGridBase.SortColumnDescriptions":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfGridBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "SortColumnDescriptions", "Syncfusion.UI.Xaml.Grid.SortColumnDescriptions");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_243_SfGridBase_SortColumnDescriptions;
+                xamlMember.Setter = set_243_SfGridBase_SortColumnDescriptions;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SortColumnDescription.ColumnName":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SortColumnDescription");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "ColumnName", "String");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_244_SortColumnDescription_ColumnName;
+                xamlMember.Setter = set_244_SortColumnDescription_ColumnName;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SortColumnDescription.SortDirection":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SortColumnDescription");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "SortDirection", "Syncfusion.Data.ListSortDirection");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_245_SortColumnDescription_SortDirection;
+                xamlMember.Setter = set_245_SortColumnDescription_SortDirection;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfGridBase.GridPasteOption":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfGridBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "GridPasteOption", "Syncfusion.UI.Xaml.Grid.GridPasteOption");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_246_SfGridBase_GridPasteOption;
+                xamlMember.Setter = set_246_SfGridBase_GridPasteOption;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfGridBase.GridCopyOption":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfGridBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "GridCopyOption", "Syncfusion.UI.Xaml.Grid.GridCopyOption");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_247_SfGridBase_GridCopyOption;
+                xamlMember.Setter = set_247_SfGridBase_GridCopyOption;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.SfGridBase.ShowToolTip":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.SfGridBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "ShowToolTip", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_248_SfGridBase_ShowToolTip;
+                xamlMember.Setter = set_248_SfGridBase_ShowToolTip;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridTextColumn.IsSpellCheckEnabled":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridTextColumn");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "IsSpellCheckEnabled", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_249_GridTextColumn_IsSpellCheckEnabled;
+                xamlMember.Setter = set_249_GridTextColumn_IsSpellCheckEnabled;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridTextColumnBase.TextTrimming":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridTextColumnBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "TextTrimming", "Windows.UI.Xaml.TextTrimming");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_250_GridTextColumnBase_TextTrimming;
+                xamlMember.Setter = set_250_GridTextColumnBase_TextTrimming;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridTextColumnBase.TextWrapping":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridTextColumnBase");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "TextWrapping", "Windows.UI.Xaml.TextWrapping");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_251_GridTextColumnBase_TextWrapping;
+                xamlMember.Setter = set_251_GridTextColumnBase_TextWrapping;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridNumericColumn.BlockCharactersOnTextInput":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridNumericColumn");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "BlockCharactersOnTextInput", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_252_GridNumericColumn_BlockCharactersOnTextInput;
+                xamlMember.Setter = set_252_GridNumericColumn_BlockCharactersOnTextInput;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridNumericColumn.AllowNullInput":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridNumericColumn");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "AllowNullInput", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_253_GridNumericColumn_AllowNullInput;
+                xamlMember.Setter = set_253_GridNumericColumn_AllowNullInput;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridNumericColumn.FormatString":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridNumericColumn");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "FormatString", "String");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_254_GridNumericColumn_FormatString;
+                xamlMember.Setter = set_254_GridNumericColumn_FormatString;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridNumericColumn.ParsingMode":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridNumericColumn");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "ParsingMode", "Syncfusion.UI.Xaml.Controls.Input.Parsers");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_255_GridNumericColumn_ParsingMode;
+                xamlMember.Setter = set_255_GridNumericColumn_ParsingMode;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridNumericColumn.WaterMark":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridNumericColumn");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "WaterMark", "Object");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_256_GridNumericColumn_WaterMark;
+                xamlMember.Setter = set_256_GridNumericColumn_WaterMark;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridNumericColumn.MaximumNumberDecimalDigits":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridNumericColumn");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "MaximumNumberDecimalDigits", "Int32");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_257_GridNumericColumn_MaximumNumberDecimalDigits;
+                xamlMember.Setter = set_257_GridNumericColumn_MaximumNumberDecimalDigits;
+                break;
+            case "Syncfusion.UI.Xaml.Grid.GridNumericColumn.PercentDisplayMode":
+                userType = (global::PacaModII.PacaModII_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Syncfusion.UI.Xaml.Grid.GridNumericColumn");
+                xamlMember = new global::PacaModII.PacaModII_XamlTypeInfo.XamlMember(this, "PercentDisplayMode", "Syncfusion.UI.Xaml.Controls.Input.PercentDisplayMode");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_258_GridNumericColumn_PercentDisplayMode;
+                xamlMember.Setter = set_258_GridNumericColumn_PercentDisplayMode;
                 break;
             }
             return xamlMember;

@@ -336,30 +336,6 @@
         "runtime": {
           "lib/uap10.0/SQLitePCLRaw.provider.winsqlite3.dll": {}
         }
-      },
-      "DataAccessLibrary/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "dependencies": {
-          "Microsoft.Data.Sqlite.Core": "2.1.0",
-          "Util": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/DataAccessLibrary.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/DataAccessLibrary.dll": {}
-        }
-      },
-      "Util/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "compile": {
-          "bin/placeholder/Util.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Util.dll": {}
-        }
       }
     },
     "UAP,Version=v10.0.16299/win10-arm": {
@@ -871,30 +847,6 @@
         },
         "runtime": {
           "lib/uap10.0/SQLitePCLRaw.provider.winsqlite3.dll": {}
-        }
-      },
-      "DataAccessLibrary/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "dependencies": {
-          "Microsoft.Data.Sqlite.Core": "2.1.0",
-          "Util": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/DataAccessLibrary.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/DataAccessLibrary.dll": {}
-        }
-      },
-      "Util/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "compile": {
-          "bin/placeholder/Util.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Util.dll": {}
         }
       }
     },
@@ -1409,30 +1361,6 @@
         "runtime": {
           "lib/uap10.0/SQLitePCLRaw.provider.winsqlite3.dll": {}
         }
-      },
-      "DataAccessLibrary/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "dependencies": {
-          "Microsoft.Data.Sqlite.Core": "2.1.0",
-          "Util": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/DataAccessLibrary.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/DataAccessLibrary.dll": {}
-        }
-      },
-      "Util/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "compile": {
-          "bin/placeholder/Util.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Util.dll": {}
-        }
       }
     },
     "UAP,Version=v10.0.16299/win10-arm64-aot": {
@@ -1769,30 +1697,6 @@
         },
         "runtime": {
           "lib/uap10.0/SQLitePCLRaw.provider.winsqlite3.dll": {}
-        }
-      },
-      "DataAccessLibrary/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "dependencies": {
-          "Microsoft.Data.Sqlite.Core": "2.1.0",
-          "Util": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/DataAccessLibrary.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/DataAccessLibrary.dll": {}
-        }
-      },
-      "Util/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "compile": {
-          "bin/placeholder/Util.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Util.dll": {}
         }
       }
     },
@@ -2305,30 +2209,6 @@
         },
         "runtime": {
           "lib/uap10.0/SQLitePCLRaw.provider.winsqlite3.dll": {}
-        }
-      },
-      "DataAccessLibrary/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "dependencies": {
-          "Microsoft.Data.Sqlite.Core": "2.1.0",
-          "Util": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/DataAccessLibrary.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/DataAccessLibrary.dll": {}
-        }
-      },
-      "Util/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "compile": {
-          "bin/placeholder/Util.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Util.dll": {}
         }
       }
     },
@@ -2843,30 +2723,6 @@
         "runtime": {
           "lib/uap10.0/SQLitePCLRaw.provider.winsqlite3.dll": {}
         }
-      },
-      "DataAccessLibrary/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "dependencies": {
-          "Microsoft.Data.Sqlite.Core": "2.1.0",
-          "Util": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/DataAccessLibrary.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/DataAccessLibrary.dll": {}
-        }
-      },
-      "Util/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "compile": {
-          "bin/placeholder/Util.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Util.dll": {}
-        }
       }
     },
     "UAP,Version=v10.0.16299/win10-x86": {
@@ -3378,30 +3234,6 @@
         },
         "runtime": {
           "lib/uap10.0/SQLitePCLRaw.provider.winsqlite3.dll": {}
-        }
-      },
-      "DataAccessLibrary/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "dependencies": {
-          "Microsoft.Data.Sqlite.Core": "2.1.0",
-          "Util": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/DataAccessLibrary.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/DataAccessLibrary.dll": {}
-        }
-      },
-      "Util/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "compile": {
-          "bin/placeholder/Util.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Util.dll": {}
         }
       }
     },
@@ -3915,30 +3747,6 @@
         },
         "runtime": {
           "lib/uap10.0/SQLitePCLRaw.provider.winsqlite3.dll": {}
-        }
-      },
-      "DataAccessLibrary/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "dependencies": {
-          "Microsoft.Data.Sqlite.Core": "2.1.0",
-          "Util": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/DataAccessLibrary.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/DataAccessLibrary.dll": {}
-        }
-      },
-      "Util/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "compile": {
-          "bin/placeholder/Util.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Util.dll": {}
         }
       }
     }
@@ -7661,21 +7469,10 @@
         "sqlitepclraw.provider.winsqlite3.uwp10.1.1.11.nupkg.sha512",
         "sqlitepclraw.provider.winsqlite3.uwp10.nuspec"
       ]
-    },
-    "DataAccessLibrary/1.0.0": {
-      "type": "project",
-      "path": "../DataAccessLibrary/DataAccessLibrary.csproj",
-      "msbuildProject": "../DataAccessLibrary/DataAccessLibrary.csproj"
-    },
-    "Util/1.0.0": {
-      "type": "project",
-      "path": "../Util/Util.csproj",
-      "msbuildProject": "../Util/Util.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "UAP,Version=v10.0.16299": [
-      "DataAccessLibrary >= 1.0.0",
       "Microsoft.Data.Sqlite.Core >= 2.1.0",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 6.1.5",
       "SQLitePCLRaw.bundle_winsqlite3 >= 1.1.11"
@@ -7707,15 +7504,12 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://nuget.syncfusion.com/nuget_universalwindows/nuget/getsyncfusionpackages/universalwindows": {}
       },
       "frameworks": {
         "uap10.0.16299": {
-          "projectReferences": {
-            "C:\\Users\\Julie\\source\\repos\\PacaModII\\DataAccessLibrary\\DataAccessLibrary.csproj": {
-              "projectPath": "C:\\Users\\Julie\\source\\repos\\PacaModII\\DataAccessLibrary\\DataAccessLibrary.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       }
     },

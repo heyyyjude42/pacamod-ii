@@ -5,6 +5,8 @@
     xmlns:local="using:PacaModII.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:PacaModII.Models"
+    xmlns:grid="using:Syncfusion.UI.Xaml.Grid"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
@@ -14,9 +16,20 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Button x:Name="XImportButton" Grid.Row="0" IsEnabled="False" Tapped="XImportButton_OnTapped">Import Roster</Button>
-        <ListView Grid.Row="1">
-            
-        </ListView>
+        <Button x:Name="XImportButton" Grid.Row="0" IsEnabled="True" Tapped="XImportButton_OnTapped"
+                ToolTipService.ToolTip="Make sure there are sheets labelled 'Junior' and 'Senior'!">
+            Import Roster
+        </Button>
+
+        <grid:SfDataGrid Grid.Row="1" x:Name="XDataGrid" AllowEditing="True" NavigationMode="Cell" EditTrigger="OnDoubleTap" FontSize="12" AutoGenerateColumns="False" AllowResizingColumns="True" ColumnSizer="AutoWithLastColumnFill" RowHeight="30" ItemsSource="{Binding JuniorRoster}">
+            <grid:SfDataGrid.Columns>
+                <grid:GridTextColumn MappingName="Country"/>
+                <grid:GridTextColumn MappingName="School"/>
+                <grid:GridNumericColumn MappingName="TeamID"/>
+                <grid:GridNumericColumn MappingName="Position"/>
+                <grid:GridTextColumn MappingName="FirstName"/>
+                <grid:GridTextColumn MappingName="LastName"/>
+            </grid:SfDataGrid.Columns>
+        </grid:SfDataGrid>
     </Grid>
 </UserControl>
