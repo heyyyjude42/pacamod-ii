@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="using:PacaModII.Views"
+    xmlns:certificateBuilder="using:CertificateBuilder"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -17,7 +18,7 @@
            <views:RosterView x:Name="XRosterView"/>
        </PivotItem>
        <PivotItem Header="Writing">
-
+            
        </PivotItem>
        <PivotItem Header="Challenge">
 
@@ -32,7 +33,6 @@
 
        </PivotItem>
        <PivotItem Header="Certificates">
-
        </PivotItem>
     </Pivot>
 </Page>

@@ -178,6 +178,12 @@
       <HintPath>..\..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Universal Windows\16.2.0.41\Assemblies for Universal Windows\10.0\Syncfusion.XlsIO.UWP.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CertificateBuilder\CertificateBuilder.csproj">
+      <Project>{09e6a178-1d4a-464b-8d52-8da918644d79}</Project>
+      <Name>CertificateBuilder</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

@@ -297,6 +297,65 @@
           "build/runtime.win10-x86.Microsoft.Net.UWPCoreRuntimeSdk.targets": {}
         }
       },
+      "SkiaSharp/1.59.3": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/SkiaSharp.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/SkiaSharp.dll": {}
+        },
+        "runtimeTargets": {
+          "runtimes/osx/native/libSkiaSharp.dylib": {
+            "assetType": "native",
+            "rid": "osx"
+          },
+          "runtimes/win10-arm/nativeassets/uap10.0/libEGL.dll": {
+            "assetType": "native",
+            "rid": "win10-arm"
+          },
+          "runtimes/win10-arm/nativeassets/uap10.0/libGLESv2.dll": {
+            "assetType": "native",
+            "rid": "win10-arm"
+          },
+          "runtimes/win10-arm/nativeassets/uap10.0/libSkiaSharp.dll": {
+            "assetType": "native",
+            "rid": "win10-arm"
+          },
+          "runtimes/win10-x64/nativeassets/uap10.0/libEGL.dll": {
+            "assetType": "native",
+            "rid": "win10-x64"
+          },
+          "runtimes/win10-x64/nativeassets/uap10.0/libGLESv2.dll": {
+            "assetType": "native",
+            "rid": "win10-x64"
+          },
+          "runtimes/win10-x64/nativeassets/uap10.0/libSkiaSharp.dll": {
+            "assetType": "native",
+            "rid": "win10-x64"
+          },
+          "runtimes/win10-x86/nativeassets/uap10.0/libEGL.dll": {
+            "assetType": "native",
+            "rid": "win10-x86"
+          },
+          "runtimes/win10-x86/nativeassets/uap10.0/libGLESv2.dll": {
+            "assetType": "native",
+            "rid": "win10-x86"
+          },
+          "runtimes/win10-x86/nativeassets/uap10.0/libSkiaSharp.dll": {
+            "assetType": "native",
+            "rid": "win10-x86"
+          },
+          "runtimes/win7-x64/native/libSkiaSharp.dll": {
+            "assetType": "native",
+            "rid": "win7-x64"
+          },
+          "runtimes/win7-x86/native/libSkiaSharp.dll": {
+            "assetType": "native",
+            "rid": "win7-x86"
+          }
+        }
+      },
       "SQLitePCLRaw.bundle_winsqlite3/1.1.11": {
         "type": "package",
         "dependencies": {
@@ -335,6 +394,116 @@
         },
         "runtime": {
           "lib/uap10.0/SQLitePCLRaw.provider.winsqlite3.dll": {}
+        }
+      },
+      "Syncfusion.Compression.NETStandard/16.2.0.41": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.Compression.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.Compression.Portable.dll": {}
+        }
+      },
+      "Syncfusion.DocIO.NETStandard/16.2.0.41": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0",
+          "Syncfusion.Compression.NETStandard": "16.2.0.41",
+          "Syncfusion.Licensing": "16.2.0.41",
+          "Syncfusion.OfficeChart.NETStandard": "16.2.0.41"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.DocIO.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.DocIO.Portable.dll": {}
+        }
+      },
+      "Syncfusion.DocIORenderer.NETStandard/16.2.0.41": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0",
+          "SkiaSharp": "1.59.3",
+          "Syncfusion.Compression.NETStandard": "16.2.0.41",
+          "Syncfusion.DocIO.NETStandard": "16.2.0.41",
+          "Syncfusion.OfficeChart.NETStandard": "16.2.0.41",
+          "Syncfusion.Pdf.NETStandard": "16.2.0.41"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.DocIORenderer.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.DocIORenderer.Portable.dll": {}
+        }
+      },
+      "Syncfusion.Licensing/16.2.0.41": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        }
+      },
+      "Syncfusion.OfficeChart.NETStandard/16.2.0.41": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0",
+          "Syncfusion.Compression.NETStandard": "16.2.0.41"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.OfficeChart.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.OfficeChart.Portable.dll": {}
+        }
+      },
+      "Syncfusion.Pdf.NETStandard/16.2.0.41": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0",
+          "Syncfusion.Compression.NETStandard": "16.2.0.41",
+          "Syncfusion.Licensing": "16.2.0.41",
+          "System.Text.Encoding.CodePages": "4.4.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.Pdf.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.Pdf.Portable.dll": {}
+        }
+      },
+      "System.Text.Encoding.CodePages/4.4.0": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard2.0/System.Text.Encoding.CodePages.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Text.Encoding.CodePages.dll": {}
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/netstandard2.0/System.Text.Encoding.CodePages.dll": {
+            "assetType": "runtime",
+            "rid": "win"
+          }
+        }
+      },
+      "CertificateBuilder/1.0.0": {
+        "type": "project",
+        "framework": "UAP,Version=v10.0.15063",
+        "dependencies": {
+          "Microsoft.NETCore.UniversalWindowsPlatform": "6.1.5",
+          "Syncfusion.DocIORenderer.NETStandard": "16.2.0.41"
+        },
+        "compile": {
+          "bin/placeholder/CertificateBuilder.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CertificateBuilder.dll": {}
         }
       }
     },
@@ -809,6 +978,20 @@
           "build/runtime.win10-x86.Microsoft.Net.UWPCoreRuntimeSdk.targets": {}
         }
       },
+      "SkiaSharp/1.59.3": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/SkiaSharp.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/SkiaSharp.dll": {}
+        },
+        "native": {
+          "runtimes/win10-arm/nativeassets/uap10.0/libEGL.dll": {},
+          "runtimes/win10-arm/nativeassets/uap10.0/libGLESv2.dll": {},
+          "runtimes/win10-arm/nativeassets/uap10.0/libSkiaSharp.dll": {}
+        }
+      },
       "SQLitePCLRaw.bundle_winsqlite3/1.1.11": {
         "type": "package",
         "dependencies": {
@@ -847,6 +1030,110 @@
         },
         "runtime": {
           "lib/uap10.0/SQLitePCLRaw.provider.winsqlite3.dll": {}
+        }
+      },
+      "Syncfusion.Compression.NETStandard/16.2.0.41": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.Compression.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.Compression.Portable.dll": {}
+        }
+      },
+      "Syncfusion.DocIO.NETStandard/16.2.0.41": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0",
+          "Syncfusion.Compression.NETStandard": "16.2.0.41",
+          "Syncfusion.Licensing": "16.2.0.41",
+          "Syncfusion.OfficeChart.NETStandard": "16.2.0.41"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.DocIO.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.DocIO.Portable.dll": {}
+        }
+      },
+      "Syncfusion.DocIORenderer.NETStandard/16.2.0.41": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0",
+          "SkiaSharp": "1.59.3",
+          "Syncfusion.Compression.NETStandard": "16.2.0.41",
+          "Syncfusion.DocIO.NETStandard": "16.2.0.41",
+          "Syncfusion.OfficeChart.NETStandard": "16.2.0.41",
+          "Syncfusion.Pdf.NETStandard": "16.2.0.41"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.DocIORenderer.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.DocIORenderer.Portable.dll": {}
+        }
+      },
+      "Syncfusion.Licensing/16.2.0.41": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        }
+      },
+      "Syncfusion.OfficeChart.NETStandard/16.2.0.41": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0",
+          "Syncfusion.Compression.NETStandard": "16.2.0.41"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.OfficeChart.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.OfficeChart.Portable.dll": {}
+        }
+      },
+      "Syncfusion.Pdf.NETStandard/16.2.0.41": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0",
+          "Syncfusion.Compression.NETStandard": "16.2.0.41",
+          "Syncfusion.Licensing": "16.2.0.41",
+          "System.Text.Encoding.CodePages": "4.4.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.Pdf.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.Pdf.Portable.dll": {}
+        }
+      },
+      "System.Text.Encoding.CodePages/4.4.0": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard2.0/System.Text.Encoding.CodePages.dll": {}
+        },
+        "runtime": {
+          "runtimes/win/lib/netstandard2.0/System.Text.Encoding.CodePages.dll": {}
+        }
+      },
+      "CertificateBuilder/1.0.0": {
+        "type": "project",
+        "framework": "UAP,Version=v10.0.15063",
+        "dependencies": {
+          "Microsoft.NETCore.UniversalWindowsPlatform": "6.1.5",
+          "Syncfusion.DocIORenderer.NETStandard": "16.2.0.41"
+        },
+        "compile": {
+          "bin/placeholder/CertificateBuilder.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CertificateBuilder.dll": {}
         }
       }
     },
@@ -1322,6 +1609,20 @@
           "build/runtime.win10-x86.Microsoft.Net.UWPCoreRuntimeSdk.targets": {}
         }
       },
+      "SkiaSharp/1.59.3": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/SkiaSharp.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/SkiaSharp.dll": {}
+        },
+        "native": {
+          "runtimes/win10-arm/nativeassets/uap10.0/libEGL.dll": {},
+          "runtimes/win10-arm/nativeassets/uap10.0/libGLESv2.dll": {},
+          "runtimes/win10-arm/nativeassets/uap10.0/libSkiaSharp.dll": {}
+        }
+      },
       "SQLitePCLRaw.bundle_winsqlite3/1.1.11": {
         "type": "package",
         "dependencies": {
@@ -1360,6 +1661,110 @@
         },
         "runtime": {
           "lib/uap10.0/SQLitePCLRaw.provider.winsqlite3.dll": {}
+        }
+      },
+      "Syncfusion.Compression.NETStandard/16.2.0.41": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.Compression.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.Compression.Portable.dll": {}
+        }
+      },
+      "Syncfusion.DocIO.NETStandard/16.2.0.41": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0",
+          "Syncfusion.Compression.NETStandard": "16.2.0.41",
+          "Syncfusion.Licensing": "16.2.0.41",
+          "Syncfusion.OfficeChart.NETStandard": "16.2.0.41"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.DocIO.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.DocIO.Portable.dll": {}
+        }
+      },
+      "Syncfusion.DocIORenderer.NETStandard/16.2.0.41": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0",
+          "SkiaSharp": "1.59.3",
+          "Syncfusion.Compression.NETStandard": "16.2.0.41",
+          "Syncfusion.DocIO.NETStandard": "16.2.0.41",
+          "Syncfusion.OfficeChart.NETStandard": "16.2.0.41",
+          "Syncfusion.Pdf.NETStandard": "16.2.0.41"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.DocIORenderer.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.DocIORenderer.Portable.dll": {}
+        }
+      },
+      "Syncfusion.Licensing/16.2.0.41": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        }
+      },
+      "Syncfusion.OfficeChart.NETStandard/16.2.0.41": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0",
+          "Syncfusion.Compression.NETStandard": "16.2.0.41"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.OfficeChart.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.OfficeChart.Portable.dll": {}
+        }
+      },
+      "Syncfusion.Pdf.NETStandard/16.2.0.41": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0",
+          "Syncfusion.Compression.NETStandard": "16.2.0.41",
+          "Syncfusion.Licensing": "16.2.0.41",
+          "System.Text.Encoding.CodePages": "4.4.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.Pdf.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.Pdf.Portable.dll": {}
+        }
+      },
+      "System.Text.Encoding.CodePages/4.4.0": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard2.0/System.Text.Encoding.CodePages.dll": {}
+        },
+        "runtime": {
+          "runtimes/win/lib/netstandard2.0/System.Text.Encoding.CodePages.dll": {}
+        }
+      },
+      "CertificateBuilder/1.0.0": {
+        "type": "project",
+        "framework": "UAP,Version=v10.0.15063",
+        "dependencies": {
+          "Microsoft.NETCore.UniversalWindowsPlatform": "6.1.5",
+          "Syncfusion.DocIORenderer.NETStandard": "16.2.0.41"
+        },
+        "compile": {
+          "bin/placeholder/CertificateBuilder.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CertificateBuilder.dll": {}
         }
       }
     },
@@ -1659,6 +2064,15 @@
           "build/runtime.win10-x86.Microsoft.Net.UWPCoreRuntimeSdk.targets": {}
         }
       },
+      "SkiaSharp/1.59.3": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/SkiaSharp.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/SkiaSharp.dll": {}
+        }
+      },
       "SQLitePCLRaw.bundle_winsqlite3/1.1.11": {
         "type": "package",
         "dependencies": {
@@ -1697,6 +2111,110 @@
         },
         "runtime": {
           "lib/uap10.0/SQLitePCLRaw.provider.winsqlite3.dll": {}
+        }
+      },
+      "Syncfusion.Compression.NETStandard/16.2.0.41": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.Compression.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.Compression.Portable.dll": {}
+        }
+      },
+      "Syncfusion.DocIO.NETStandard/16.2.0.41": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0",
+          "Syncfusion.Compression.NETStandard": "16.2.0.41",
+          "Syncfusion.Licensing": "16.2.0.41",
+          "Syncfusion.OfficeChart.NETStandard": "16.2.0.41"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.DocIO.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.DocIO.Portable.dll": {}
+        }
+      },
+      "Syncfusion.DocIORenderer.NETStandard/16.2.0.41": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0",
+          "SkiaSharp": "1.59.3",
+          "Syncfusion.Compression.NETStandard": "16.2.0.41",
+          "Syncfusion.DocIO.NETStandard": "16.2.0.41",
+          "Syncfusion.OfficeChart.NETStandard": "16.2.0.41",
+          "Syncfusion.Pdf.NETStandard": "16.2.0.41"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.DocIORenderer.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.DocIORenderer.Portable.dll": {}
+        }
+      },
+      "Syncfusion.Licensing/16.2.0.41": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        }
+      },
+      "Syncfusion.OfficeChart.NETStandard/16.2.0.41": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0",
+          "Syncfusion.Compression.NETStandard": "16.2.0.41"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.OfficeChart.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.OfficeChart.Portable.dll": {}
+        }
+      },
+      "Syncfusion.Pdf.NETStandard/16.2.0.41": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0",
+          "Syncfusion.Compression.NETStandard": "16.2.0.41",
+          "Syncfusion.Licensing": "16.2.0.41",
+          "System.Text.Encoding.CodePages": "4.4.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.Pdf.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.Pdf.Portable.dll": {}
+        }
+      },
+      "System.Text.Encoding.CodePages/4.4.0": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard2.0/System.Text.Encoding.CodePages.dll": {}
+        },
+        "runtime": {
+          "runtimes/win/lib/netstandard2.0/System.Text.Encoding.CodePages.dll": {}
+        }
+      },
+      "CertificateBuilder/1.0.0": {
+        "type": "project",
+        "framework": "UAP,Version=v10.0.15063",
+        "dependencies": {
+          "Microsoft.NETCore.UniversalWindowsPlatform": "6.1.5",
+          "Syncfusion.DocIORenderer.NETStandard": "16.2.0.41"
+        },
+        "compile": {
+          "bin/placeholder/CertificateBuilder.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CertificateBuilder.dll": {}
         }
       }
     },
@@ -2171,6 +2689,20 @@
           "build/runtime.win10-x86.Microsoft.Net.UWPCoreRuntimeSdk.targets": {}
         }
       },
+      "SkiaSharp/1.59.3": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/SkiaSharp.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/SkiaSharp.dll": {}
+        },
+        "native": {
+          "runtimes/win10-x64/nativeassets/uap10.0/libEGL.dll": {},
+          "runtimes/win10-x64/nativeassets/uap10.0/libGLESv2.dll": {},
+          "runtimes/win10-x64/nativeassets/uap10.0/libSkiaSharp.dll": {}
+        }
+      },
       "SQLitePCLRaw.bundle_winsqlite3/1.1.11": {
         "type": "package",
         "dependencies": {
@@ -2209,6 +2741,110 @@
         },
         "runtime": {
           "lib/uap10.0/SQLitePCLRaw.provider.winsqlite3.dll": {}
+        }
+      },
+      "Syncfusion.Compression.NETStandard/16.2.0.41": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.Compression.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.Compression.Portable.dll": {}
+        }
+      },
+      "Syncfusion.DocIO.NETStandard/16.2.0.41": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0",
+          "Syncfusion.Compression.NETStandard": "16.2.0.41",
+          "Syncfusion.Licensing": "16.2.0.41",
+          "Syncfusion.OfficeChart.NETStandard": "16.2.0.41"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.DocIO.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.DocIO.Portable.dll": {}
+        }
+      },
+      "Syncfusion.DocIORenderer.NETStandard/16.2.0.41": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0",
+          "SkiaSharp": "1.59.3",
+          "Syncfusion.Compression.NETStandard": "16.2.0.41",
+          "Syncfusion.DocIO.NETStandard": "16.2.0.41",
+          "Syncfusion.OfficeChart.NETStandard": "16.2.0.41",
+          "Syncfusion.Pdf.NETStandard": "16.2.0.41"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.DocIORenderer.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.DocIORenderer.Portable.dll": {}
+        }
+      },
+      "Syncfusion.Licensing/16.2.0.41": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        }
+      },
+      "Syncfusion.OfficeChart.NETStandard/16.2.0.41": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0",
+          "Syncfusion.Compression.NETStandard": "16.2.0.41"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.OfficeChart.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.OfficeChart.Portable.dll": {}
+        }
+      },
+      "Syncfusion.Pdf.NETStandard/16.2.0.41": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0",
+          "Syncfusion.Compression.NETStandard": "16.2.0.41",
+          "Syncfusion.Licensing": "16.2.0.41",
+          "System.Text.Encoding.CodePages": "4.4.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.Pdf.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.Pdf.Portable.dll": {}
+        }
+      },
+      "System.Text.Encoding.CodePages/4.4.0": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard2.0/System.Text.Encoding.CodePages.dll": {}
+        },
+        "runtime": {
+          "runtimes/win/lib/netstandard2.0/System.Text.Encoding.CodePages.dll": {}
+        }
+      },
+      "CertificateBuilder/1.0.0": {
+        "type": "project",
+        "framework": "UAP,Version=v10.0.15063",
+        "dependencies": {
+          "Microsoft.NETCore.UniversalWindowsPlatform": "6.1.5",
+          "Syncfusion.DocIORenderer.NETStandard": "16.2.0.41"
+        },
+        "compile": {
+          "bin/placeholder/CertificateBuilder.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CertificateBuilder.dll": {}
         }
       }
     },
@@ -2684,6 +3320,20 @@
           "build/runtime.win10-x86.Microsoft.Net.UWPCoreRuntimeSdk.targets": {}
         }
       },
+      "SkiaSharp/1.59.3": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/SkiaSharp.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/SkiaSharp.dll": {}
+        },
+        "native": {
+          "runtimes/win10-x64/nativeassets/uap10.0/libEGL.dll": {},
+          "runtimes/win10-x64/nativeassets/uap10.0/libGLESv2.dll": {},
+          "runtimes/win10-x64/nativeassets/uap10.0/libSkiaSharp.dll": {}
+        }
+      },
       "SQLitePCLRaw.bundle_winsqlite3/1.1.11": {
         "type": "package",
         "dependencies": {
@@ -2722,6 +3372,110 @@
         },
         "runtime": {
           "lib/uap10.0/SQLitePCLRaw.provider.winsqlite3.dll": {}
+        }
+      },
+      "Syncfusion.Compression.NETStandard/16.2.0.41": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.Compression.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.Compression.Portable.dll": {}
+        }
+      },
+      "Syncfusion.DocIO.NETStandard/16.2.0.41": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0",
+          "Syncfusion.Compression.NETStandard": "16.2.0.41",
+          "Syncfusion.Licensing": "16.2.0.41",
+          "Syncfusion.OfficeChart.NETStandard": "16.2.0.41"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.DocIO.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.DocIO.Portable.dll": {}
+        }
+      },
+      "Syncfusion.DocIORenderer.NETStandard/16.2.0.41": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0",
+          "SkiaSharp": "1.59.3",
+          "Syncfusion.Compression.NETStandard": "16.2.0.41",
+          "Syncfusion.DocIO.NETStandard": "16.2.0.41",
+          "Syncfusion.OfficeChart.NETStandard": "16.2.0.41",
+          "Syncfusion.Pdf.NETStandard": "16.2.0.41"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.DocIORenderer.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.DocIORenderer.Portable.dll": {}
+        }
+      },
+      "Syncfusion.Licensing/16.2.0.41": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        }
+      },
+      "Syncfusion.OfficeChart.NETStandard/16.2.0.41": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0",
+          "Syncfusion.Compression.NETStandard": "16.2.0.41"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.OfficeChart.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.OfficeChart.Portable.dll": {}
+        }
+      },
+      "Syncfusion.Pdf.NETStandard/16.2.0.41": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0",
+          "Syncfusion.Compression.NETStandard": "16.2.0.41",
+          "Syncfusion.Licensing": "16.2.0.41",
+          "System.Text.Encoding.CodePages": "4.4.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.Pdf.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.Pdf.Portable.dll": {}
+        }
+      },
+      "System.Text.Encoding.CodePages/4.4.0": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard2.0/System.Text.Encoding.CodePages.dll": {}
+        },
+        "runtime": {
+          "runtimes/win/lib/netstandard2.0/System.Text.Encoding.CodePages.dll": {}
+        }
+      },
+      "CertificateBuilder/1.0.0": {
+        "type": "project",
+        "framework": "UAP,Version=v10.0.15063",
+        "dependencies": {
+          "Microsoft.NETCore.UniversalWindowsPlatform": "6.1.5",
+          "Syncfusion.DocIORenderer.NETStandard": "16.2.0.41"
+        },
+        "compile": {
+          "bin/placeholder/CertificateBuilder.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CertificateBuilder.dll": {}
         }
       }
     },
@@ -3196,6 +3950,20 @@
           "runtimes/win10-x86/nativeassets/uap10.0.15138/clrcompression.dll": {}
         }
       },
+      "SkiaSharp/1.59.3": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/SkiaSharp.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/SkiaSharp.dll": {}
+        },
+        "native": {
+          "runtimes/win10-x86/nativeassets/uap10.0/libEGL.dll": {},
+          "runtimes/win10-x86/nativeassets/uap10.0/libGLESv2.dll": {},
+          "runtimes/win10-x86/nativeassets/uap10.0/libSkiaSharp.dll": {}
+        }
+      },
       "SQLitePCLRaw.bundle_winsqlite3/1.1.11": {
         "type": "package",
         "dependencies": {
@@ -3234,6 +4002,110 @@
         },
         "runtime": {
           "lib/uap10.0/SQLitePCLRaw.provider.winsqlite3.dll": {}
+        }
+      },
+      "Syncfusion.Compression.NETStandard/16.2.0.41": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.Compression.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.Compression.Portable.dll": {}
+        }
+      },
+      "Syncfusion.DocIO.NETStandard/16.2.0.41": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0",
+          "Syncfusion.Compression.NETStandard": "16.2.0.41",
+          "Syncfusion.Licensing": "16.2.0.41",
+          "Syncfusion.OfficeChart.NETStandard": "16.2.0.41"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.DocIO.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.DocIO.Portable.dll": {}
+        }
+      },
+      "Syncfusion.DocIORenderer.NETStandard/16.2.0.41": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0",
+          "SkiaSharp": "1.59.3",
+          "Syncfusion.Compression.NETStandard": "16.2.0.41",
+          "Syncfusion.DocIO.NETStandard": "16.2.0.41",
+          "Syncfusion.OfficeChart.NETStandard": "16.2.0.41",
+          "Syncfusion.Pdf.NETStandard": "16.2.0.41"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.DocIORenderer.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.DocIORenderer.Portable.dll": {}
+        }
+      },
+      "Syncfusion.Licensing/16.2.0.41": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        }
+      },
+      "Syncfusion.OfficeChart.NETStandard/16.2.0.41": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0",
+          "Syncfusion.Compression.NETStandard": "16.2.0.41"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.OfficeChart.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.OfficeChart.Portable.dll": {}
+        }
+      },
+      "Syncfusion.Pdf.NETStandard/16.2.0.41": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0",
+          "Syncfusion.Compression.NETStandard": "16.2.0.41",
+          "Syncfusion.Licensing": "16.2.0.41",
+          "System.Text.Encoding.CodePages": "4.4.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.Pdf.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.Pdf.Portable.dll": {}
+        }
+      },
+      "System.Text.Encoding.CodePages/4.4.0": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard2.0/System.Text.Encoding.CodePages.dll": {}
+        },
+        "runtime": {
+          "runtimes/win/lib/netstandard2.0/System.Text.Encoding.CodePages.dll": {}
+        }
+      },
+      "CertificateBuilder/1.0.0": {
+        "type": "project",
+        "framework": "UAP,Version=v10.0.15063",
+        "dependencies": {
+          "Microsoft.NETCore.UniversalWindowsPlatform": "6.1.5",
+          "Syncfusion.DocIORenderer.NETStandard": "16.2.0.41"
+        },
+        "compile": {
+          "bin/placeholder/CertificateBuilder.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CertificateBuilder.dll": {}
         }
       }
     },
@@ -3709,6 +4581,20 @@
           "build/runtime.win10-x86.Microsoft.Net.UWPCoreRuntimeSdk.targets": {}
         }
       },
+      "SkiaSharp/1.59.3": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/SkiaSharp.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/SkiaSharp.dll": {}
+        },
+        "native": {
+          "runtimes/win10-x86/nativeassets/uap10.0/libEGL.dll": {},
+          "runtimes/win10-x86/nativeassets/uap10.0/libGLESv2.dll": {},
+          "runtimes/win10-x86/nativeassets/uap10.0/libSkiaSharp.dll": {}
+        }
+      },
       "SQLitePCLRaw.bundle_winsqlite3/1.1.11": {
         "type": "package",
         "dependencies": {
@@ -3747,6 +4633,110 @@
         },
         "runtime": {
           "lib/uap10.0/SQLitePCLRaw.provider.winsqlite3.dll": {}
+        }
+      },
+      "Syncfusion.Compression.NETStandard/16.2.0.41": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.Compression.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.Compression.Portable.dll": {}
+        }
+      },
+      "Syncfusion.DocIO.NETStandard/16.2.0.41": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0",
+          "Syncfusion.Compression.NETStandard": "16.2.0.41",
+          "Syncfusion.Licensing": "16.2.0.41",
+          "Syncfusion.OfficeChart.NETStandard": "16.2.0.41"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.DocIO.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.DocIO.Portable.dll": {}
+        }
+      },
+      "Syncfusion.DocIORenderer.NETStandard/16.2.0.41": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0",
+          "SkiaSharp": "1.59.3",
+          "Syncfusion.Compression.NETStandard": "16.2.0.41",
+          "Syncfusion.DocIO.NETStandard": "16.2.0.41",
+          "Syncfusion.OfficeChart.NETStandard": "16.2.0.41",
+          "Syncfusion.Pdf.NETStandard": "16.2.0.41"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.DocIORenderer.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.DocIORenderer.Portable.dll": {}
+        }
+      },
+      "Syncfusion.Licensing/16.2.0.41": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Syncfusion.Licensing.dll": {}
+        }
+      },
+      "Syncfusion.OfficeChart.NETStandard/16.2.0.41": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0",
+          "Syncfusion.Compression.NETStandard": "16.2.0.41"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.OfficeChart.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.OfficeChart.Portable.dll": {}
+        }
+      },
+      "Syncfusion.Pdf.NETStandard/16.2.0.41": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0",
+          "Syncfusion.Compression.NETStandard": "16.2.0.41",
+          "Syncfusion.Licensing": "16.2.0.41",
+          "System.Text.Encoding.CodePages": "4.4.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.Pdf.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.Pdf.Portable.dll": {}
+        }
+      },
+      "System.Text.Encoding.CodePages/4.4.0": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard2.0/System.Text.Encoding.CodePages.dll": {}
+        },
+        "runtime": {
+          "runtimes/win/lib/netstandard2.0/System.Text.Encoding.CodePages.dll": {}
+        }
+      },
+      "CertificateBuilder/1.0.0": {
+        "type": "project",
+        "framework": "UAP,Version=v10.0.15063",
+        "dependencies": {
+          "Microsoft.NETCore.UniversalWindowsPlatform": "6.1.5",
+          "Syncfusion.DocIORenderer.NETStandard": "16.2.0.41"
+        },
+        "compile": {
+          "bin/placeholder/CertificateBuilder.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CertificateBuilder.dll": {}
         }
       }
     }
@@ -7425,6 +8415,47 @@
         "runtimes/win10-x86/nativeassets/uap10.0.15138/clrcompression.dll"
       ]
     },
+    "SkiaSharp/1.59.3": {
+      "sha512": "MNVXKHn3dDGnJPtO4dPMU6GtvFHO1aUHDWm1V5i7QbacVJFxT+a8x1chGGdgFNl7pB4+/yzEo39x9Q7ggRYt6A==",
+      "type": "package",
+      "path": "skiasharp/1.59.3",
+      "files": [
+        "build/net45/SkiaSharp.dll.config",
+        "build/net45/SkiaSharp.targets",
+        "lib/MonoAndroid/SkiaSharp.dll",
+        "lib/MonoAndroid/SkiaSharp.xml",
+        "lib/XamarinMac/SkiaSharp.dll",
+        "lib/XamarinMac/SkiaSharp.xml",
+        "lib/XamariniOS/SkiaSharp.dll",
+        "lib/XamariniOS/SkiaSharp.xml",
+        "lib/XamarintvOS/SkiaSharp.dll",
+        "lib/XamarintvOS/SkiaSharp.xml",
+        "lib/net45/SkiaSharp.dll",
+        "lib/net45/SkiaSharp.dll.config",
+        "lib/net45/SkiaSharp.xml",
+        "lib/netstandard1.3/SkiaSharp.dll",
+        "lib/netstandard1.3/SkiaSharp.xml",
+        "lib/portable-net45+win8+wpa81+wp8/SkiaSharp.dll",
+        "lib/portable-net45+win8+wpa81+wp8/SkiaSharp.xml",
+        "lib/uap10.0/SkiaSharp.dll",
+        "lib/uap10.0/SkiaSharp.xml",
+        "runtimes/osx/native/libSkiaSharp.dylib",
+        "runtimes/win10-arm/nativeassets/uap10.0/libEGL.dll",
+        "runtimes/win10-arm/nativeassets/uap10.0/libGLESv2.dll",
+        "runtimes/win10-arm/nativeassets/uap10.0/libSkiaSharp.dll",
+        "runtimes/win10-x64/nativeassets/uap10.0/libEGL.dll",
+        "runtimes/win10-x64/nativeassets/uap10.0/libGLESv2.dll",
+        "runtimes/win10-x64/nativeassets/uap10.0/libSkiaSharp.dll",
+        "runtimes/win10-x86/nativeassets/uap10.0/libEGL.dll",
+        "runtimes/win10-x86/nativeassets/uap10.0/libGLESv2.dll",
+        "runtimes/win10-x86/nativeassets/uap10.0/libSkiaSharp.dll",
+        "runtimes/win7-x64/native/libSkiaSharp.dll",
+        "runtimes/win7-x86/native/libSkiaSharp.dll",
+        "skiasharp.1.59.3.nupkg.sha512",
+        "skiasharp.nuspec",
+        "xamarin.interactive/SkiaSharp.Workbooks.dll"
+      ]
+    },
     "SQLitePCLRaw.bundle_winsqlite3/1.1.11": {
       "sha512": "0Ixe6SeHs5WWYsX7tYctw1ys6bTihv0jRoPqeRo/eNlKFLR5p5bH6KgLC8gLu08NEymc85vIqzS1go3nnAzQQQ==",
       "type": "package",
@@ -7469,10 +8500,164 @@
         "sqlitepclraw.provider.winsqlite3.uwp10.1.1.11.nupkg.sha512",
         "sqlitepclraw.provider.winsqlite3.uwp10.nuspec"
       ]
+    },
+    "Syncfusion.Compression.NETStandard/16.2.0.41": {
+      "sha512": "QFjckjAYo/OfwAtY0tgJPQpcKU8QUDELftM82oelWG6wqwB1qTxsf6XXf6exkoCESuRGwd0tGsESZAeq31reSg==",
+      "type": "package",
+      "path": "syncfusion.compression.netstandard/16.2.0.41",
+      "files": [
+        ".signature.p7s",
+        "lib/netstandard1.2/Syncfusion.Compression.Portable.dll",
+        "lib/netstandard1.2/Syncfusion.Compression.Portable.xml",
+        "lib/netstandard1.4/Syncfusion.Compression.Portable.dll",
+        "lib/netstandard1.4/Syncfusion.Compression.Portable.xml",
+        "lib/netstandard2.0/Syncfusion.Compression.Portable.dll",
+        "lib/netstandard2.0/Syncfusion.Compression.Portable.xml",
+        "syncfusion.compression.netstandard.16.2.0.41.nupkg.sha512",
+        "syncfusion.compression.netstandard.nuspec"
+      ]
+    },
+    "Syncfusion.DocIO.NETStandard/16.2.0.41": {
+      "sha512": "+LYD5KZFfYVNulSUaSddZL+wtBWfcajvnm8JaSJ0rRsu1MBEcZ3jbTbjze+ZyDEsjDJbbOJyA5xvXQbIWRbJcw==",
+      "type": "package",
+      "path": "syncfusion.docio.netstandard/16.2.0.41",
+      "files": [
+        ".signature.p7s",
+        "lib/netstandard1.2/Syncfusion.DocIO.Portable.dll",
+        "lib/netstandard1.2/Syncfusion.DocIO.Portable.xml",
+        "lib/netstandard1.4/Syncfusion.DocIO.Portable.dll",
+        "lib/netstandard1.4/Syncfusion.DocIO.Portable.xml",
+        "lib/netstandard2.0/Syncfusion.DocIO.Portable.dll",
+        "lib/netstandard2.0/Syncfusion.DocIO.Portable.xml",
+        "syncfusion.docio.netstandard.16.2.0.41.nupkg.sha512",
+        "syncfusion.docio.netstandard.nuspec"
+      ]
+    },
+    "Syncfusion.DocIORenderer.NETStandard/16.2.0.41": {
+      "sha512": "QIGz3myL+As7ntQtEb7FHkPBWegzBuef/C3XbLgaATIbeDi3f8I4gZeJIDRlv7xChtEzvmdFjHa4dDHsmejTvQ==",
+      "type": "package",
+      "path": "syncfusion.dociorenderer.netstandard/16.2.0.41",
+      "files": [
+        ".signature.p7s",
+        "lib/netstandard1.4/Syncfusion.DocIORenderer.Portable.dll",
+        "lib/netstandard1.4/Syncfusion.DocIORenderer.Portable.xml",
+        "lib/netstandard2.0/Syncfusion.DocIORenderer.Portable.dll",
+        "lib/netstandard2.0/Syncfusion.DocIORenderer.Portable.xml",
+        "syncfusion.dociorenderer.netstandard.16.2.0.41.nupkg.sha512",
+        "syncfusion.dociorenderer.netstandard.nuspec"
+      ]
+    },
+    "Syncfusion.Licensing/16.2.0.41": {
+      "sha512": "YY9uM0Bi5fwy5+D80phQ1qg9DAqMbBUUl+kYyKoTsxwOhb5QQdeSAwf/ZDaO+EJIy3aQO8P0zPdl6Ylk7bkkOA==",
+      "type": "package",
+      "path": "syncfusion.licensing/16.2.0.41",
+      "files": [
+        ".signature.p7s",
+        "lib/MonoAndroid10/Syncfusion.Licensing.dll",
+        "lib/Xamarin.Mac/Syncfusion.Licensing.dll",
+        "lib/Xamarin.iOS10/Syncfusion.Licensing.dll",
+        "lib/net20/Syncfusion.Licensing.dll",
+        "lib/net35/Syncfusion.Licensing.dll",
+        "lib/net40/Syncfusion.Licensing.dll",
+        "lib/net45/Syncfusion.Licensing.dll",
+        "lib/net451/Syncfusion.Licensing.dll",
+        "lib/net46/Syncfusion.Licensing.dll",
+        "lib/netstandard1.0/Syncfusion.Licensing.dll",
+        "lib/netstandard1.4/Syncfusion.Licensing.dll",
+        "lib/netstandard2.0/Syncfusion.Licensing.dll",
+        "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.Licensing.dll",
+        "lib/uap10.0/Syncfusion.Licensing.dll",
+        "syncfusion.licensing.16.2.0.41.nupkg.sha512",
+        "syncfusion.licensing.nuspec"
+      ]
+    },
+    "Syncfusion.OfficeChart.NETStandard/16.2.0.41": {
+      "sha512": "C3xE+LZAWV1eRIfFInrwoyx0MS26h87FxHMiefshxF2GfhS0YEEZKe2YEfF080fwPY2HRKPHFIeZiKhWhR/V0Q==",
+      "type": "package",
+      "path": "syncfusion.officechart.netstandard/16.2.0.41",
+      "files": [
+        ".signature.p7s",
+        "lib/netstandard1.2/Syncfusion.OfficeChart.Portable.dll",
+        "lib/netstandard1.2/Syncfusion.OfficeChart.Portable.xml",
+        "lib/netstandard1.4/Syncfusion.OfficeChart.Portable.dll",
+        "lib/netstandard1.4/Syncfusion.OfficeChart.Portable.xml",
+        "lib/netstandard2.0/Syncfusion.OfficeChart.Portable.dll",
+        "lib/netstandard2.0/Syncfusion.OfficeChart.Portable.xml",
+        "syncfusion.officechart.netstandard.16.2.0.41.nupkg.sha512",
+        "syncfusion.officechart.netstandard.nuspec"
+      ]
+    },
+    "Syncfusion.Pdf.NETStandard/16.2.0.41": {
+      "sha512": "Mn88w7NUlSG+J4VhAxw3kA8RibCWNe9ruFO9SuRViLx5z36Hp5hyUbDEYU/50SIiwesRLzxVuO/SUb1NRiioQg==",
+      "type": "package",
+      "path": "syncfusion.pdf.netstandard/16.2.0.41",
+      "files": [
+        ".signature.p7s",
+        "lib/netstandard1.2/Syncfusion.Pdf.Portable.dll",
+        "lib/netstandard1.2/Syncfusion.Pdf.Portable.xml",
+        "lib/netstandard1.4/Syncfusion.Pdf.Portable.dll",
+        "lib/netstandard1.4/Syncfusion.Pdf.Portable.xml",
+        "lib/netstandard2.0/Syncfusion.Pdf.Portable.dll",
+        "lib/netstandard2.0/Syncfusion.Pdf.Portable.xml",
+        "syncfusion.pdf.netstandard.16.2.0.41.nupkg.sha512",
+        "syncfusion.pdf.netstandard.nuspec"
+      ]
+    },
+    "System.Text.Encoding.CodePages/4.4.0": {
+      "sha512": "6JX7ZdaceBiLKLkYt8zJcp4xTJd1uYyXXEkPw6mnlUIjh1gZPIVKPtRXPmY5kLf6DwZmf5YLwR3QUrRonl7l0A==",
+      "type": "package",
+      "path": "system.text.encoding.codepages/4.4.0",
+      "files": [
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net46/System.Text.Encoding.CodePages.dll",
+        "lib/net461/System.Text.Encoding.CodePages.dll",
+        "lib/netstandard1.3/System.Text.Encoding.CodePages.dll",
+        "lib/netstandard2.0/System.Text.Encoding.CodePages.dll",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/netstandard1.3/System.Text.Encoding.CodePages.dll",
+        "ref/netstandard1.3/System.Text.Encoding.CodePages.xml",
+        "ref/netstandard1.3/de/System.Text.Encoding.CodePages.xml",
+        "ref/netstandard1.3/es/System.Text.Encoding.CodePages.xml",
+        "ref/netstandard1.3/fr/System.Text.Encoding.CodePages.xml",
+        "ref/netstandard1.3/it/System.Text.Encoding.CodePages.xml",
+        "ref/netstandard1.3/ja/System.Text.Encoding.CodePages.xml",
+        "ref/netstandard1.3/ko/System.Text.Encoding.CodePages.xml",
+        "ref/netstandard1.3/ru/System.Text.Encoding.CodePages.xml",
+        "ref/netstandard1.3/zh-hans/System.Text.Encoding.CodePages.xml",
+        "ref/netstandard1.3/zh-hant/System.Text.Encoding.CodePages.xml",
+        "ref/netstandard2.0/System.Text.Encoding.CodePages.dll",
+        "ref/netstandard2.0/System.Text.Encoding.CodePages.xml",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "runtimes/win/lib/net461/System.Text.Encoding.CodePages.dll",
+        "runtimes/win/lib/netcoreapp2.0/System.Text.Encoding.CodePages.dll",
+        "runtimes/win/lib/netstandard1.3/System.Text.Encoding.CodePages.dll",
+        "runtimes/win/lib/netstandard2.0/System.Text.Encoding.CodePages.dll",
+        "system.text.encoding.codepages.4.4.0.nupkg.sha512",
+        "system.text.encoding.codepages.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
+    "CertificateBuilder/1.0.0": {
+      "type": "project",
+      "path": "../CertificateBuilder/CertificateBuilder.csproj",
+      "msbuildProject": "../CertificateBuilder/CertificateBuilder.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "UAP,Version=v10.0.16299": [
+      "CertificateBuilder >= 1.0.0",
       "Microsoft.Data.Sqlite.Core >= 2.1.0",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 6.1.5",
       "SQLitePCLRaw.bundle_winsqlite3 >= 1.1.11"
@@ -7504,12 +8689,17 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "http://nuget.syncfusion.com/nuget_aspnetcore/nuget/getsyncfusionpackages/aspnetcore": {},
         "https://api.nuget.org/v3/index.json": {},
         "https://nuget.syncfusion.com/nuget_universalwindows/nuget/getsyncfusionpackages/universalwindows": {}
       },
       "frameworks": {
         "uap10.0.16299": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Julie\\source\\repos\\PacaModII\\CertificateBuilder\\CertificateBuilder.csproj": {
+              "projectPath": "C:\\Users\\Julie\\source\\repos\\PacaModII\\CertificateBuilder\\CertificateBuilder.csproj"
+            }
+          }
         }
       }
     },

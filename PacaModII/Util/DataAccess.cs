@@ -71,11 +71,14 @@ namespace PacaModII.Util
             {
                 db.Open();
 
-                SqliteCommand insertCommand = new SqliteCommand();
-                insertCommand.Connection = db;
+                SqliteCommand insertCommand = new SqliteCommand
+                {
+                    Connection = db,
+                    CommandText = "INSERT INTO " + scholar.Division +
+                                  "DatabaseManager VALUES (@ScupID, @Index, @Country, @School, @TeamID, " +
+                                  "@Pos, @First, @Last, @Sex)"
+                };
                 // Use parameterized query to prevent SQL injection attacks
-                insertCommand.CommandText = "INSERT INTO " + scholar.Division + "DatabaseManager VALUES (@ScupID, @Index, @Country, @School, @TeamID, " +
-                                            "@Pos, @First, @Last, @Sex)";
                 insertCommand.Parameters.AddWithValue("@ScupID", scholar.ScupID);
                 insertCommand.Parameters.AddWithValue("@Index", scholar.Index);
                 insertCommand.Parameters.AddWithValue("@Country", scholar.Country);

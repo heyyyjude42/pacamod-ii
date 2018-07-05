@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PacaModII", "PacaModII\PacaModII.csproj", "{2564D14B-9100-409D-AE54-EFFA46EA8BAE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CertificateBuilder", "CertificateBuilder\CertificateBuilder.csproj", "{09E6A178-1D4A-464B-8D52-8DA918644D79}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,26 @@ Global
 		{2564D14B-9100-409D-AE54-EFFA46EA8BAE}.Release|x86.ActiveCfg = Release|x86
 		{2564D14B-9100-409D-AE54-EFFA46EA8BAE}.Release|x86.Build.0 = Release|x86
 		{2564D14B-9100-409D-AE54-EFFA46EA8BAE}.Release|x86.Deploy.0 = Release|x86
+		{09E6A178-1D4A-464B-8D52-8DA918644D79}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{09E6A178-1D4A-464B-8D52-8DA918644D79}.Debug|ARM.ActiveCfg = Debug|ARM
+		{09E6A178-1D4A-464B-8D52-8DA918644D79}.Debug|ARM.Build.0 = Debug|ARM
+		{09E6A178-1D4A-464B-8D52-8DA918644D79}.Debug|ARM.Deploy.0 = Debug|ARM
+		{09E6A178-1D4A-464B-8D52-8DA918644D79}.Debug|x64.ActiveCfg = Debug|x64
+		{09E6A178-1D4A-464B-8D52-8DA918644D79}.Debug|x64.Build.0 = Debug|x64
+		{09E6A178-1D4A-464B-8D52-8DA918644D79}.Debug|x64.Deploy.0 = Debug|x64
+		{09E6A178-1D4A-464B-8D52-8DA918644D79}.Debug|x86.ActiveCfg = Debug|x86
+		{09E6A178-1D4A-464B-8D52-8DA918644D79}.Debug|x86.Build.0 = Debug|x86
+		{09E6A178-1D4A-464B-8D52-8DA918644D79}.Debug|x86.Deploy.0 = Debug|x86
+		{09E6A178-1D4A-464B-8D52-8DA918644D79}.Release|Any CPU.ActiveCfg = Release|x86
+		{09E6A178-1D4A-464B-8D52-8DA918644D79}.Release|ARM.ActiveCfg = Release|ARM
+		{09E6A178-1D4A-464B-8D52-8DA918644D79}.Release|ARM.Build.0 = Release|ARM
+		{09E6A178-1D4A-464B-8D52-8DA918644D79}.Release|ARM.Deploy.0 = Release|ARM
+		{09E6A178-1D4A-464B-8D52-8DA918644D79}.Release|x64.ActiveCfg = Release|x64
+		{09E6A178-1D4A-464B-8D52-8DA918644D79}.Release|x64.Build.0 = Release|x64
+		{09E6A178-1D4A-464B-8D52-8DA918644D79}.Release|x64.Deploy.0 = Release|x64
+		{09E6A178-1D4A-464B-8D52-8DA918644D79}.Release|x86.ActiveCfg = Release|x86
+		{09E6A178-1D4A-464B-8D52-8DA918644D79}.Release|x86.Build.0 = Release|x86
+		{09E6A178-1D4A-464B-8D52-8DA918644D79}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

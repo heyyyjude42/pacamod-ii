@@ -1,0 +1,53 @@
+﻿<UserControl
+    x:Class="CertificateBuilder.CertificateOfAppreciationView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CertificateBuilder"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <Grid Margin="24, 0, 24, 0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width=".5*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width=".5*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height=".5*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Foreground="Gray" FontStyle="Italic" Margin="0, 20">
+            For adjudicators, coordinators, and volunteers
+        </TextBlock>
+
+        <TextBlock Grid.Row="1" Grid.Column="1" Margin="0, 0, 40, 0">Round</TextBlock>
+        <TextBox x:Name="XRoundTextBox" Grid.Row="1" Grid.Column="2" PlaceholderText="e.g. Havana Primary" Margin="0, 0, 0, 10"/>
+
+        <TextBlock Grid.Row="2" Grid.Column="1" Margin="0, 0, 40, 0">Title</TextBlock>
+        <TextBox x:Name="XTitleTextBox" Grid.Row="2" Grid.Column="2" Text="Debate Adjudicator" Margin="0, 0, 0, 10"/>
+
+        <TextBlock Grid.Row="3" Grid.Column="1" Margin="0, 0, 40, 0">Round Start</TextBlock>
+        <DatePicker x:Name="XDateStartPicker" Grid.Row="3" Grid.Column="2" Margin="0, 0, 0, 10"/>
+
+        <TextBlock Grid.Row="4" Grid.Column="1" Margin="0, 0, 40, 0">Round End</TextBlock>
+        <DatePicker x:Name="XDateEndPicker" Grid.Row="4" Grid.Column="2" Margin="0, 0, 0, 10"/>
+
+        <TextBlock Grid.Row="5" Grid.Column="1">Names</TextBlock>
+        <TextBox x:Name="XNameTextBox" Grid.Row="5" Grid.Column="2" TextWrapping="Wrap" AcceptsReturn="True"
+                 ScrollViewer.VerticalScrollBarVisibility="Auto" PlaceholderText="Put each name on a separate line"/>
+
+        <Button Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0, 20"
+                Tapped="XGenerate_OnTapped">Generate</Button>    
+    </Grid>
+</UserControl>
